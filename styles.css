@@ -18,6 +18,7 @@
 
 html {
   scroll-behavior: smooth;
+  font-size: 15px;
 }
 
 body {
@@ -54,14 +55,14 @@ a {
 
 .brand {
   font-weight: 800;
-  font-size: 1.1rem;
+  font-size: 1rem;
   letter-spacing: 0.14em;
 }
 
 .main-nav {
   display: flex;
   gap: 24px;
-  font-size: 0.9rem;
+  font-size: 0.84rem;
   color: var(--text-soft);
 }
 
@@ -92,7 +93,7 @@ a {
 
 .hero h1 {
   margin: 0;
-  font-size: clamp(2.5rem, 7vw, 5.4rem);
+  font-size: clamp(2.2rem, 6.2vw, 4.8rem);
   line-height: 0.92;
   letter-spacing: -0.05em;
 }
@@ -101,7 +102,7 @@ a {
   max-width: 760px;
   margin: 10px auto 0;
   color: var(--text-soft);
-  font-size: clamp(1.05rem, 2vw, 1.8rem);
+  font-size: clamp(0.96rem, 1.7vw, 1.55rem);
 }
 
 .hero-actions {
@@ -119,7 +120,7 @@ a {
   min-height: 44px;
   padding: 0 18px;
   border-radius: 999px;
-  font-size: 0.92rem;
+  font-size: 0.86rem;
   font-weight: 700;
   border: 1px solid transparent;
   transition:
@@ -151,7 +152,7 @@ a {
 }
 
 .feature-card {
-  min-height: 320px;
+  min-height: 280px;
 }
 
 .text-card {
@@ -164,7 +165,7 @@ a {
 .text-card h2,
 .program-card h3 {
   margin: 0 0 10px;
-  font-size: clamp(1.35rem, 2.2vw, 2rem);
+  font-size: clamp(1.2rem, 1.9vw, 1.75rem);
   line-height: 1.02;
   letter-spacing: -0.04em;
 }
@@ -176,7 +177,7 @@ a {
   max-width: 360px;
   color: var(--text-soft);
   line-height: 1.55;
-  font-size: 0.96rem;
+  font-size: 0.9rem;
 }
 
 .media-card {
@@ -272,11 +273,21 @@ a {
 .program-visual {
   display: grid;
   place-items: center;
-  height: 196px;
+  height: 168px;
   margin-bottom: 18px;
   border-radius: var(--radius-md);
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.68), #e9e6e1);
   box-shadow: var(--shadow);
+}
+
+.program-visual.image-visual {
+  overflow: hidden;
+}
+
+.program-visual.image-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .program-visual.square::after,
@@ -313,14 +324,14 @@ a {
 
 .stat-item strong {
   display: block;
-  font-size: clamp(2.4rem, 4vw, 4rem);
+  font-size: clamp(2rem, 3.5vw, 3.4rem);
   line-height: 1;
   letter-spacing: -0.06em;
 }
 
 .stat-item span {
   color: var(--text-soft);
-  font-size: 0.92rem;
+  font-size: 0.86rem;
 }
 
 .journey-banner {
@@ -330,7 +341,7 @@ a {
 .banner-panel {
   display: grid;
   place-items: center;
-  min-height: 340px;
+  min-height: 300px;
   border-radius: 34px;
   background:
     radial-gradient(circle at 50% 35%, rgba(255, 255, 255, 0.18), transparent 20%),
@@ -409,7 +420,7 @@ a {
 
 .director-name {
   font-weight: 700;
-  font-size: 1.35rem;
+  font-size: 1.2rem;
   letter-spacing: -0.04em;
 }
 
@@ -427,7 +438,7 @@ a {
 .director-point-title {
   margin-bottom: 8px;
   font-weight: 700;
-  font-size: 0.96rem;
+  font-size: 0.9rem;
 }
 
 .director-point p {
@@ -439,7 +450,7 @@ a {
 .location p {
   color: var(--text-soft);
   line-height: 1.6;
-  font-size: 0.94rem;
+  font-size: 0.88rem;
 }
 
 .director-signoff {
@@ -463,7 +474,7 @@ a {
 .report-highlight h2,
 .section-heading h2 {
   margin: 0;
-  font-size: clamp(2rem, 4vw, 3.4rem);
+  font-size: clamp(1.7rem, 3.4vw, 2.9rem);
   line-height: 0.96;
   letter-spacing: -0.05em;
 }
@@ -474,7 +485,7 @@ a {
   margin: 10px auto 0;
   color: var(--text-soft);
   line-height: 1.35;
-  font-size: clamp(1rem, 1.8vw, 1.45rem);
+  font-size: clamp(0.92rem, 1.5vw, 1.25rem);
 }
 
 .testimonials,
@@ -492,7 +503,7 @@ a {
 }
 
 .testimonial-card {
-  min-height: 230px;
+  min-height: 205px;
   padding: 24px 20px;
   border-radius: 18px;
   background: rgba(255, 255, 255, 0.58);
@@ -519,7 +530,7 @@ a {
 
 .testimonial-meta span {
   color: var(--text-soft);
-  font-size: 0.88rem;
+  font-size: 0.82rem;
 }
 
 .consultation-heading p {
@@ -597,7 +608,7 @@ a {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 8px 18px;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   color: var(--text-soft);
 }
 
@@ -639,7 +650,7 @@ a {
   }
 
   .feature-card {
-    min-height: 260px;
+    min-height: 230px;
   }
 
   .text-card {
@@ -665,21 +676,21 @@ a {
   }
 
   .hero h1 {
-    font-size: 2.5rem;
+    font-size: 2.15rem;
   }
 
   .hero-copy {
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
 
   .main-nav {
     gap: 14px;
-    font-size: 0.84rem;
+    font-size: 0.78rem;
   }
 
   .program-visual,
   .banner-panel,
   .media-card {
-    min-height: 240px;
+    min-height: 210px;
   }
 }
