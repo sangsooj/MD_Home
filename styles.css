@@ -636,45 +636,13 @@ a {
   max-width: none;
 }
 
-.consultation-form {
+.consultation-action {
   width: min(100%, 360px);
   margin: 28px auto 0;
 }
 
-.consultation-form label {
-  display: block;
-  margin-bottom: 14px;
-}
-
-.consultation-form span {
-  display: block;
-  margin-bottom: 6px;
-  font-size: 0.82rem;
-  color: var(--text-soft);
-}
-
-.consultation-form input,
-.consultation-form textarea {
+.consultation-action .button {
   width: 100%;
-  border: 1px solid transparent;
-  border-radius: 8px;
-  padding: 12px 14px;
-  background: #e9e6e3;
-  font: inherit;
-  color: var(--text);
-  resize: vertical;
-}
-
-.consultation-form input:focus,
-.consultation-form textarea:focus {
-  outline: none;
-  border-color: rgba(17, 17, 17, 0.16);
-  background: #f0ede8;
-}
-
-.consultation-form button {
-  width: 100%;
-  margin-top: 4px;
 }
 
 .location {
