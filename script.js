@@ -24,3 +24,23 @@ const observer = new IntersectionObserver(
 );
 
 revealTargets.forEach((element) => observer.observe(element));
+
+const mapElement = document.getElementById("naver-map");
+
+if (mapElement && window.naver?.maps) {
+  const mathDoingPosition = new naver.maps.LatLng(37.529471, 127.136296);
+  const map = new naver.maps.Map(mapElement, {
+    center: mathDoingPosition,
+    zoom: 16,
+    zoomControl: true,
+    zoomControlOptions: {
+      position: naver.maps.Position.TOP_RIGHT,
+    },
+  });
+
+  new naver.maps.Marker({
+    position: mathDoingPosition,
+    map,
+    title: "매쓰두잉",
+  });
+}

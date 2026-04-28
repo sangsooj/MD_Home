@@ -678,12 +678,65 @@ a {
 }
 
 .location {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 28px;
+  align-items: stretch;
   padding-bottom: 44px;
 }
 
 .location-title {
+  font-size: 1.35rem;
   font-weight: 700;
   margin-bottom: 8px;
+}
+
+.location-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.map-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  min-height: 38px;
+  margin-top: 18px;
+  padding: 0 16px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.72);
+  font-size: 0.84rem;
+  font-weight: 700;
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    transform 180ms ease;
+}
+
+.map-link:hover,
+.map-link:focus-visible {
+  border-color: rgba(17, 17, 17, 0.18);
+  background: #ffffff;
+  transform: translateY(-1px);
+}
+
+.map-frame {
+  min-height: 320px;
+  overflow: hidden;
+  border: 1px solid rgba(17, 17, 17, 0.08);
+  border-radius: var(--radius-md);
+  background: var(--surface-muted);
+  box-shadow: var(--shadow);
+}
+
+.naver-map {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 320px;
 }
 
 .site-footer {
@@ -733,6 +786,7 @@ a {
   .banner-caption,
   .director,
   .director-grid,
+  .location,
   .testimonial-grid,
   .site-footer,
   .footer-links {
