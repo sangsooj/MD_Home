@@ -25,9 +25,25 @@ const observer = new IntersectionObserver(
 
 revealTargets.forEach((element) => observer.observe(element));
 
-const mapElement = document.getElementById("naver-map");
+function showMapFallback() {
+  const mapElement = document.getElementById("naver-map");
 
-if (mapElement && window.naver?.maps) {
+  if (!mapElement || mapElement.dataset.mapReady === "true") {
+    return;
+  }
+
+  mapElement.innerHTML =
+    '<div class="map-fallback">지도를 불러오지 못했습니다.<br />네이버 지도에서 보기를 눌러 위치를 확인해 주세요.</div>';
+}
+
+window.initNaverMap = function initNaverMap() {
+  const mapElement = document.getElementById("naver-map");
+
+  if (!mapElement || !window.naver?.maps) {
+    showMapFallback();
+    return;
+  }
+
   const mathDoingPosition = new naver.maps.LatLng(37.529471, 127.136296);
   const map = new naver.maps.Map(mapElement, {
     center: mathDoingPosition,
@@ -43,4 +59,8 @@ if (mapElement && window.naver?.maps) {
     map,
     title: "매쓰두잉",
   });
-}
+
+  mapElement.dataset.mapReady = "true";
+};
+
+window.setTimeout(showMapFallback, 3000);

@@ -739,6 +739,16 @@ a {
   min-height: 320px;
 }
 
+.map-fallback {
+  display: grid;
+  place-items: center;
+  min-height: 320px;
+  padding: 24px;
+  color: var(--text-soft);
+  line-height: 1.6;
+  text-align: center;
+}
+
 .site-footer {
   width: min(100%, var(--max-width));
   margin: 0 auto;
