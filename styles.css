@@ -468,10 +468,11 @@ a {
 
 .diagnosis-workspace {
   display: grid;
-  grid-template-columns: 240px minmax(0, 1fr);
+  grid-template-columns: 240px minmax(360px, 560px);
   gap: 16px;
   margin-top: 26px;
   align-items: start;
+  justify-content: center;
 }
 
 .diagnosis-tabs,
@@ -547,17 +548,17 @@ a {
 }
 
 .diagnosis-detail {
-  min-height: 0;
-  padding: 20px 22px;
+  min-height: 292px;
+  padding: 26px 26px;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
 .detail-step {
-  margin: 0 0 8px;
+  margin: 0 0 12px;
   color: var(--accent-deep);
-  font-size: 0.72rem;
+  font-size: 0.78rem;
   font-weight: 800;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -566,27 +567,27 @@ a {
 .diagnosis-detail h3 {
   margin: 0;
   color: var(--ink-blue);
-  font-size: clamp(1.12rem, 1.75vw, 1.45rem);
-  line-height: 1.18;
+  font-size: clamp(1.28rem, 2.1vw, 1.8rem);
+  line-height: 1.12;
   letter-spacing: -0.04em;
 }
 
 .diagnosis-detail ul,
 .diagnosis-accordion-item ul {
-  margin: 14px 0 0;
+  margin: 18px 0 0;
   padding: 0;
   list-style: none;
   display: grid;
-  gap: 7px;
+  gap: 9px;
 }
 
 .diagnosis-detail li,
 .diagnosis-accordion-item li {
   position: relative;
-  padding-left: 17px;
+  padding-left: 20px;
   color: var(--text-soft);
-  line-height: 1.42;
-  font-size: 0.84rem;
+  line-height: 1.48;
+  font-size: 0.9rem;
 }
 
 .diagnosis-detail li::before,
@@ -595,8 +596,8 @@ a {
   position: absolute;
   left: 0;
   top: 0.68em;
-  width: 6px;
-  height: 6px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
   background: var(--accent-deep);
 }
