@@ -3,9 +3,11 @@
   --surface: #ffffff;
   --surface-muted: #ece9e4;
   --text: #111111;
+  --ink-blue: #142849;
   --text-soft: #7d746c;
   --line: rgba(17, 17, 17, 0.08);
   --accent: #d2b089;
+  --accent-deep: #b99a59;
   --shadow: 0 24px 60px rgba(17, 17, 17, 0.08);
   --radius-lg: 36px;
   --radius-md: 26px;
@@ -24,7 +26,8 @@ html {
 body {
   margin: 0;
   background:
-    radial-gradient(circle at top left, rgba(210, 176, 137, 0.18), transparent 24%),
+    radial-gradient(circle at top left, rgba(20, 40, 73, 0.1), transparent 25%),
+    radial-gradient(circle at top right, rgba(185, 154, 89, 0.16), transparent 22%),
     linear-gradient(180deg, #fcfbf8 0%, var(--bg) 100%);
   color: var(--text);
   font-family: "Manrope", sans-serif;
@@ -54,9 +57,23 @@ a {
 }
 
 .brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   font-weight: 800;
   font-size: 1rem;
-  letter-spacing: 0.14em;
+  color: var(--ink-blue);
+}
+
+.brand img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.brand span {
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .main-nav {
@@ -80,8 +97,22 @@ a {
 }
 
 .hero {
+  position: relative;
   text-align: center;
-  padding: 84px 0 26px;
+  padding: 58px 0 26px;
+}
+
+.hero-logo {
+  display: block;
+  width: 116px;
+  height: 116px;
+  object-fit: contain;
+  margin: 0 auto 18px;
+  padding: 14px;
+  border: 1px solid rgba(185, 154, 89, 0.22);
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 18px 48px rgba(20, 40, 73, 0.1);
 }
 
 .eyebrow {
@@ -89,6 +120,7 @@ a {
   font-size: 0.78rem;
   font-weight: 800;
   letter-spacing: 0.25em;
+  color: var(--accent-deep);
 }
 
 .hero h1 {
@@ -135,7 +167,7 @@ a {
 }
 
 .button-dark {
-  background: #111111;
+  background: var(--ink-blue);
   color: #ffffff;
 }
 
@@ -729,9 +761,21 @@ a {
 }
 
 .footer-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   font-weight: 800;
-  letter-spacing: 0.12em;
-  color: rgba(17, 17, 17, 0.24);
+  color: rgba(20, 40, 73, 0.6);
+}
+
+.footer-brand img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+.footer-brand span {
+  letter-spacing: 0.08em;
 }
 
 .footer-links {
@@ -808,7 +852,13 @@ a {
   }
 
   .hero {
-    padding-top: 48px;
+    padding-top: 40px;
+  }
+
+  .hero-logo {
+    width: 96px;
+    height: 96px;
+    border-radius: 24px;
   }
 
   .hero h1 {
