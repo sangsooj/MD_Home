@@ -7,23 +7,27 @@ revealTargets.forEach((element, index) => {
   element.style.transitionDelay = `${index * 45}ms`;
 });
 
-const observer = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) {
-        return;
-      }
+if ("IntersectionObserver" in window) {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) {
+          return;
+        }
 
-      entry.target.classList.add("is-visible");
-      observer.unobserve(entry.target);
-    });
-  },
-  {
-    threshold: 0.18,
-  }
-);
+        entry.target.classList.add("is-visible");
+        observer.unobserve(entry.target);
+      });
+    },
+    {
+      threshold: 0.18,
+    }
+  );
 
-revealTargets.forEach((element) => observer.observe(element));
+  revealTargets.forEach((element) => observer.observe(element));
+} else {
+  revealTargets.forEach((element) => element.classList.add("is-visible"));
+}
 
 const diagnosisSteps = [
   {
@@ -78,10 +82,13 @@ const reportProgress = document.querySelector("[data-report-progress]");
 const reportBar = document.querySelector("[data-report-bar]");
 const reportSlots = document.querySelectorAll("[data-report-slot]");
 const mobileDiagnosisItems = document.querySelectorAll("[data-mobile-step]");
+let activeDiagnosisIndex = 0;
+let diagnosisRotationTimer;
 
 function setDiagnosisStep(stepIndex) {
   const activeIndex = Math.max(0, Math.min(stepIndex, diagnosisSteps.length - 1));
   const step = diagnosisSteps[activeIndex];
+  activeDiagnosisIndex = activeIndex;
 
   diagnosisButtons.forEach((button) => {
     const isActive = Number(button.dataset.step) === activeIndex;
@@ -114,16 +121,38 @@ function setDiagnosisStep(stepIndex) {
 diagnosisButtons.forEach((button) => {
   button.addEventListener("click", () => {
     setDiagnosisStep(Number(button.dataset.step));
+    restartDiagnosisRotation();
   });
 });
 
 mobileDiagnosisItems.forEach((item) => {
   const button = item.querySelector("button");
 
-  button?.addEventListener("click", () => {
-    setDiagnosisStep(Number(item.dataset.mobileStep));
-  });
+  if (button) {
+    button.addEventListener("click", () => {
+      setDiagnosisStep(Number(item.dataset.mobileStep));
+      restartDiagnosisRotation();
+    });
+  }
 });
+
+function startDiagnosisRotation() {
+  if (!diagnosisButtons.length && !mobileDiagnosisItems.length) {
+    return;
+  }
+
+  diagnosisRotationTimer = window.setInterval(() => {
+    setDiagnosisStep((activeDiagnosisIndex + 1) % diagnosisSteps.length);
+  }, 3000);
+}
+
+function restartDiagnosisRotation() {
+  window.clearInterval(diagnosisRotationTimer);
+  startDiagnosisRotation();
+}
+
+setDiagnosisStep(0);
+startDiagnosisRotation();
 
 function showMapFallback() {
   const mapElement = document.getElementById("naver-map");
@@ -139,7 +168,7 @@ function showMapFallback() {
 window.initNaverMap = function initNaverMap() {
   const mapElement = document.getElementById("naver-map");
 
-  if (!mapElement || !window.naver?.maps) {
+  if (!mapElement || !window.naver || !window.naver.maps) {
     showMapFallback();
     return;
   }
