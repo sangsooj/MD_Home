@@ -78,9 +78,6 @@ const diagnosisButtons = document.querySelectorAll("[data-step]");
 const diagnosisTitle = document.querySelector("[data-diagnosis-title]");
 const diagnosisCount = document.querySelector("[data-diagnosis-count]");
 const diagnosisList = document.querySelector("[data-diagnosis-list]");
-const reportProgress = document.querySelector("[data-report-progress]");
-const reportBar = document.querySelector("[data-report-bar]");
-const reportSlots = document.querySelectorAll("[data-report-slot]");
 const mobileDiagnosisItems = document.querySelectorAll("[data-mobile-step]");
 let activeDiagnosisIndex = 0;
 let diagnosisRotationTimer;
@@ -101,17 +98,6 @@ function setDiagnosisStep(stepIndex) {
     diagnosisTitle.textContent = step.title;
     diagnosisList.innerHTML = step.items.map((item) => `<li>${item}</li>`).join("");
   }
-
-  const progress = `${((activeIndex + 1) / diagnosisSteps.length) * 100}%`;
-
-  if (reportProgress && reportBar) {
-    reportProgress.textContent = progress;
-    reportBar.style.width = progress;
-  }
-
-  reportSlots.forEach((slot) => {
-    slot.classList.toggle("is-filled", Number(slot.dataset.reportSlot) <= activeIndex);
-  });
 
   mobileDiagnosisItems.forEach((item) => {
     item.classList.toggle("is-open", Number(item.dataset.mobileStep) === activeIndex);
