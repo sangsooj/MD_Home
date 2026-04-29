@@ -1,5 +1,5 @@
 const revealTargets = document.querySelectorAll(
-  ".hero, .feature-card, .philosophy, .program-card, .stat-item, .journey-banner, .director, .report-highlight, .section-heading, .testimonial-card, .consultation-action, .location, .site-footer"
+  ".hero, .feature-card, .philosophy, .program-card, .diagnosis, .stat-item, .journey-banner, .director, .report-highlight, .section-heading, .testimonial-card, .consultation-action, .location, .site-footer"
 );
 
 revealTargets.forEach((element, index) => {
@@ -24,6 +24,106 @@ const observer = new IntersectionObserver(
 );
 
 revealTargets.forEach((element) => observer.observe(element));
+
+const diagnosisSteps = [
+  {
+    count: "Step 01",
+    title: "기본 정보 수집",
+    items: [
+      "학부모 설문 (P1~P12): 학습 이력 파악",
+      "학생 설문 (S1~S10): 정보인식 유형 + 구체성",
+      "수학능력 진단 (M): 객관적 성취도",
+    ],
+  },
+  {
+    count: "Step 02",
+    title: "학부모 정보 분석 (검증용)",
+    items: [
+      "P1~P6: 학습 이력 정리",
+      "P7~P10: 부모 관찰 → 학생 설문과 비교",
+      "P11~P12: 부모 고민 → 지도 방향 파악",
+    ],
+  },
+  {
+    count: "Step 03",
+    title: "최종 진단점수 계산 (M + S만 사용)",
+    items: [
+      "Final = (M × 0.60) + (S × 0.40)",
+      "학습 단계 (Stage 1~4)",
+      "정보인식 유형 (V/L/혼합)",
+      "구체성 수준",
+    ],
+  },
+  {
+    count: "Step 04",
+    title: "학부모 정보 고려하여 미세조정",
+    items: [
+      "부모 관찰과 학생 설문 불일치 검토",
+      "부모 고민을 반영한 교재 난이도 조정",
+      "지도 방향 및 전략 수립",
+    ],
+  },
+  {
+    count: "Step 05",
+    title: "문제집 선정 + 학습 지도 방안 수립",
+    items: ["최종 교재 선정", "7~8주 학습 계획", "맞춤형 지도 전략"],
+  },
+];
+
+const diagnosisButtons = document.querySelectorAll("[data-step]");
+const diagnosisTitle = document.querySelector("[data-diagnosis-title]");
+const diagnosisCount = document.querySelector("[data-diagnosis-count]");
+const diagnosisList = document.querySelector("[data-diagnosis-list]");
+const reportProgress = document.querySelector("[data-report-progress]");
+const reportBar = document.querySelector("[data-report-bar]");
+const reportSlots = document.querySelectorAll("[data-report-slot]");
+const mobileDiagnosisItems = document.querySelectorAll("[data-mobile-step]");
+
+function setDiagnosisStep(stepIndex) {
+  const activeIndex = Math.max(0, Math.min(stepIndex, diagnosisSteps.length - 1));
+  const step = diagnosisSteps[activeIndex];
+
+  diagnosisButtons.forEach((button) => {
+    const isActive = Number(button.dataset.step) === activeIndex;
+    button.classList.toggle("is-active", isActive);
+    button.setAttribute("aria-selected", String(isActive));
+  });
+
+  if (diagnosisTitle && diagnosisCount && diagnosisList) {
+    diagnosisCount.textContent = step.count;
+    diagnosisTitle.textContent = step.title;
+    diagnosisList.innerHTML = step.items.map((item) => `<li>${item}</li>`).join("");
+  }
+
+  const progress = `${((activeIndex + 1) / diagnosisSteps.length) * 100}%`;
+
+  if (reportProgress && reportBar) {
+    reportProgress.textContent = progress;
+    reportBar.style.width = progress;
+  }
+
+  reportSlots.forEach((slot) => {
+    slot.classList.toggle("is-filled", Number(slot.dataset.reportSlot) <= activeIndex);
+  });
+
+  mobileDiagnosisItems.forEach((item) => {
+    item.classList.toggle("is-open", Number(item.dataset.mobileStep) === activeIndex);
+  });
+}
+
+diagnosisButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    setDiagnosisStep(Number(button.dataset.step));
+  });
+});
+
+mobileDiagnosisItems.forEach((item) => {
+  const button = item.querySelector("button");
+
+  button?.addEventListener("click", () => {
+    setDiagnosisStep(Number(item.dataset.mobileStep));
+  });
+});
 
 function showMapFallback() {
   const mapElement = document.getElementById("naver-map");
