@@ -996,6 +996,30 @@ a {
     min-height: 230px;
   }
 
+  .feature-grid .feature-card:nth-child(2) {
+    order: 1;
+  }
+
+  .feature-grid .feature-card:nth-child(1) {
+    order: 2;
+  }
+
+  .feature-grid .feature-card:nth-child(3) {
+    order: 3;
+  }
+
+  .feature-grid .feature-card:nth-child(4) {
+    order: 4;
+  }
+
+  .feature-grid .feature-card:nth-child(6) {
+    order: 5;
+  }
+
+  .feature-grid .feature-card:nth-child(5) {
+    order: 6;
+  }
+
   .text-card {
     padding: 0;
   }
@@ -1143,6 +1167,32 @@ a {
   .banner-panel,
   .media-card {
     min-height: 210px;
+  }
+
+  .feature-grid {
+    gap: 18px;
+  }
+
+  .feature-grid .text-card {
+    min-height: auto;
+    padding-bottom: 22px;
+  }
+
+  .feature-grid .media-card {
+    min-height: 0;
+    height: clamp(150px, 45vw, 210px);
+    border-radius: 24px;
+  }
+
+  .feature-grid .text-card h2 {
+    font-size: 1.32rem;
+    line-height: 1.1;
+  }
+
+  .feature-grid .text-card p {
+    max-width: none;
+    font-size: 0.86rem;
+    line-height: 1.52;
   }
 
   .book-grid {
