@@ -1,5 +1,5 @@
 const revealTargets = document.querySelectorAll(
-  ".hero, .feature-card, .philosophy, .program-card, .diagnosis, .stat-item, .journey-banner, .director, .report-highlight, .section-heading, .testimonial-card, .consultation-action, .location, .site-footer"
+  ".opening-banner, .hero, .opening-event, .feature-card, .philosophy, .program-card, .diagnosis, .stat-item, .journey-banner, .director, .report-highlight, .section-heading, .testimonial-card, .consultation-action, .location, .site-footer"
 );
 
 revealTargets.forEach((element, index) => {
@@ -28,6 +28,21 @@ if ("IntersectionObserver" in window) {
 } else {
   revealTargets.forEach((element) => element.classList.add("is-visible"));
 }
+
+const eventErrorCards = document.querySelectorAll(".event-error-card");
+
+eventErrorCards.forEach((card) => {
+  const button = card.querySelector(".event-error-trigger");
+
+  if (!button) {
+    return;
+  }
+
+  button.addEventListener("click", () => {
+    const isOpen = card.classList.toggle("is-open");
+    button.setAttribute("aria-expanded", String(isOpen));
+  });
+});
 
 const diagnosisSteps = [
   {
