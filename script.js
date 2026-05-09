@@ -1,5 +1,5 @@
 const revealTargets = document.querySelectorAll(
-  ".opening-banner, .hero, .opening-event, .arithmetic-hero, .numbered-content-card, .program-cause-grid article, .bottom-cta, .feature-card, .book-cover-marquee, .philosophy, .program-card, .diagnosis, .stat-item, .journey-banner, .director, .report-highlight, .section-heading, .testimonial-card, .center-lead, .consultation-action, .location, .site-footer"
+  ".opening-banner, .hero, .opening-event, .arithmetic-hero, .numbered-content-card, .program-cause-grid article, .bottom-cta, .feature-card, .book-cover-gallery, .philosophy, .program-card, .diagnosis, .stat-item, .journey-banner, .director, .report-highlight, .section-heading, .testimonial-card, .center-lead, .consultation-action, .location, .site-footer"
 );
 
 revealTargets.forEach((element, index) => {
@@ -43,27 +43,6 @@ eventErrorCards.forEach((card) => {
     button.setAttribute("aria-expanded", String(isOpen));
   });
 });
-
-const bookCarousel = document.querySelector(".book-cover-marquee");
-
-if (bookCarousel) {
-  const viewport = bookCarousel.querySelector(".book-cover-viewport");
-  const buttons = bookCarousel.querySelectorAll("[data-book-scroll]");
-
-  buttons.forEach((button) => {
-    button.addEventListener("click", () => {
-      if (!viewport) {
-        return;
-      }
-
-      const direction = button.dataset.bookScroll === "prev" ? -1 : 1;
-      viewport.scrollBy({
-        left: direction * Math.min(viewport.clientWidth, 390),
-        behavior: "smooth",
-      });
-    });
-  });
-}
 
 const diagnosisSteps = [
   {
