@@ -1624,13 +1624,12 @@ a {
 }
 
 .book-cover-showcase p {
-  margin: 0 0 16px;
-  color: var(--ink-blue);
-  font-size: clamp(0.98rem, 1.45vw, 1.18rem);
-  font-weight: 700;
-  line-height: 1.6;
+  max-width: 620px;
+  margin: 0 auto 16px;
+  color: var(--text-soft);
+  font-size: clamp(0.92rem, 1.5vw, 1.25rem);
+  line-height: 1.35;
   text-align: center;
-  letter-spacing: -0.02em;
 }
 
 .book-cover-gallery {
