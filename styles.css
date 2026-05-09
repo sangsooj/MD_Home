@@ -1616,6 +1616,45 @@ a {
   list-style: none;
 }
 
+.book-cover-marquee {
+  overflow: hidden;
+  margin-top: 18px;
+  padding: 14px 0;
+  border-top: 1px solid rgba(17, 17, 17, 0.07);
+  border-bottom: 1px solid rgba(17, 17, 17, 0.07);
+}
+
+.book-cover-track {
+  display: flex;
+  width: max-content;
+  gap: 14px;
+  animation: bookCoverScroll 38s linear infinite;
+}
+
+.book-cover-track:hover {
+  animation-play-state: paused;
+}
+
+.book-cover-track img {
+  display: block;
+  width: 72px;
+  aspect-ratio: 0.71;
+  flex: 0 0 auto;
+  border-radius: 4px;
+  object-fit: cover;
+  box-shadow: 0 8px 18px rgba(17, 17, 17, 0.12);
+}
+
+@keyframes bookCoverScroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(calc(-50% - 7px));
+  }
+}
+
 .consultation-heading p {
   max-width: none;
 }
