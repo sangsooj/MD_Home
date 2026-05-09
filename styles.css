@@ -1616,15 +1616,29 @@ a {
   list-style: none;
 }
 
+.book-cover-showcase {
+  margin-top: 34px;
+  padding: 18px 0 16px;
+  border-top: 1px solid rgba(17, 17, 17, 0.07);
+  border-bottom: 1px solid rgba(17, 17, 17, 0.07);
+}
+
+.book-cover-showcase p {
+  margin: 0 0 16px;
+  color: var(--ink-blue);
+  font-size: clamp(0.98rem, 1.45vw, 1.18rem);
+  font-weight: 700;
+  line-height: 1.6;
+  text-align: center;
+  letter-spacing: -0.02em;
+}
+
 .book-cover-gallery {
   display: grid;
   grid-template-columns: repeat(9, minmax(0, 1fr));
   gap: 14px;
   width: min(100%, 900px);
-  margin-top: 34px;
-  padding: 16px 0;
-  border-top: 1px solid rgba(17, 17, 17, 0.07);
-  border-bottom: 1px solid rgba(17, 17, 17, 0.07);
+  margin: 0 auto;
   align-items: center;
 }
 
