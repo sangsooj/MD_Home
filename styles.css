@@ -1618,6 +1618,7 @@ a {
 
 .book-cover-marquee {
   overflow: hidden;
+  width: min(100%, 382px);
   margin-top: 18px;
   padding: 14px 0;
   border-top: 1px solid rgba(17, 17, 17, 0.07);
@@ -1627,18 +1628,25 @@ a {
 .book-cover-track {
   display: flex;
   width: max-content;
-  gap: 14px;
-  animation: bookCoverScroll 38s linear infinite;
+  animation: bookCoverScroll 26s linear infinite;
+  will-change: transform;
 }
 
 .book-cover-track:hover {
   animation-play-state: paused;
 }
 
+.book-cover-set {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 14px;
+  padding-right: 14px;
+}
+
 .book-cover-track img {
   display: block;
-  width: 72px;
-  aspect-ratio: 0.71;
+  width: 82px;
+  height: 116px;
   flex: 0 0 auto;
   border-radius: 4px;
   object-fit: cover;
@@ -1651,7 +1659,7 @@ a {
   }
 
   to {
-    transform: translateX(calc(-50% - 7px));
+    transform: translateX(-50%);
   }
 }
 
