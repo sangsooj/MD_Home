@@ -440,8 +440,12 @@ a {
 .event-actions {
   display: flex;
   gap: 10px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: flex-end;
+}
+
+.event-actions .button {
+  white-space: nowrap;
 }
 
 .diagnosis-page {
@@ -1735,6 +1739,7 @@ a {
 
   .event-actions {
     justify-content: flex-start;
+    flex-wrap: wrap;
   }
 
   .arithmetic-hero,
