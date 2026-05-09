@@ -224,7 +224,6 @@ a {
 
 .philosophy-band h2,
 .section-title h2,
-.director-content h2,
 .books-intro h2,
 .results-title h2,
 .consultation-section h2 {
@@ -306,189 +305,6 @@ a {
   color: var(--muted);
   font-size: 0.78rem;
   line-height: 1.55;
-}
-
-.director-section {
-  display: grid;
-  grid-template-columns: 250px 1fr;
-  gap: 34px;
-  padding: 42px 46px 42px 70px;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-  background:
-    radial-gradient(circle at 12% 24%, rgba(109, 135, 85, 0.13), transparent 18%),
-    linear-gradient(135deg, #fffdf8, #f7f0e4);
-}
-
-.director-portrait {
-  align-self: start;
-  min-height: 310px;
-  padding: 18px;
-  border: 1px solid rgba(7, 49, 95, 0.1);
-  border-radius: 10px;
-  background: #ffffff;
-  box-shadow: var(--shadow);
-}
-
-.portrait-placeholder {
-  display: grid;
-  place-items: center;
-  align-content: center;
-  min-height: 274px;
-  border: 1px dashed rgba(109, 135, 85, 0.45);
-  border-radius: 8px;
-  background:
-    linear-gradient(160deg, rgba(7, 49, 95, 0.08), rgba(109, 135, 85, 0.08)),
-    #fbf8f1;
-  text-align: center;
-}
-
-.portrait-placeholder span {
-  color: var(--green);
-  font-family: "Manrope", sans-serif;
-  font-size: 0.74rem;
-  font-weight: 800;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-}
-
-.portrait-placeholder strong {
-  margin-top: 10px;
-  color: var(--navy);
-  font-size: 1.4rem;
-}
-
-.director-role {
-  margin: 0 0 8px;
-  color: var(--green);
-  font-size: 0.88rem;
-  font-weight: 800;
-}
-
-.director-content h2 {
-  color: var(--navy);
-  font-size: 2rem;
-  line-height: 1.18;
-}
-
-.director-lead {
-  margin: 14px 0 18px;
-  color: #263142;
-  font-size: 1.08rem;
-  font-weight: 800;
-  line-height: 1.65;
-}
-
-.director-content > p:not(.kicker):not(.director-role):not(.director-lead) {
-  margin: 0 0 12px;
-  max-width: 610px;
-  color: #424b56;
-  font-size: 0.94rem;
-  line-height: 1.76;
-}
-
-.director-card-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
-  margin-top: 22px;
-}
-
-.director-card-grid article {
-  min-height: 116px;
-  padding: 16px 14px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.82);
-}
-
-.director-card-grid strong,
-.director-card-grid span {
-  display: block;
-}
-
-.director-card-grid strong {
-  color: var(--navy);
-  font-size: 0.92rem;
-  line-height: 1.42;
-}
-
-.director-card-grid span {
-  margin-top: 8px;
-  color: var(--muted);
-  font-size: 0.78rem;
-  line-height: 1.55;
-}
-
-.director-books {
-  margin-top: 24px;
-}
-
-.director-books h3 {
-  margin: 0 0 12px;
-  color: var(--navy);
-  font-size: 1rem;
-}
-
-.director-book-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 10px;
-}
-
-.director-book-grid article {
-  min-height: 132px;
-  padding: 12px 10px;
-  border: 1px solid #e7dfd1;
-  border-radius: 7px;
-  background: #ffffff;
-  text-align: center;
-  box-shadow: 0 6px 16px rgba(25, 34, 48, 0.07);
-}
-
-.director-book-grid span {
-  display: block;
-  width: 48px;
-  aspect-ratio: 0.7;
-  margin: 0 auto 10px;
-  border-radius: 3px;
-  background:
-    linear-gradient(135deg, rgba(7, 49, 95, 0.9), rgba(7, 49, 95, 0.62)),
-    var(--navy);
-  box-shadow: 0 6px 12px rgba(25, 34, 48, 0.16);
-}
-
-.director-book-grid strong {
-  display: block;
-  color: var(--navy);
-  font-size: 0.76rem;
-  line-height: 1.38;
-}
-
-.director-content blockquote {
-  margin: 24px 0 0;
-  padding: 18px 20px;
-  border-left: 4px solid var(--green);
-  border-radius: 0 8px 8px 0;
-  background: rgba(255, 255, 255, 0.78);
-  color: var(--navy);
-  font-size: 1rem;
-  font-weight: 800;
-  line-height: 1.62;
-}
-
-.director-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 40px;
-  margin-top: 18px;
-  padding: 0 18px;
-  border-radius: 4px;
-  background: var(--navy);
-  color: #ffffff;
-  font-size: 0.86rem;
-  font-weight: 800;
 }
 
 .books-section {
@@ -710,7 +526,6 @@ a {
   .hero-section,
   .philosophy-band,
   .section-title,
-  .director-section,
   .books-section,
   .results-section,
   .consultation-section {
@@ -718,7 +533,6 @@ a {
   }
 
   .system-section,
-  .director-section,
   .books-section,
   .results-section,
   .consultation-section {
@@ -737,22 +551,6 @@ a {
 
   .book-grid {
     grid-template-columns: repeat(4, minmax(94px, 1fr));
-  }
-
-  .director-portrait {
-    min-height: 240px;
-  }
-
-  .portrait-placeholder {
-    min-height: 204px;
-  }
-
-  .director-card-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .director-book-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .results-section {
@@ -803,24 +601,6 @@ a {
 
   .book-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .director-section {
-    gap: 24px;
-    padding-top: 34px;
-    padding-bottom: 34px;
-  }
-
-  .director-content h2 {
-    font-size: 1.72rem;
-  }
-
-  .director-lead {
-    font-size: 0.98rem;
-  }
-
-  .director-book-grid {
-    grid-template-columns: 1fr;
   }
 
   .book-card img {

@@ -905,6 +905,191 @@ a {
   color: #ffffff;
 }
 
+.founder-intro {
+  display: grid;
+  grid-template-columns: 300px minmax(0, 1fr);
+  gap: 34px;
+  align-items: start;
+  padding: 34px;
+  border: 1px solid rgba(185, 154, 89, 0.2);
+  border-radius: var(--radius-lg);
+  background:
+    radial-gradient(circle at 12% 22%, rgba(185, 154, 89, 0.13), transparent 20%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(246, 243, 239, 0.78));
+  box-shadow: var(--shadow);
+}
+
+.founder-portrait {
+  min-height: 360px;
+  padding: 18px;
+  border: 1px solid rgba(20, 40, 73, 0.08);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.76);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.58);
+}
+
+.founder-placeholder {
+  display: grid;
+  place-items: center;
+  align-content: center;
+  min-height: 324px;
+  border: 1px dashed rgba(185, 154, 89, 0.46);
+  border-radius: 18px;
+  background:
+    linear-gradient(145deg, rgba(20, 40, 73, 0.08), rgba(185, 154, 89, 0.1)),
+    rgba(255, 255, 255, 0.72);
+  text-align: center;
+}
+
+.founder-placeholder span,
+.founder-kicker {
+  color: var(--accent-deep);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.founder-placeholder strong {
+  margin-top: 10px;
+  color: var(--ink-blue);
+  font-size: 1.25rem;
+}
+
+.founder-kicker,
+.founder-role,
+.founder-copy h2,
+.founder-books h3,
+.founder-copy blockquote {
+  margin: 0;
+}
+
+.founder-role {
+  margin-top: 8px;
+  color: var(--text-soft);
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.founder-copy h2 {
+  margin-top: 10px;
+  color: var(--ink-blue);
+  font-size: clamp(1.65rem, 3vw, 2.6rem);
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+}
+
+.founder-lead {
+  margin: 16px 0 18px;
+  color: var(--text);
+  font-size: 1.05rem;
+  font-weight: 800;
+  line-height: 1.65;
+}
+
+.founder-copy > p:not(.founder-kicker):not(.founder-role):not(.founder-lead) {
+  max-width: 680px;
+  margin: 0 0 12px;
+  color: var(--text-soft);
+  font-size: 0.94rem;
+  line-height: 1.76;
+}
+
+.founder-career-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.founder-career-grid article,
+.founder-book-grid article {
+  border: 1px solid rgba(20, 40, 73, 0.08);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.76);
+}
+
+.founder-career-grid article {
+  min-height: 116px;
+  padding: 16px 14px;
+}
+
+.founder-career-grid strong,
+.founder-career-grid span,
+.founder-book-grid strong,
+.founder-book-grid span {
+  display: block;
+}
+
+.founder-career-grid strong {
+  color: var(--ink-blue);
+  font-size: 0.92rem;
+  line-height: 1.42;
+}
+
+.founder-career-grid span {
+  margin-top: 8px;
+  color: var(--text-soft);
+  font-size: 0.78rem;
+  line-height: 1.55;
+}
+
+.founder-books {
+  margin-top: 24px;
+}
+
+.founder-books h3 {
+  color: var(--ink-blue);
+  font-size: 1rem;
+}
+
+.founder-book-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.founder-book-grid article {
+  min-height: 132px;
+  padding: 12px 10px;
+  text-align: center;
+}
+
+.founder-book-grid span {
+  width: 48px;
+  aspect-ratio: 0.7;
+  margin: 0 auto 10px;
+  border-radius: 3px;
+  background: linear-gradient(135deg, rgba(20, 40, 73, 0.94), rgba(20, 40, 73, 0.62));
+  box-shadow: 0 6px 12px rgba(20, 40, 73, 0.16);
+}
+
+.founder-book-grid strong {
+  color: var(--ink-blue);
+  font-size: 0.76rem;
+  line-height: 1.38;
+}
+
+.founder-copy blockquote {
+  margin-top: 24px;
+  padding: 18px 20px;
+  border-left: 4px solid var(--accent-deep);
+  border-radius: 0 18px 18px 0;
+  background: rgba(255, 255, 255, 0.76);
+  color: var(--ink-blue);
+  font-size: 1rem;
+  font-weight: 800;
+  line-height: 1.62;
+}
+
+.founder-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+}
+
 .feature-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1697,6 +1882,9 @@ a {
 @media (max-width: 900px) {
   .feature-grid,
   .philosophy,
+  .founder-intro,
+  .founder-career-grid,
+  .founder-book-grid,
   .opening-event-grid,
   .event-summary-grid,
   .numbered-content-card,
@@ -1765,6 +1953,24 @@ a {
   .reference-box {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .founder-intro {
+    gap: 24px;
+    padding: 26px;
+    border-radius: 28px;
+  }
+
+  .founder-portrait {
+    min-height: 260px;
+  }
+
+  .founder-placeholder {
+    min-height: 224px;
+  }
+
+  .founder-book-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .feature-card {
@@ -2013,6 +2219,32 @@ a {
 
   .problem-flow span {
     border-radius: 14px;
+  }
+
+  .founder-intro {
+    padding: 22px 18px;
+    border-radius: 24px;
+  }
+
+  .founder-portrait {
+    min-height: 220px;
+    padding: 14px;
+  }
+
+  .founder-placeholder {
+    min-height: 190px;
+  }
+
+  .founder-copy h2 {
+    font-size: 1.62rem;
+  }
+
+  .founder-lead {
+    font-size: 0.98rem;
+  }
+
+  .founder-book-grid {
+    grid-template-columns: 1fr;
   }
 
   .diagnosis {
