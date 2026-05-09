@@ -1618,8 +1618,8 @@ a {
 
 .book-cover-marquee {
   overflow: hidden;
-  width: min(100%, 640px);
-  margin: 26px auto 0;
+  width: min(100%, 760px);
+  margin-top: 34px;
   padding: 16px 0;
   border-top: 1px solid rgba(17, 17, 17, 0.07);
   border-bottom: 1px solid rgba(17, 17, 17, 0.07);
