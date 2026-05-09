@@ -907,78 +907,56 @@ a {
 
 .founder-intro {
   display: grid;
-  grid-template-columns: minmax(240px, 320px) minmax(0, 1fr);
-  gap: 38px;
-  align-items: stretch;
-  padding: 38px;
+  grid-template-columns: 300px minmax(0, 1fr);
+  gap: 34px;
+  align-items: start;
+  padding: 34px;
   border: 1px solid rgba(185, 154, 89, 0.2);
   border-radius: var(--radius-lg);
   background:
-    radial-gradient(circle at 14% 18%, rgba(185, 154, 89, 0.16), transparent 22%),
-    linear-gradient(135deg, rgba(255, 255, 255, 0.94), rgba(246, 243, 239, 0.82));
+    radial-gradient(circle at 12% 22%, rgba(185, 154, 89, 0.13), transparent 20%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(246, 243, 239, 0.78));
   box-shadow: var(--shadow);
 }
 
 .founder-portrait {
-  min-height: 420px;
-  height: 100%;
+  min-height: 360px;
   padding: 18px;
   border: 1px solid rgba(20, 40, 73, 0.08);
   border-radius: 24px;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.86), rgba(236, 233, 228, 0.68)),
-    #ffffff;
-  box-shadow:
-    inset 0 0 0 1px rgba(255, 255, 255, 0.64),
-    0 18px 44px rgba(20, 40, 73, 0.08);
+  background: rgba(255, 255, 255, 0.76);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.58);
 }
 
 .founder-placeholder {
-  position: relative;
-  overflow: hidden;
   display: grid;
   place-items: center;
   align-content: center;
-  min-height: 100%;
-  height: 100%;
+  min-height: 324px;
   border: 1px dashed rgba(185, 154, 89, 0.46);
   border-radius: 18px;
   background:
-    radial-gradient(circle at 50% 34%, rgba(255, 255, 255, 0.9), transparent 23%),
-    linear-gradient(145deg, rgba(20, 40, 73, 0.1), rgba(185, 154, 89, 0.13)),
+    linear-gradient(145deg, rgba(20, 40, 73, 0.08), rgba(185, 154, 89, 0.1)),
     rgba(255, 255, 255, 0.72);
   text-align: center;
 }
 
-.founder-placeholder::before,
-.founder-placeholder::after,
-.founder-placeholder span {
-  content: "";
-  position: absolute;
-  border: 1px solid rgba(20, 40, 73, 0.14);
+.founder-placeholder span,
+.founder-kicker {
+  color: var(--accent-deep);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
 }
 
-.founder-placeholder::before {
-  width: 118px;
-  height: 118px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.52);
+.founder-placeholder strong {
+  margin-top: 10px;
+  color: var(--ink-blue);
+  font-size: 1.25rem;
 }
 
-.founder-placeholder::after {
-  width: 148px;
-  height: 188px;
-  border-radius: 76px 76px 28px 28px;
-  transform: translateY(62px);
-  background: rgba(20, 40, 73, 0.07);
-}
-
-.founder-placeholder span {
-  inset: 18px;
-  border-color: rgba(185, 154, 89, 0.2);
-  border-radius: 14px;
-}
-
+.founder-kicker,
 .founder-role,
 .founder-copy h2,
 .founder-books h3,
@@ -987,24 +965,16 @@ a {
 }
 
 .founder-role {
-  display: inline-flex;
-  align-items: center;
-  min-height: 30px;
-  padding: 0 12px;
-  border: 1px solid rgba(185, 154, 89, 0.26);
-  border-radius: 999px;
-  background: rgba(210, 176, 137, 0.12);
-  color: var(--accent-deep);
-  font-size: 0.78rem;
+  margin-top: 8px;
+  color: var(--text-soft);
+  font-size: 0.9rem;
   font-weight: 800;
-  letter-spacing: 0.08em;
 }
 
 .founder-copy h2 {
-  max-width: 720px;
-  margin-top: 16px;
+  margin-top: 10px;
   color: var(--ink-blue);
-  font-size: clamp(1.85rem, 3.4vw, 3rem);
+  font-size: clamp(1.65rem, 3vw, 2.6rem);
   line-height: 1.08;
   letter-spacing: -0.04em;
 }
@@ -1012,35 +982,24 @@ a {
 .founder-lead {
   margin: 16px 0 18px;
   color: var(--text);
-  font-size: clamp(1.02rem, 1.5vw, 1.2rem);
+  font-size: 1.05rem;
   font-weight: 800;
   line-height: 1.65;
 }
 
-.founder-summary {
+.founder-copy > p:not(.founder-kicker):not(.founder-role):not(.founder-lead) {
   max-width: 680px;
-  padding: 18px 20px;
-  border-top: 1px solid rgba(20, 40, 73, 0.08);
-  border-bottom: 1px solid rgba(20, 40, 73, 0.08);
-  background: rgba(255, 255, 255, 0.44);
-}
-
-.founder-summary p {
-  margin: 0;
+  margin: 0 0 12px;
   color: var(--text-soft);
   font-size: 0.94rem;
   line-height: 1.76;
 }
 
-.founder-summary p + p {
-  margin-top: 10px;
-}
-
 .founder-career-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 14px;
-  margin-top: 24px;
+  gap: 12px;
+  margin-top: 22px;
 }
 
 .founder-career-grid article,
@@ -1052,34 +1011,14 @@ a {
 
 .founder-career-grid article {
   min-height: 116px;
-  padding: 18px 16px;
-  transition:
-    transform 180ms ease,
-    border-color 180ms ease,
-    background-color 180ms ease;
-}
-
-.founder-career-grid article:hover {
-  border-color: rgba(185, 154, 89, 0.32);
-  background: rgba(255, 255, 255, 0.92);
-  transform: translateY(-2px);
+  padding: 16px 14px;
 }
 
 .founder-career-grid strong,
 .founder-career-grid span,
-.founder-career-grid em,
 .founder-book-grid strong,
 .founder-book-grid span {
   display: block;
-}
-
-.founder-career-grid em {
-  margin-bottom: 12px;
-  color: var(--accent-deep);
-  font-size: 0.72rem;
-  font-style: normal;
-  font-weight: 800;
-  letter-spacing: 0.16em;
 }
 
 .founder-career-grid strong {
@@ -1096,12 +1035,12 @@ a {
 }
 
 .founder-books {
-  margin-top: 28px;
+  margin-top: 24px;
 }
 
 .founder-books h3 {
   color: var(--ink-blue);
-  font-size: 1.05rem;
+  font-size: 1rem;
 }
 
 .founder-book-grid {
@@ -1115,16 +1054,6 @@ a {
   min-height: 132px;
   padding: 12px 10px;
   text-align: center;
-  transition:
-    transform 180ms ease,
-    border-color 180ms ease,
-    background-color 180ms ease;
-}
-
-.founder-book-grid article:hover {
-  border-color: rgba(185, 154, 89, 0.3);
-  background: rgba(255, 255, 255, 0.92);
-  transform: translateY(-2px);
 }
 
 .founder-book-grid span {
@@ -1143,15 +1072,13 @@ a {
 }
 
 .founder-copy blockquote {
-  margin-top: 28px;
-  padding: 20px 22px;
+  margin-top: 24px;
+  padding: 18px 20px;
   border-left: 4px solid var(--accent-deep);
   border-radius: 0 18px 18px 0;
-  background:
-    linear-gradient(90deg, rgba(210, 176, 137, 0.13), rgba(255, 255, 255, 0.76)),
-    rgba(255, 255, 255, 0.76);
+  background: rgba(255, 255, 255, 0.76);
   color: var(--ink-blue);
-  font-size: 1.04rem;
+  font-size: 1rem;
   font-weight: 800;
   line-height: 1.62;
 }
