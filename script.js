@@ -187,7 +187,7 @@ window.initNaverMap = function initNaverMap() {
   new naver.maps.Marker({
     position: mathDoingPosition,
     map,
-    title: "매쓰두잉",
+    title: "매쓰두잉 센터",
   });
 
   mapElement.dataset.mapReady = "true";
