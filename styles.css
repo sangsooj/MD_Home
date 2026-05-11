@@ -1127,10 +1127,32 @@ a {
   letter-spacing: -0.06em;
 }
 
-.admission-section > p {
+.admission-section p {
   margin: 0;
   color: var(--text-soft);
   line-height: 1.72;
+}
+
+.admission-section p + p {
+  margin-top: 10px;
+}
+
+.admission-check-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.admission-check-grid span {
+  display: block;
+  padding: 12px 14px;
+  border: 1px solid rgba(20, 40, 73, 0.08);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--ink-blue);
+  font-size: 0.86rem;
+  font-weight: 800;
 }
 
 .class-card-grid {
@@ -1168,7 +1190,8 @@ a {
 }
 
 .class-card-grid p + p,
-.middle-program > p {
+.middle-program > p,
+.middle-program > p + p {
   margin-top: 12px;
 }
 
@@ -2136,6 +2159,7 @@ a {
   .number-grid,
   .level-compare,
   .admission-section,
+  .admission-check-grid,
   .class-card-grid,
   .process-line,
   .core-list,
