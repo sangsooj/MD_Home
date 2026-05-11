@@ -1,5 +1,5 @@
 const revealTargets = document.querySelectorAll(
-  ".opening-banner, .hero, .opening-event, .arithmetic-hero, .numbered-content-card, .program-cause-grid article, .bottom-cta, .feature-card, .book-cover-showcase, .philosophy, .program-card, .diagnosis, .stat-item, .journey-banner, .director, .report-highlight, .section-heading, .testimonial-card, .center-lead, .consultation-action, .location, .site-footer"
+  ".opening-banner, .hero, .opening-event, .arithmetic-hero, .numbered-content-card, .program-cause-grid article, .bottom-cta, .program-hero, .program-section, .program-cta, .feature-card, .book-cover-showcase, .philosophy, .program-card, .diagnosis, .stat-item, .journey-banner, .director, .report-highlight, .section-heading, .testimonial-card, .center-lead, .consultation-action, .location, .site-footer"
 );
 
 revealTargets.forEach((element, index) => {
