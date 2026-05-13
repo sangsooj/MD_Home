@@ -1,3 +1,48 @@
+function getSeoulDateNumber(date = new Date()) {
+  try {
+    const parts = new Intl.DateTimeFormat("en-CA", {
+      timeZone: "Asia/Seoul",
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    }).formatToParts(date);
+    const values = Object.fromEntries(parts.map((part) => [part.type, part.value]));
+
+    return Number(`${values.year}${values.month}${values.day}`);
+  } catch (error) {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+
+    return Number(`${year}${month}${day}`);
+  }
+}
+
+function updateOpeningEventVisibility() {
+  const banner = document.querySelector(".opening-banner");
+  const eventSection = document.querySelector(".opening-event");
+  const statusText = document.querySelector("[data-opening-event-status]");
+
+  if (!banner || !eventSection || !statusText) {
+    return;
+  }
+
+  const today = getSeoulDateNumber();
+  const eventStart = 20260615;
+  const eventEndExclusive = 20260620;
+
+  if (today >= eventEndExclusive) {
+    banner.hidden = true;
+    eventSection.hidden = true;
+    return;
+  }
+
+  statusText.textContent =
+    today >= eventStart ? "연산 진단 이벤트 진행 중" : "연산 진단 이벤트 진행예정";
+}
+
+updateOpeningEventVisibility();
+
 const revealTargets = document.querySelectorAll(
   ".opening-banner, .hero, .opening-event, .arithmetic-hero, .numbered-content-card, .program-cause-grid article, .bottom-cta, .program-hero, .program-section, .program-cta, .feature-card, .book-cover-showcase, .philosophy, .program-card, .diagnosis, .stat-item, .journey-banner, .director, .report-highlight, .section-heading, .testimonial-card, .center-lead, .consultation-action, .location, .site-footer"
 );
