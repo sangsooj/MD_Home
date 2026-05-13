@@ -192,6 +192,20 @@ a {
   transform: translateY(-1px);
 }
 
+.button:disabled,
+.button[aria-disabled="true"] {
+  cursor: not-allowed;
+  opacity: 0.62;
+  transform: none;
+}
+
+.button:disabled:hover,
+.button[aria-disabled="true"]:hover,
+.button:disabled:focus-visible,
+.button[aria-disabled="true"]:focus-visible {
+  transform: none;
+}
+
 .button-dark {
   background: var(--ink-blue);
   color: #ffffff;
