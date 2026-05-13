@@ -38,6 +38,32 @@
         <span>신규 오픈</span>
         <strong data-opening-event-status>연산 진단 이벤트 진행예정</strong>
       </a>
+      <div
+        class="opening-event-modal"
+        data-opening-event-modal
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="opening-event-modal-title"
+        hidden
+      >
+        <div class="opening-event-modal-card">
+          <button class="modal-close" type="button" data-opening-event-modal-close aria-label="팝업 닫기">×</button>
+          <p class="opening-label">신규 오픈 기념</p>
+          <h2 id="opening-event-modal-title">오픈 기념 연산 진단 이벤트</h2>
+          <p>
+            6월 15일부터 6월 19일까지, 연산 능력 평가와 오류 원인 분석 도구를 온라인 오픈합니다.
+          </p>
+          <ul>
+            <li>연산 능력 평가</li>
+            <li>연산 오류 유형 분석</li>
+            <li>오류 원인별 학습 방향 제안</li>
+          </ul>
+          <div class="modal-actions">
+            <a class="button button-dark" href="#opening-event" data-opening-event-modal-close>이벤트 내용 보기</a>
+            <button class="button button-light" type="button" data-opening-event-modal-close>닫기</button>
+          </div>
+        </div>
+      </div>
 
       <main id="top">
         <section class="hero section">

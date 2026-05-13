@@ -24,7 +24,7 @@ function updateOpeningEventVisibility() {
   const statusText = document.querySelector("[data-opening-event-status]");
 
   if (!banner || !eventSection || !statusText) {
-    return;
+    return false;
   }
 
   const today = getSeoulDateNumber();
@@ -34,14 +34,57 @@ function updateOpeningEventVisibility() {
   if (today >= eventEndExclusive) {
     banner.hidden = true;
     eventSection.hidden = true;
-    return;
+    return false;
   }
 
   statusText.textContent =
     today >= eventStart ? "연산 진단 이벤트 진행 중" : "연산 진단 이벤트 진행예정";
+
+  return true;
 }
 
-updateOpeningEventVisibility();
+const shouldShowOpeningEvent = updateOpeningEventVisibility();
+
+function initOpeningEventModal() {
+  const modal = document.querySelector("[data-opening-event-modal]");
+
+  if (!shouldShowOpeningEvent || !modal) {
+    return;
+  }
+
+  const closeButtons = modal.querySelectorAll("[data-opening-event-modal-close]");
+
+  function closeModal() {
+    modal.hidden = true;
+  }
+
+  closeButtons.forEach((button) => {
+    button.addEventListener("click", closeModal);
+  });
+
+  modal.addEventListener("click", (event) => {
+    if (event.target === modal) {
+      closeModal();
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && !modal.hidden) {
+      closeModal();
+    }
+  });
+
+  window.setTimeout(() => {
+    modal.hidden = false;
+    const closeButton = modal.querySelector(".modal-close");
+
+    if (closeButton) {
+      closeButton.focus();
+    }
+  }, 700);
+}
+
+initOpeningEventModal();
 
 const revealTargets = document.querySelectorAll(
   ".opening-banner, .hero, .opening-event, .arithmetic-hero, .numbered-content-card, .program-cause-grid article, .bottom-cta, .program-hero, .program-section, .program-cta, .feature-card, .book-cover-showcase, .philosophy, .program-card, .diagnosis, .stat-item, .journey-banner, .director, .report-highlight, .section-heading, .testimonial-card, .center-lead, .consultation-action, .location, .site-footer"
