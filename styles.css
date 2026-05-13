@@ -100,7 +100,7 @@ a {
 
 .opening-event-modal-card {
   position: relative;
-  width: min(100%, 460px);
+  width: min(100%, 520px);
   padding: 30px;
   border: 1px solid rgba(185, 154, 89, 0.22);
   border-radius: 26px;
@@ -111,10 +111,10 @@ a {
 }
 
 .opening-event-modal-card h2 {
-  max-width: 340px;
+  max-width: none;
   margin: 6px 0 12px;
   color: var(--ink-blue);
-  font-size: clamp(1.55rem, 4vw, 2.35rem);
+  font-size: clamp(1.5rem, 3.2vw, 2.1rem);
   line-height: 1.04;
   letter-spacing: -0.04em;
 }

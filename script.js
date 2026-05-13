@@ -29,7 +29,7 @@ function updateOpeningEventVisibility() {
 
   const today = getSeoulDateNumber();
   const eventStart = 20260615;
-  const eventEndExclusive = 20260620;
+  const eventEndExclusive = 20260702;
 
   if (today >= eventEndExclusive) {
     banner.hidden = true;
