@@ -2021,6 +2021,18 @@ a {
   align-items: center;
 }
 
+.book-cover-gallery a {
+  display: flex;
+  justify-content: center;
+  border-radius: 6px;
+  transition: transform 180ms ease;
+}
+
+.book-cover-gallery a:hover,
+.book-cover-gallery a:focus-visible {
+  transform: translateY(-2px);
+}
+
 .book-cover-gallery img {
   display: block;
   width: 100%;
