@@ -1,0 +1,272 @@
+{
+  "grade": 4,
+  "semester": 2,
+  "title": "초등 4학년 2학기 진단검사",
+  "scope": [
+    "분수의 덧셈과 뺄셈",
+    "삼각형",
+    "소수의 덧셈과 뺄셈",
+    "사각형",
+    "꺾은선그래프",
+    "다각형"
+  ],
+  "areas": [
+    {
+      "area": "A",
+      "title": "개념·수감각",
+      "description": "분수의 크기 감각, 소수의 어림, 삼각형의 성질, 소수의 표현을 확인합니다.",
+      "questions": [
+        {
+          "id": "A-01",
+          "number": 1,
+          "type": "multipleSelect",
+          "promptText": "다음 중 1보다 큰 수에 ○표하세요.",
+          "choices": [
+            "\\frac{3}{5}",
+            "\\frac{7}{4}",
+            "\\frac{6}{6}",
+            "\\frac{9}{8}"
+          ],
+          "choiceRenderType": "math",
+          "answer": [
+            "\\frac{7}{4}",
+            "\\frac{9}{8}"
+          ],
+          "answerType": "multipleSelect",
+          "explanation": "7/4와 9/8은 분자가 분모보다 크므로 1보다 큽니다. 6/6은 1과 같습니다."
+        },
+        {
+          "id": "A-02",
+          "number": 2,
+          "type": "short",
+          "promptText": "어림하기입니다. 계산하지 말고 알맞은 값을 쓰세요.",
+          "formula": "2.97 + 4.08 \\approx \\text{약 }(\\quad)",
+          "renderType": "math",
+          "answer": "약 7",
+          "acceptedAnswers": [
+            "약 7",
+            "7"
+          ],
+          "answerType": "estimate",
+          "explanation": "2.97은 약 3, 4.08은 약 4이므로 3+4=7입니다."
+        },
+        {
+          "id": "A-03",
+          "number": 3,
+          "type": "multiple",
+          "promptText": "다음 중 이등변삼각형이면서 직각삼각형이 될 수 있는 도형의 각 조건에 ○표하세요.",
+          "choices": [
+            "45°·45°·90°",
+            "60°·60°·60°",
+            "30°·60°·90°"
+          ],
+          "answer": "45°·45°·90°",
+          "answerType": "geometry",
+          "explanation": "45°·45°·90° 삼각형은 두 각이 같아 이등변삼각형이고, 90°가 있어 직각삼각형입니다."
+        },
+        {
+          "id": "A-04",
+          "number": 4,
+          "type": "short",
+          "promptText": "0.7과 0.70은 같은 수인지, 다른 수인지 한 줄로 설명하세요.",
+          "formula": "0.7 = 0.70",
+          "renderType": "math",
+          "answer": "같은 수입니다. 0.70의 끝자리 0은 수의 크기를 바꾸지 않기 때문입니다.",
+          "acceptedAnswers": [
+            "같은 수입니다. 0.70의 끝자리 0은 수의 크기를 바꾸지 않기 때문입니다.",
+            "같은 수입니다.",
+            "같다",
+            "소수의 끝에 붙은 0은 수의 크기를 바꾸지 않기 때문입니다.",
+            "0.7과 0.70은 같은 크기입니다."
+          ],
+          "answerType": "text",
+          "explanation": "소수의 끝에 0을 붙여도 수의 크기는 변하지 않습니다."
+        }
+      ]
+    },
+    {
+      "area": "B",
+      "title": "절차·알고리즘",
+      "description": "분수의 덧셈과 뺄셈, 소수의 덧셈과 뺄셈 계산 절차를 확인합니다.",
+      "questions": [
+        {
+          "id": "B-01",
+          "number": 5,
+          "type": "short",
+          "promptText": "계산하세요.",
+          "formula": "\\frac{2}{5} + \\frac{4}{5} =",
+          "renderType": "math",
+          "answer": "6/5",
+          "acceptedAnswers": [
+            "6/5",
+            "\\frac{6}{5}",
+            "1 1/5",
+            "1과 1/5",
+            "1.2"
+          ],
+          "answerType": "fraction",
+          "explanation": "분모가 같으므로 분자끼리 더합니다. 2/5+4/5=6/5=1과 1/5입니다."
+        },
+        {
+          "id": "B-02",
+          "number": 6,
+          "type": "short",
+          "promptText": "계산하세요.",
+          "formula": "1\\frac{2}{7} - \\frac{4}{7} =",
+          "renderType": "math",
+          "answer": "5/7",
+          "acceptedAnswers": [
+            "5/7",
+            "\\frac{5}{7}"
+          ],
+          "answerType": "fraction",
+          "explanation": "1과 2/7은 9/7입니다. 9/7−4/7=5/7입니다."
+        },
+        {
+          "id": "B-03",
+          "number": 7,
+          "type": "short",
+          "promptText": "계산하세요.",
+          "formula": "3.42 + 1.86 =",
+          "renderType": "math",
+          "answer": "5.28",
+          "answerType": "decimal",
+          "explanation": "소수점을 맞추어 더하면 3.42+1.86=5.28입니다."
+        },
+        {
+          "id": "B-04",
+          "number": 8,
+          "type": "short",
+          "promptText": "계산하세요.",
+          "formula": "5.4 - 2.78 =",
+          "renderType": "math",
+          "answer": "2.62",
+          "answerType": "decimal",
+          "explanation": "5.4를 5.40으로 보고 계산하면 5.40−2.78=2.62입니다."
+        }
+      ]
+    },
+    {
+      "area": "C",
+      "title": "기초 사실 유창성",
+      "description": "기본 소수 덧셈, 분수 덧셈, 곱셈을 빠르고 정확하게 처리하는 능력을 확인합니다.",
+      "timeLimitSeconds": 60,
+      "questions": [
+        {
+          "id": "C-01",
+          "number": 9,
+          "type": "short",
+          "promptText": "계산하세요.",
+          "formula": "0.1 + 0.1 =",
+          "renderType": "math",
+          "answer": "0.2",
+          "answerType": "decimal"
+        },
+        {
+          "id": "C-02",
+          "number": 10,
+          "type": "short",
+          "promptText": "계산하세요.",
+          "formula": "\\frac{1}{4} + \\frac{1}{4} =",
+          "renderType": "math",
+          "answer": "1/2",
+          "acceptedAnswers": [
+            "1/2",
+            "\\frac{1}{2}",
+            "2/4",
+            "0.5"
+          ],
+          "answerType": "fraction"
+        },
+        {
+          "id": "C-03",
+          "number": 11,
+          "type": "short",
+          "promptText": "계산하세요.",
+          "formula": "8 \\times 6 =",
+          "renderType": "math",
+          "answer": "48",
+          "answerType": "number"
+        },
+        {
+          "id": "C-04",
+          "number": 12,
+          "type": "short",
+          "promptText": "계산하세요.",
+          "formula": "12 \\times 5 =",
+          "renderType": "math",
+          "answer": "60",
+          "answerType": "number"
+        }
+      ]
+    },
+    {
+      "area": "D",
+      "title": "자기점검·주의조절",
+      "description": "소수 계산, 대분수 뺄셈, 도형의 성질, 그래프 해석에서 조건을 확인하는 능력을 점검합니다.",
+      "retryOnWrong": true,
+      "retryMessage": "다시 확인하세요.",
+      "questions": [
+        {
+          "id": "D-01",
+          "number": 13,
+          "type": "short",
+          "promptText": "계산하세요.",
+          "formula": "4.05 + 3.7 =",
+          "renderType": "math",
+          "answer": "7.75",
+          "answerType": "decimal",
+          "explanation": "3.7을 3.70으로 보고 계산하면 4.05+3.70=7.75입니다."
+        },
+        {
+          "id": "D-02",
+          "number": 14,
+          "type": "short",
+          "promptText": "계산하세요.",
+          "formula": "2\\frac{3}{8} - 1\\frac{5}{8} =",
+          "renderType": "math",
+          "answer": "3/4",
+          "acceptedAnswers": [
+            "3/4",
+            "\\frac{3}{4}",
+            "6/8",
+            "0.75"
+          ],
+          "answerType": "fraction",
+          "explanation": "2와 3/8은 19/8, 1과 5/8은 13/8입니다. 19/8−13/8=6/8=3/4입니다."
+        },
+        {
+          "id": "D-03",
+          "number": 15,
+          "type": "short",
+          "promptText": "평행사변형은 마주 보는 두 쌍의 변이 ____ 합니다. 빈칸을 채우세요.",
+          "answer": "평행",
+          "acceptedAnswers": [
+            "평행",
+            "서로 평행",
+            "각각 평행"
+          ],
+          "answerType": "text",
+          "explanation": "평행사변형은 마주 보는 두 쌍의 변이 서로 평행한 사각형입니다."
+        },
+        {
+          "id": "D-04",
+          "number": 16,
+          "type": "short",
+          "promptText": "꺾은선그래프에서 가장 큰 변화가 일어난 구간을 찾기 위해 보아야 하는 것은 무엇인가요? 한 줄로 쓰세요.",
+          "answer": "이웃한 두 점 사이의 값의 차이가 가장 큰 구간을 봅니다.",
+          "acceptedAnswers": [
+            "이웃한 두 점 사이의 값의 차이가 가장 큰 구간을 봅니다.",
+            "두 점 사이의 값의 차이",
+            "값의 차이가 가장 큰 구간",
+            "기울기가 가장 큰 구간",
+            "가장 가파른 구간",
+            "변화량이 가장 큰 구간"
+          ],
+          "answerType": "text",
+          "explanation": "꺾은선그래프에서 가장 큰 변화는 이웃한 두 점 사이의 값의 차이가 가장 큰 구간에서 나타납니다."
+        }
+      ]
+    }
+  ]
+}
