@@ -1,0 +1,274 @@
+{
+  "grade": 6,
+  "semester": 2,
+  "title": "초등 6학년 2학기 진단검사",
+  "scope": [
+    "분수의 나눗셈 심화",
+    "소수의 나눗셈 심화",
+    "공간과 입체",
+    "비례식과 비례배분",
+    "원의 넓이",
+    "원기둥·원뿔·구"
+  ],
+  "areas": [
+    {
+      "area": "A",
+      "title": "개념·수감각",
+      "description": "원의 넓이 어림, 분수 나눗셈의 크기 감각, 비례식과 비례배분 개념을 확인합니다.",
+      "questions": [
+        {
+          "id": "A-01",
+          "number": 1,
+          "type": "short",
+          "promptText": "어림하기입니다. 원주율을 3.14로 하여 반지름이 5cm인 원의 넓이는 약 얼마인지 쓰세요.",
+          "formula": "\\pi = 3.14,\\quad r = 5\\text{cm}",
+          "renderType": "math",
+          "answer": "약 80",
+          "acceptedAnswers": [
+            "약 80",
+            "80",
+            "약 78.5",
+            "78.5",
+            "78.5cm²",
+            "78.5cm2"
+          ],
+          "answerType": "estimate",
+          "explanation": "원의 넓이는 반지름×반지름×원주율입니다. 5×5×3.14=78.5이므로 약 80cm²입니다."
+        },
+        {
+          "id": "A-02",
+          "number": 2,
+          "type": "multipleSelect",
+          "promptText": "다음 중 답이 1보다 큰 식을 모두 고르세요.",
+          "choices": [
+            "\\frac{3}{4} \\div \\frac{1}{2}",
+            "\\frac{1}{2} \\div \\frac{3}{4}",
+            "\\frac{2}{5} \\div \\frac{4}{5}",
+            "\\frac{6}{7} \\div \\frac{3}{14}"
+          ],
+          "choiceRenderType": "math",
+          "answer": [
+            "\\frac{3}{4} \\div \\frac{1}{2}",
+            "\\frac{6}{7} \\div \\frac{3}{14}"
+          ],
+          "answerType": "multipleSelect",
+          "explanation": "3/4÷1/2=3/2로 1보다 큽니다. 6/7÷3/14=4로 1보다 큽니다."
+        },
+        {
+          "id": "A-03",
+          "number": 3,
+          "type": "short",
+          "promptText": "비례식에서 □에 알맞은 수를 쓰세요.",
+          "formula": "3:4 = 9:\\square",
+          "renderType": "math",
+          "answer": "12",
+          "answerType": "number",
+          "explanation": "3이 9가 되려면 3을 곱해야 하므로 4에도 3을 곱합니다. 따라서 □=12입니다."
+        },
+        {
+          "id": "A-04",
+          "number": 4,
+          "type": "short",
+          "promptText": "비례배분 문제입니다. 1,200원을 2:3으로 나누면 각각 얼마인가요?",
+          "formula": "1200\\text{원을 }2:3\\text{으로 비례배분}",
+          "renderType": "math",
+          "answer": "480원, 720원",
+          "acceptedAnswers": [
+            "480원, 720원",
+            "480, 720",
+            "480원 720원",
+            "480 720",
+            "720원, 480원",
+            "720, 480",
+            "720원 480원"
+          ],
+          "answerType": "compound",
+          "explanation": "2+3=5이므로 한 몫은 1200÷5=240원입니다. 2몫은 480원, 3몫은 720원입니다."
+        }
+      ]
+    },
+    {
+      "area": "B",
+      "title": "절차·알고리즘",
+      "description": "분수 나눗셈, 소수 나눗셈, 원의 넓이, 원기둥의 부피 계산 절차를 확인합니다.",
+      "questions": [
+        {
+          "id": "B-01",
+          "number": 5,
+          "type": "short",
+          "promptText": "계산하세요.",
+          "formula": "\\frac{7}{9} \\div \\frac{14}{27} =",
+          "renderType": "math",
+          "answer": "3/2",
+          "acceptedAnswers": [
+            "3/2",
+            "\\frac{3}{2}",
+            "1 1/2",
+            "1과 1/2",
+            "1.5"
+          ],
+          "answerType": "fraction",
+          "explanation": "7/9÷14/27은 7/9×27/14입니다. 약분하면 3/2입니다."
+        },
+        {
+          "id": "B-02",
+          "number": 6,
+          "type": "short",
+          "promptText": "계산하세요.",
+          "formula": "4.32 \\div 0.06 =",
+          "renderType": "math",
+          "answer": "72",
+          "answerType": "number",
+          "explanation": "4.32÷0.06은 432÷6과 같으므로 72입니다."
+        },
+        {
+          "id": "B-03",
+          "number": 7,
+          "type": "short",
+          "promptText": "반지름이 6cm인 원의 넓이를 구하세요. 원주율은 3.14로 계산합니다.",
+          "formula": "6 \\times 6 \\times 3.14",
+          "renderType": "math",
+          "answer": "113.04cm²",
+          "acceptedAnswers": [
+            "113.04",
+            "113.04cm²",
+            "113.04cm2",
+            "113.04 cm²",
+            "113.04제곱센티미터"
+          ],
+          "answerType": "numberWithUnit",
+          "explanation": "원의 넓이는 반지름×반지름×원주율이므로 6×6×3.14=113.04cm²입니다."
+        },
+        {
+          "id": "B-04",
+          "number": 8,
+          "type": "short",
+          "promptText": "밑면의 반지름이 3cm, 높이가 5cm인 원기둥의 부피를 구하세요. 원주율은 3.14로 계산합니다.",
+          "formula": "3 \\times 3 \\times 3.14 \\times 5",
+          "renderType": "math",
+          "answer": "141.3cm³",
+          "acceptedAnswers": [
+            "141.3",
+            "141.3cm³",
+            "141.3cm3",
+            "141.3 cm³",
+            "141.3세제곱센티미터"
+          ],
+          "answerType": "numberWithUnit",
+          "explanation": "원기둥의 부피는 밑면의 넓이×높이입니다. 3×3×3.14×5=141.3cm³입니다."
+        }
+      ]
+    },
+    {
+      "area": "C",
+      "title": "기초 사실 유창성",
+      "description": "원주율 계산, 기본 분수 나눗셈, 곱셈 사실을 빠르게 처리하는 능력을 확인합니다.",
+      "timeLimitSeconds": 60,
+      "questions": [
+        {
+          "id": "C-01",
+          "number": 9,
+          "type": "short",
+          "promptText": "계산하세요.",
+          "formula": "3.14 \\times 2 =",
+          "renderType": "math",
+          "answer": "6.28",
+          "answerType": "decimal"
+        },
+        {
+          "id": "C-02",
+          "number": 10,
+          "type": "short",
+          "promptText": "계산하세요.",
+          "formula": "3.14 \\times 10 =",
+          "renderType": "math",
+          "answer": "31.4",
+          "answerType": "decimal"
+        },
+        {
+          "id": "C-03",
+          "number": 11,
+          "type": "short",
+          "promptText": "계산하세요.",
+          "formula": "\\frac{1}{2} \\div \\frac{1}{2} =",
+          "renderType": "math",
+          "answer": "1",
+          "answerType": "number"
+        },
+        {
+          "id": "C-04",
+          "number": 12,
+          "type": "short",
+          "promptText": "계산하세요.",
+          "formula": "7 \\times 7 =",
+          "renderType": "math",
+          "answer": "49",
+          "answerType": "number"
+        }
+      ]
+    },
+    {
+      "area": "D",
+      "title": "자기점검·주의조절",
+      "description": "소수 나눗셈, 분수 나눗셈, 비례식, 원의 둘레 계산에서 실수를 점검합니다.",
+      "retryOnWrong": true,
+      "retryMessage": "다시 확인하세요.",
+      "questions": [
+        {
+          "id": "D-01",
+          "number": 13,
+          "type": "short",
+          "promptText": "계산하세요.",
+          "formula": "8.4 \\div 0.07 =",
+          "renderType": "math",
+          "answer": "120",
+          "answerType": "number",
+          "explanation": "8.4÷0.07은 840÷7과 같으므로 120입니다."
+        },
+        {
+          "id": "D-02",
+          "number": 14,
+          "type": "short",
+          "promptText": "계산하세요.",
+          "formula": "\\frac{5}{6} \\div \\frac{10}{9} =",
+          "renderType": "math",
+          "answer": "3/4",
+          "acceptedAnswers": [
+            "3/4",
+            "\\frac{3}{4}",
+            "0.75"
+          ],
+          "answerType": "fraction",
+          "explanation": "5/6÷10/9는 5/6×9/10입니다. 약분하면 3/4입니다."
+        },
+        {
+          "id": "D-03",
+          "number": 15,
+          "type": "short",
+          "promptText": "비례식에서 □에 알맞은 수를 쓰세요.",
+          "formula": "5:8 = \\square:24",
+          "renderType": "math",
+          "answer": "15",
+          "answerType": "number",
+          "explanation": "8이 24가 되려면 3을 곱해야 하므로 5에도 3을 곱합니다. 따라서 □=15입니다."
+        },
+        {
+          "id": "D-04",
+          "number": 16,
+          "type": "short",
+          "promptText": "지름이 14cm인 원의 둘레를 구하세요. 원주율은 3.14로 계산합니다.",
+          "formula": "14 \\times 3.14",
+          "renderType": "math",
+          "answer": "43.96cm",
+          "acceptedAnswers": [
+            "43.96",
+            "43.96cm",
+            "43.96 cm"
+          ],
+          "answerType": "numberWithUnit",
+          "explanation": "원의 둘레는 지름×원주율이므로 14×3.14=43.96cm입니다."
+        }
+      ]
+    }
+  ]
+}
