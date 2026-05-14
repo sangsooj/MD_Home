@@ -90,6 +90,55 @@ h2 {
   line-height: 1.75;
 }
 
+.start-notice {
+  margin-top: 26px;
+  padding: 20px;
+  border: 1px solid rgba(185, 154, 89, 0.2);
+  border-radius: 22px;
+  background: rgba(255, 253, 249, 0.76);
+}
+
+.start-notice > strong {
+  display: block;
+  color: var(--ink);
+  font-size: 1rem;
+}
+
+.start-notice p {
+  margin: 10px 0 16px;
+  color: var(--soft);
+  line-height: 1.72;
+}
+
+.start-notice dl {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin: 0;
+}
+
+.start-notice dl div {
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--white);
+}
+
+.start-notice dt {
+  margin: 0 0 4px;
+  color: var(--gold);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.start-notice dd {
+  margin: 0;
+  color: var(--ink);
+  font-size: 0.9rem;
+  font-weight: 800;
+  line-height: 1.45;
+}
+
 .form-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -463,6 +512,7 @@ select {
   }
 
   .form-grid,
+  .start-notice dl,
   .score-grid,
   .d-analysis-grid {
     grid-template-columns: 1fr;

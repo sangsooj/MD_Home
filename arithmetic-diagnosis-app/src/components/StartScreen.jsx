@@ -12,6 +12,32 @@ export default function StartScreen({ student, onChange, onStart, error }) {
         한 화면에 한 문제씩 차분하게 진행됩니다.
       </p>
 
+      <div className="start-notice" aria-label="검사 전 준비 안내">
+        <strong>검사 전 준비 안내</strong>
+        <p>
+          검사가 시작되기 전, 연필과 공책을 준비하고 문제를 풀어서 답을 컴퓨터에 입력합니다.
+          검사가 시작되면 시간이 적용되므로 미리 준비합니다.
+        </p>
+        <dl>
+          <div>
+            <dt>문항 수</dt>
+            <dd>16문항 (영역별 4문항)</dd>
+          </div>
+          <div>
+            <dt>풀이 시간</dt>
+            <dd>25~30분, 학생 단독</dd>
+          </div>
+          <div>
+            <dt>C 영역</dt>
+            <dd>60초 제한</dd>
+          </div>
+          <div>
+            <dt>D 영역</dt>
+            <dd>오답의 경우에 1회에 한해 수정할 기회 부여</dd>
+          </div>
+        </dl>
+      </div>
+
       <div className="form-grid">
         <label>
           학생 이름
