@@ -187,10 +187,22 @@ select {
   font-weight: 800;
 }
 
-.question-card h2 {
+.question-prompt h2 {
   margin-top: 14px;
   font-size: clamp(1.55rem, 4vw, 2.65rem);
   line-height: 1.18;
+}
+
+.question-formula {
+  margin: 18px 0 0;
+  overflow-x: auto;
+  color: var(--ink);
+  font-size: clamp(1.2rem, 4vw, 2rem);
+}
+
+.question-formula .katex-display {
+  margin: 0;
+  text-align: left;
 }
 
 .choice-grid {

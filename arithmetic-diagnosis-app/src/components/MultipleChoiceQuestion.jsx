@@ -1,4 +1,14 @@
+import { InlineMath } from "react-katex";
+
 export default function MultipleChoiceQuestion({ question, value, onChange }) {
+  const renderChoice = (choice) => {
+    if (question.choiceRenderType === "math") {
+      return <InlineMath math={choice} />;
+    }
+
+    return choice;
+  };
+
   return (
     <div className="choice-grid" role="radiogroup" aria-label="객관식 선택지">
       {question.choices.map((choice) => (
@@ -9,7 +19,7 @@ export default function MultipleChoiceQuestion({ question, value, onChange }) {
           onClick={() => onChange(choice)}
           aria-pressed={value === choice}
         >
-          {choice}
+          {renderChoice(choice)}
         </button>
       ))}
     </div>

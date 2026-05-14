@@ -1,22 +1,41 @@
 export const AREA_ORDER = ["A", "B", "C", "D"];
 
+export function normalizeAreas(areas) {
+  if (Array.isArray(areas)) {
+    return areas.reduce((items, area) => {
+      if (area?.area) {
+        items[area.area] = area;
+      }
+
+      return items;
+    }, {});
+  }
+
+  return areas ?? {};
+}
+
 export function normalizeAnswer(value) {
   return String(value ?? "").trim();
 }
 
 export function isAnswerCorrect(question, answer) {
-  return normalizeAnswer(answer) === normalizeAnswer(question.answer);
+  const normalizedAnswer = normalizeAnswer(answer);
+  const acceptedAnswers = [question.answer, ...(question.acceptedAnswers ?? [])];
+
+  return acceptedAnswers.some((acceptedAnswer) => normalizedAnswer === normalizeAnswer(acceptedAnswer));
 }
 
 export function flattenQuestions(areas) {
+  const normalizedAreas = normalizeAreas(areas);
+
   return AREA_ORDER.flatMap((areaKey) =>
-    (areas?.[areaKey]?.questions ?? []).map((question, index) => ({
+    (normalizedAreas?.[areaKey]?.questions ?? []).map((question, index) => ({
       ...question,
       area: areaKey,
-      areaTitle: areas[areaKey]?.title ?? `${areaKey} 영역`,
+      areaTitle: normalizedAreas[areaKey]?.title ?? `${areaKey} 영역`,
       areaIndex: index,
-      timeLimitSeconds: areas[areaKey]?.timeLimitSeconds,
-      retryOnWrong: Boolean(areas[areaKey]?.retryOnWrong),
+      timeLimitSeconds: normalizedAreas[areaKey]?.timeLimitSeconds,
+      retryOnWrong: Boolean(normalizedAreas[areaKey]?.retryOnWrong),
     }))
   );
 }

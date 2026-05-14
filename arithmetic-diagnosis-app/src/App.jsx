@@ -9,6 +9,7 @@ import {
   createBlankResponses,
   flattenQuestions,
   isAnswerCorrect,
+  normalizeAreas,
   scoreAssessment,
 } from "./utils/assessment.js";
 
@@ -125,7 +126,7 @@ export default function App() {
       setCurrentAnswer("");
       setShowCIntro(false);
       setCStarted(false);
-      setRemainingSeconds(data.areas?.C?.timeLimitSeconds ?? 60);
+      setRemainingSeconds(normalizeAreas(data.areas)?.C?.timeLimitSeconds ?? 60);
       setRetryQuestionId(null);
       setFinished(false);
     } catch {
@@ -236,7 +237,7 @@ export default function App() {
     const firstCIndex = findFirstIndexByArea(questions, "C");
     setShowCIntro(false);
     setCStarted(true);
-    setRemainingSeconds(assessment?.areas?.C?.timeLimitSeconds ?? 60);
+    setRemainingSeconds(normalizeAreas(assessment?.areas)?.C?.timeLimitSeconds ?? 60);
     moveToIndex(firstCIndex);
   }
 
