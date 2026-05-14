@@ -125,6 +125,16 @@ select {
   font-weight: 800;
 }
 
+.secondary-button {
+  min-height: 48px;
+  padding: 0 22px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--white);
+  color: var(--ink);
+  font-weight: 800;
+}
+
 .error-message {
   color: #b42318;
   font-weight: 700;
@@ -282,7 +292,9 @@ select {
 }
 
 .modal-card {
-  max-width: 560px;
+  max-width: 760px;
+  max-height: calc(100vh - 36px);
+  overflow: auto;
   padding: clamp(24px, 5vw, 40px);
 }
 
@@ -292,7 +304,8 @@ select {
 
 .report-student,
 .score-total,
-.score-grid article {
+.score-grid article,
+.d-analysis-grid article {
   padding: 15px;
   border: 1px solid var(--line);
   border-radius: 18px;
@@ -312,24 +325,136 @@ select {
   font-size: 1.7rem;
 }
 
-.score-grid {
+.score-grid,
+.d-analysis-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 10px;
   margin: 14px 0 22px;
 }
 
-.score-grid article {
+.d-analysis-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.score-grid article,
+.d-analysis-grid article {
   display: grid;
   gap: 8px;
   text-align: center;
 }
 
 .score-grid span,
+.d-analysis-grid span,
 .score-total span,
 .report-student span {
   color: var(--soft);
   font-size: 0.86rem;
+}
+
+.report-section {
+  margin-top: 22px;
+}
+
+.report-section h3,
+.diagnosis-summary h3 {
+  margin: 0 0 12px;
+  color: var(--ink);
+  font-size: 1.08rem;
+}
+
+.report-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--white);
+}
+
+.report-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 520px;
+}
+
+.report-table th,
+.report-table td {
+  padding: 13px 14px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  font-size: 0.92rem;
+}
+
+.report-table th {
+  color: var(--ink);
+  background: rgba(185, 154, 89, 0.08);
+}
+
+.report-table tr:last-child td {
+  border-bottom: 0;
+}
+
+.status-pill {
+  display: inline-flex;
+  min-height: 28px;
+  align-items: center;
+  padding: 0 10px;
+  border-radius: 999px;
+  background: rgba(20, 40, 73, 0.08);
+  color: var(--ink);
+  font-weight: 800;
+}
+
+.status-안정 {
+  background: rgba(34, 197, 94, 0.13);
+  color: #166534;
+}
+
+.status-보강 {
+  background: rgba(185, 154, 89, 0.16);
+  color: #8a641f;
+}
+
+.status-우세-가능 {
+  background: rgba(180, 35, 24, 0.1);
+  color: #9f1f17;
+}
+
+.diagnosis-summary {
+  margin-top: 22px;
+  padding: 20px;
+  border-left: 4px solid var(--gold);
+  border-radius: 0 18px 18px 0;
+  background: rgba(255, 255, 255, 0.82);
+}
+
+.diagnosis-summary span {
+  color: var(--gold);
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.diagnosis-summary strong {
+  display: block;
+  margin-top: 4px;
+  color: var(--ink);
+  font-size: 1.5rem;
+}
+
+.diagnosis-summary p {
+  color: var(--soft);
+  line-height: 1.7;
+}
+
+.diagnosis-summary .recommendation {
+  color: var(--text);
+  font-weight: 700;
+}
+
+.report-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 24px;
 }
 
 @media (max-width: 720px) {
@@ -338,7 +463,8 @@ select {
   }
 
   .form-grid,
-  .score-grid {
+  .score-grid,
+  .d-analysis-grid {
     grid-template-columns: 1fr;
   }
 
@@ -353,7 +479,13 @@ select {
     text-align: left;
   }
 
-  .primary-button {
+  .primary-button,
+  .secondary-button,
+  .report-actions {
     width: 100%;
+  }
+
+  .report-actions {
+    flex-direction: column;
   }
 }

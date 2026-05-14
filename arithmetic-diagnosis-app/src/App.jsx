@@ -8,10 +8,9 @@ import ReportModal from "./components/ReportModal.jsx";
 import {
   createBlankResponses,
   flattenQuestions,
-  isAnswerCorrect,
   normalizeAreas,
-  scoreAssessment,
 } from "./utils/assessment.js";
+import { generateReport, isAnswerCorrect } from "./utils/scoring.js";
 
 const STORAGE_KEY = "mathdoing-arithmetic-diagnosis";
 const initialStudent = { name: "", grade: "", semester: "" };
@@ -47,12 +46,13 @@ export default function App() {
   const [retryQuestionId, setRetryQuestionId] = useState(savedState?.retryQuestionId ?? null);
   const [retryModalOpen, setRetryModalOpen] = useState(false);
   const [finished, setFinished] = useState(savedState?.finished ?? false);
+  const [showReport, setShowReport] = useState(savedState?.showReport ?? savedState?.finished ?? false);
   const [error, setError] = useState("");
 
   const currentQuestion = questions[currentIndex];
-  const score = useMemo(
-    () => (finished ? scoreAssessment(questions, responses) : null),
-    [finished, questions, responses]
+  const report = useMemo(
+    () => (finished ? generateReport(student, assessment, questions, responses) : null),
+    [finished, student, assessment, questions, responses]
   );
 
   useEffect(() => {
@@ -68,6 +68,7 @@ export default function App() {
       remainingSeconds,
       retryQuestionId,
       finished,
+      showReport,
     };
 
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
@@ -83,6 +84,7 @@ export default function App() {
     remainingSeconds,
     retryQuestionId,
     finished,
+    showReport,
   ]);
 
   useEffect(() => {
@@ -157,6 +159,7 @@ export default function App() {
 
   function finishAssessment() {
     setFinished(true);
+    setShowReport(true);
     setCStarted(false);
   }
 
@@ -199,8 +202,9 @@ export default function App() {
     }
 
     updateResponse(currentQuestion, {
+      questionId: currentQuestion.id,
+      area: currentQuestion.area,
       answer: currentAnswer,
-      finalAnswer: currentAnswer,
       isCorrect: isAnswerCorrect(currentQuestion, currentAnswer),
     });
     moveNextAfterQuestion(currentQuestion);
@@ -213,9 +217,12 @@ export default function App() {
 
     if (!retrying && !correct) {
       updateResponse(question, {
+        questionId: question.id,
+        area: question.area,
         firstAnswer: currentAnswer,
         finalAnswer: currentAnswer,
         retryUsed: true,
+        firstIsCorrect: false,
         isCorrect: false,
       });
       setRetryQuestionId(question.id);
@@ -224,9 +231,12 @@ export default function App() {
     }
 
     updateResponse(question, {
+      questionId: question.id,
+      area: question.area,
       firstAnswer: response?.firstAnswer || currentAnswer,
       finalAnswer: currentAnswer,
       retryUsed: Boolean(response?.retryUsed),
+      firstIsCorrect: response?.firstIsCorrect ?? correct,
       isCorrect: correct,
     });
     setRetryQuestionId(null);
@@ -255,6 +265,7 @@ export default function App() {
     setRetryQuestionId(null);
     setRetryModalOpen(false);
     setFinished(false);
+    setShowReport(false);
     setError("");
   }
 
@@ -291,7 +302,9 @@ export default function App() {
       </TestLayout>
 
       {retryModalOpen ? <RetryModal onRetry={() => setRetryModalOpen(false)} /> : null}
-      {finished && score ? <ReportModal student={student} score={score} onRestart={restart} /> : null}
+      {finished && showReport && report ? (
+        <ReportModal report={report} onClose={() => setShowReport(false)} onRestart={restart} />
+      ) : null}
     </div>
   );
 }
