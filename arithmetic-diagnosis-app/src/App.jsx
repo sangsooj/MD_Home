@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import StartScreen from "./components/StartScreen.jsx";
 import TestLayout from "./components/TestLayout.jsx";
 import QuestionCard from "./components/QuestionCard.jsx";
@@ -47,13 +47,11 @@ export default function App() {
   const [retryModalOpen, setRetryModalOpen] = useState(false);
   const [finished, setFinished] = useState(savedState?.finished ?? false);
   const [showReport, setShowReport] = useState(savedState?.showReport ?? savedState?.finished ?? false);
+  const [report, setReport] = useState(null);
+  const [reportLoading, setReportLoading] = useState(false);
   const [error, setError] = useState("");
 
   const currentQuestion = questions[currentIndex];
-  const report = useMemo(
-    () => (finished ? generateReport(student, assessment, questions, responses) : null),
-    [finished, student, assessment, questions, responses]
-  );
 
   useEffect(() => {
     const state = {
@@ -86,6 +84,32 @@ export default function App() {
     finished,
     showReport,
   ]);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    async function buildReport() {
+      if (!finished) {
+        setReport(null);
+        setReportLoading(false);
+        return;
+      }
+
+      setReportLoading(true);
+      const nextReport = await generateReport(student, assessment, questions, responses);
+
+      if (!cancelled) {
+        setReport(nextReport);
+        setReportLoading(false);
+      }
+    }
+
+    buildReport();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [finished, student, assessment, questions, responses]);
 
   useEffect(() => {
     if (!cStarted || !currentQuestion || currentQuestion.area !== "C") {
@@ -131,6 +155,8 @@ export default function App() {
       setRemainingSeconds(normalizeAreas(data.areas)?.C?.timeLimitSeconds ?? 60);
       setRetryQuestionId(null);
       setFinished(false);
+      setReport(null);
+      setReportLoading(false);
     } catch {
       setError("선택한 학년/학기의 문제 파일을 불러오지 못했습니다. 문제 JSON을 확인해 주세요.");
     }
@@ -266,6 +292,8 @@ export default function App() {
     setRetryModalOpen(false);
     setFinished(false);
     setShowReport(false);
+    setReport(null);
+    setReportLoading(false);
     setError("");
   }
 
@@ -302,6 +330,15 @@ export default function App() {
       </TestLayout>
 
       {retryModalOpen ? <RetryModal onRetry={() => setRetryModalOpen(false)} /> : null}
+      {finished && showReport && reportLoading ? (
+        <div className="modal-backdrop" role="status" aria-live="polite">
+          <div className="modal-card">
+            <p className="eyebrow">Diagnosis Report</p>
+            <h2>결과 리포트 준비 중</h2>
+            <p>채점 결과와 처방 데이터를 불러오고 있습니다.</p>
+          </div>
+        </div>
+      ) : null}
       {finished && showReport && report ? (
         <ReportModal report={report} onClose={() => setShowReport(false)} onRestart={restart} />
       ) : null}
