@@ -18,6 +18,24 @@ export async function loadPrescriptionData(grade, semester) {
   }
 }
 
+export async function loadCommonCriteria() {
+  const filePath = "./prescriptions/common-criteria.json";
+
+  try {
+    const response = await fetch(filePath);
+
+    if (!response.ok) {
+      console.warn(`Common criteria not found: ${filePath}`);
+      return null;
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.warn(`Failed to load common criteria: ${filePath}`, error);
+    return null;
+  }
+}
+
 export function getDiagnosisRules(prescriptionData) {
   return Array.isArray(prescriptionData?.diagnosisRules) ? prescriptionData.diagnosisRules : [];
 }

@@ -8,6 +8,10 @@ const AREA_LABELS = {
   D: "D 영역",
 };
 
+function getStatusClassName(status) {
+  return `status-pill status-${status.replace(/\s+/g, "-")}`;
+}
+
 function StudentSummary({ report }) {
   return (
     <div className="report-student">
@@ -32,10 +36,14 @@ function AreaResultTable({ areaResults }) {
         <tbody>
           {Object.entries(areaResults).map(([area, result]) => (
             <tr key={area}>
-              <td>{AREA_LABELS[area]}</td>
+              <td>{result.name ? `${area} ${result.name}` : AREA_LABELS[area]}</td>
               <td>{result.correct} / {result.total}</td>
               <td>{result.wrong}</td>
-              <td><span className={`status-pill status-${result.status.replace(" ", "-")}`}>{result.status}</span></td>
+              <td>
+                <span className={getStatusClassName(result.status)} title={result.meaning || undefined}>
+                  {result.status}
+                </span>
+              </td>
             </tr>
           ))}
         </tbody>

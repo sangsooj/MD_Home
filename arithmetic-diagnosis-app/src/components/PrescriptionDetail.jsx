@@ -17,6 +17,9 @@ function TextList({ items }) {
 }
 
 function PrescriptionCard({ prescription }) {
+  const lessonRoutine = prescription.lessonRoutine ?? prescription.dailyRoutine;
+  const parentMessage = prescription.parentMessage ?? prescription.parentQuestion;
+
   return (
     <article className="prescription-card">
       <h3>{prescription.title}</h3>
@@ -30,12 +33,18 @@ function PrescriptionCard({ prescription }) {
       </section>
       <section>
         <h4>수업 루틴</h4>
-        <TextList items={prescription.lessonRoutine} />
+        <TextList items={lessonRoutine} />
       </section>
-      {prescription.parentMessage ? (
+      {Array.isArray(prescription.checklist) && prescription.checklist.length > 0 ? (
+        <section>
+          <h4>점검 체크리스트</h4>
+          <TextList items={prescription.checklist} />
+        </section>
+      ) : null}
+      {parentMessage ? (
         <section>
           <h4>학부모 안내</h4>
-          <p>{prescription.parentMessage}</p>
+          <p>{parentMessage}</p>
         </section>
       ) : null}
     </article>

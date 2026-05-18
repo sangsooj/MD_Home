@@ -1,0 +1,72 @@
+{
+  "version": "1.0",
+  "title": "초등연산 진단검사 공통 판정 기준",
+  "commonCriteria": {
+    "areas": {
+      "A": {
+        "name": "개념·수감각",
+        "description": "개념의 의미, 수의 크기 감각, 관계 이해를 확인합니다."
+      },
+      "B": {
+        "name": "절차·알고리즘",
+        "description": "계산 순서, 풀이 절차, 알고리즘 적용을 확인합니다."
+      },
+      "C": {
+        "name": "기초사실·유창성",
+        "description": "기본 계산 사실을 빠르고 정확하게 떠올리는 능력을 확인합니다."
+      },
+      "D": {
+        "name": "자기점검·주의조절",
+        "description": "풀이 후 검토, 조건 확인, 실수 조절 능력을 확인합니다."
+      }
+    },
+    "areaJudgement": [
+      {
+        "correctCount": 4,
+        "wrongCount": 0,
+        "status": "안정",
+        "meaning": "해당 영역은 현재 큰 문제 없음"
+      },
+      {
+        "correctCount": 3,
+        "wrongCount": 1,
+        "status": "경미 보강",
+        "meaning": "약간 불안정, 짧은 보완 필요"
+      },
+      {
+        "correctCount": 2,
+        "wrongCount": 2,
+        "status": "집중 보강",
+        "meaning": "해당 영역을 우선 보완해야 함"
+      },
+      {
+        "correctCountRange": "0~1",
+        "wrongCountRange": "3~4",
+        "status": "우세 오류형",
+        "meaning": "이 영역이 주된 문제 가능성이 큼"
+      }
+    ],
+    "finalJudgement": [
+      {
+        "case": "한 영역만 3개 이상 틀림",
+        "result": "그 영역을 우세 유형으로 판정"
+      },
+      {
+        "case": "두 영역 이상 3개 이상 틀림",
+        "result": "혼합형으로 판정"
+      },
+      {
+        "case": "모든 영역이 0~2개만 틀림",
+        "result": "우세 유형 없음, 약한 영역만 보강"
+      },
+      {
+        "case": "D영역에서 처음 틀렸지만 다시 보기 후 2개 이상 고침",
+        "result": "자기점검 부족형 가능성 큼"
+      },
+      {
+        "case": "C영역에서 맞은 개수는 괜찮아도 시간이 지나치게 오래 걸림",
+        "result": "유창성 보강 필요"
+      }
+    ]
+  }
+}

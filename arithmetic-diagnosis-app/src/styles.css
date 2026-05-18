@@ -508,13 +508,28 @@ select {
   color: #166534;
 }
 
+.status-경미-보강 {
+  background: rgba(185, 154, 89, 0.12);
+  color: #8a641f;
+}
+
 .status-보강 {
   background: rgba(185, 154, 89, 0.16);
   color: #8a641f;
 }
 
+.status-집중-보강 {
+  background: rgba(217, 119, 6, 0.14);
+  color: #9a3412;
+}
+
 .status-우세-가능 {
   background: rgba(180, 35, 24, 0.1);
+  color: #9f1f17;
+}
+
+.status-우세-오류형 {
+  background: rgba(180, 35, 24, 0.12);
   color: #9f1f17;
 }
 

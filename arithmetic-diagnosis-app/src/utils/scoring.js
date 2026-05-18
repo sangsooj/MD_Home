@@ -1,6 +1,6 @@
 import { AREA_ORDER } from "./assessment.js";
 import { evaluateDiagnosisRules } from "./diagnosisRuleEngine.js";
-import { loadPrescriptionData } from "./prescriptionLoader.js";
+import { loadCommonCriteria, loadPrescriptionData } from "./prescriptionLoader.js";
 
 export function normalizeAnswer(answer, answerType) {
   if (answerType === "multipleSelect") {
@@ -36,19 +36,53 @@ export function isAnswerCorrect(question, userAnswer) {
   );
 }
 
-export function getAreaStatus(wrongCount) {
+function isInRange(value, rangeText) {
+  const [min, max] = String(rangeText ?? "").split("~").map((item) => Number(item.trim()));
+
+  return Number.isFinite(min) && Number.isFinite(max) && value >= min && value <= max;
+}
+
+export function getAreaStatus(correctCount, wrongCount, commonCriteria) {
+  const areaJudgement = commonCriteria?.commonCriteria?.areaJudgement;
+
+  if (Array.isArray(areaJudgement)) {
+    const matched = areaJudgement.find((judgement) => {
+      const correctMatches =
+        typeof judgement.correctCount === "number"
+          ? judgement.correctCount === correctCount
+          : judgement.correctCountRange
+            ? isInRange(correctCount, judgement.correctCountRange)
+            : true;
+      const wrongMatches =
+        typeof judgement.wrongCount === "number"
+          ? judgement.wrongCount === wrongCount
+          : judgement.wrongCountRange
+            ? isInRange(wrongCount, judgement.wrongCountRange)
+            : true;
+
+      return correctMatches && wrongMatches;
+    });
+
+    if (matched) {
+      return {
+        status: matched.status,
+        meaning: matched.meaning ?? "",
+      };
+    }
+  }
+
   if (wrongCount <= 1) {
-    return "안정";
+    return { status: "안정", meaning: "" };
   }
 
   if (wrongCount === 2) {
-    return "보강";
+    return { status: "보강", meaning: "" };
   }
 
-  return "우세 가능";
+  return { status: "우세 가능", meaning: "" };
 }
 
-export function calculateAreaResults(questions, responses) {
+export function calculateAreaResults(questions, responses, commonCriteria = null) {
   const byQuestionId = new Map(responses.map((response) => [response.questionId, response]));
 
   return AREA_ORDER.reduce((results, area) => {
@@ -59,12 +93,17 @@ export function calculateAreaResults(questions, responses) {
     }).length;
     const total = areaQuestions.length;
     const wrong = total - correct;
+    const { status, meaning } = getAreaStatus(correct, wrong, commonCriteria);
+    const areaCriteria = commonCriteria?.commonCriteria?.areas?.[area];
 
     results[area] = {
+      name: areaCriteria?.name ?? areaQuestions[0]?.areaTitle ?? `${area} 영역`,
+      description: areaCriteria?.description ?? "",
       correct,
       wrong,
       total,
-      status: getAreaStatus(wrong),
+      status,
+      meaning,
     };
 
     return results;
@@ -87,7 +126,8 @@ export function analyzeDArea(dResponses) {
 }
 
 export async function generateReport(studentInfo, testData, questions, responses) {
-  const areaResults = calculateAreaResults(questions, responses);
+  const commonCriteria = await loadCommonCriteria();
+  const areaResults = calculateAreaResults(questions, responses, commonCriteria);
   const dAnalysis = analyzeDArea(responses.filter((response) => response.area === "D"));
   const totalCorrect = AREA_ORDER.reduce((sum, area) => sum + areaResults[area].correct, 0);
   const totalQuestions = AREA_ORDER.reduce((sum, area) => sum + areaResults[area].total, 0);
@@ -121,5 +161,6 @@ export async function generateReport(studentInfo, testData, questions, responses
     prescriptionIds,
     prescriptionData,
     prescriptionDataAvailable,
+    commonCriteria,
   };
 }
