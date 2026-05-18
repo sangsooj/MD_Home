@@ -1,6 +1,7 @@
 import MultipleChoiceQuestion from "./MultipleChoiceQuestion.jsx";
 import ShortAnswerQuestion from "./ShortAnswerQuestion.jsx";
 import TimerBar from "./TimerBar.jsx";
+import MathText from "./MathText.jsx";
 import { BlockMath } from "react-katex";
 
 function QuestionPrompt({ question }) {
@@ -10,7 +11,11 @@ function QuestionPrompt({ question }) {
 
   return (
     <div className="question-prompt" id="question-title">
-      {promptText ? <h2>{promptText}</h2> : null}
+      {promptText ? (
+        <h2>
+          <MathText text={promptText} />
+        </h2>
+      ) : null}
       {formula ? (
         <div className="question-formula">
           <BlockMath math={formula} />
@@ -39,10 +44,10 @@ export default function QuestionCard({
       </div>
       <QuestionPrompt question={question} />
 
-      {question.type === "multiple" ? (
+      {question.type === "multiple" || question.type === "multipleSelect" ? (
         <MultipleChoiceQuestion question={question} value={answer} onChange={onAnswerChange} />
       ) : (
-        <ShortAnswerQuestion value={answer} onChange={onAnswerChange} />
+        <ShortAnswerQuestion question={question} value={answer} onChange={onAnswerChange} />
       )}
 
       <button className="primary-button" type="button" onClick={onNext}>

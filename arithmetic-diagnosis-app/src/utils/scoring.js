@@ -3,6 +3,21 @@ import { evaluateDiagnosisRules } from "./diagnosisRuleEngine.js";
 import { loadPrescriptionData } from "./prescriptionLoader.js";
 
 export function normalizeAnswer(answer, answerType) {
+  if (answerType === "multipleSelect") {
+    return Array.isArray(answer)
+      ? answer.map((item) => normalizeAnswer(item)).sort().join("|")
+      : String(answer ?? "")
+          .split(",")
+          .map((item) => normalizeAnswer(item))
+          .filter(Boolean)
+          .sort()
+          .join("|");
+  }
+
+  if (Array.isArray(answer)) {
+    return answer.map((item) => normalizeAnswer(item)).join("|");
+  }
+
   const normalized = String(answer ?? "").trim();
 
   if (answerType === "number") {
