@@ -25,6 +25,9 @@ export default function ShortAnswerQuestion({ question, value, onChange }) {
   const answerFields = Array.isArray(question.answerFields) ? question.answerFields : [];
   const hasMultipleFields = answerFields.length > 0;
   const fieldValues = Array.isArray(value) ? value : [];
+  const answerGuide =
+    question.answerGuide ??
+    (question.answerType === "fraction" ? "분수 답은 가분수로 입력하세요. 예: 6/5" : "");
 
   const updateFieldValue = (index, nextValue) => {
     const nextValues = answerFields.map((_, fieldIndex) => fieldValues[fieldIndex] ?? "");
@@ -35,6 +38,7 @@ export default function ShortAnswerQuestion({ question, value, onChange }) {
   return (
     <div className="short-answer">
       {!hasMultipleFields ? <label htmlFor={inputId}>답 입력</label> : null}
+      {answerGuide ? <p className="answer-guide">{answerGuide}</p> : null}
       <ChoiceBank question={question} />
       {hasMultipleFields ? (
         <div className="answer-field-grid">

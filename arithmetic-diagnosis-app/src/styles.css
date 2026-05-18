@@ -291,6 +291,14 @@ select {
   margin: 28px 0;
 }
 
+.answer-guide {
+  margin: 8px 0 0;
+  color: var(--soft);
+  font-size: 0.88rem;
+  font-weight: 700;
+  line-height: 1.55;
+}
+
 .answer-field-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
