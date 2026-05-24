@@ -1,82 +1,57 @@
-function getSeoulDateNumber(date = new Date()) {
+const openingEventModal = document.querySelector("[data-opening-event-modal]");
+const openingEventHideCheckbox = document.querySelector("[data-opening-event-hide]");
+const openingEventHideStorageKey = "mathdoing-hide-opening-event-modal";
+
+function shouldHideOpeningEventModal() {
   try {
-    const parts = new Intl.DateTimeFormat("en-CA", {
-      timeZone: "Asia/Seoul",
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-    }).formatToParts(date);
-    const values = Object.fromEntries(parts.map((part) => [part.type, part.value]));
-
-    return Number(`${values.year}${values.month}${values.day}`);
+    return window.localStorage.getItem(openingEventHideStorageKey) === "true";
   } catch (error) {
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, "0");
-    const day = String(date.getDate()).padStart(2, "0");
-
-    return Number(`${year}${month}${day}`);
+    return false;
   }
 }
 
-function updateOpeningEventVisibility() {
-  const banner = document.querySelector(".opening-banner");
-  const eventSection = document.querySelector(".opening-event");
-  const statusText = document.querySelector("[data-opening-event-status]");
-
-  if (!banner || !eventSection || !statusText) {
-    return false;
-  }
-
-  const today = getSeoulDateNumber();
-  const eventStart = 20260615;
-  const eventEndExclusive = 20260717;
-
-  if (today >= eventEndExclusive) {
-    banner.hidden = true;
-    eventSection.hidden = true;
-    return false;
-  }
-
-  statusText.textContent =
-    today >= eventStart ? "연산 진단 이벤트 진행 중" : "연산 진단 이벤트 진행예정";
-
-  return true;
-}
-
-const shouldShowOpeningEvent = updateOpeningEventVisibility();
-
-function initOpeningEventModal() {
-  const modal = document.querySelector("[data-opening-event-modal]");
-
-  if (!shouldShowOpeningEvent || !modal) {
+function closeOpeningEventModal() {
+  if (!openingEventModal) {
     return;
   }
 
-  const closeButtons = modal.querySelectorAll("[data-opening-event-modal-close]");
-
-  function closeModal() {
-    modal.hidden = true;
+  if (openingEventHideCheckbox?.checked) {
+    try {
+      window.localStorage.setItem(openingEventHideStorageKey, "true");
+    } catch (error) {
+      // Ignore storage errors so the modal can still close.
+    }
   }
 
+  openingEventModal.hidden = true;
+}
+
+function initOpeningEventModal() {
+  if (!openingEventModal || shouldHideOpeningEventModal()) {
+    return;
+  }
+
+  const closeButtons = openingEventModal.querySelectorAll("[data-opening-event-modal-close]");
+
   closeButtons.forEach((button) => {
-    button.addEventListener("click", closeModal);
+    button.addEventListener("click", closeOpeningEventModal);
   });
 
-  modal.addEventListener("click", (event) => {
-    if (event.target === modal) {
-      closeModal();
+  openingEventModal.addEventListener("click", (event) => {
+    if (event.target === openingEventModal) {
+      closeOpeningEventModal();
     }
   });
 
   document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && !modal.hidden) {
-      closeModal();
+    if (event.key === "Escape" && !openingEventModal.hidden) {
+      closeOpeningEventModal();
     }
   });
 
   window.setTimeout(() => {
-    modal.hidden = false;
-    const closeButton = modal.querySelector(".modal-close");
+    openingEventModal.hidden = false;
+    const closeButton = openingEventModal.querySelector(".modal-close");
 
     if (closeButton) {
       closeButton.focus();
