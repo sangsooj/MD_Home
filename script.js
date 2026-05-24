@@ -130,7 +130,6 @@ const diagnosisSteps = [
     count: "Step 03",
     title: "최종 진단점수 계산 (M + S만 사용)",
     items: [
-      "Final = (M × 0.60) + (S × 0.40)",
       "학습 단계 (Stage 1~4)",
       "정보인식 유형 (V/L/혼합)",
       "구체성 수준",
