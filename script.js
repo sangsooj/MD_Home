@@ -1,33 +1,15 @@
 const openingEventModal = document.querySelector("[data-opening-event-modal]");
-const openingEventHideCheckbox = document.querySelector("[data-opening-event-hide]");
-const openingEventHideStorageKey = "mathdoing-hide-opening-event-modal";
-
-function shouldHideOpeningEventModal() {
-  try {
-    return window.localStorage.getItem(openingEventHideStorageKey) === "true";
-  } catch (error) {
-    return false;
-  }
-}
 
 function closeOpeningEventModal() {
   if (!openingEventModal) {
     return;
   }
 
-  if (openingEventHideCheckbox?.checked) {
-    try {
-      window.localStorage.setItem(openingEventHideStorageKey, "true");
-    } catch (error) {
-      // Ignore storage errors so the modal can still close.
-    }
-  }
-
   openingEventModal.hidden = true;
 }
 
 function initOpeningEventModal() {
-  if (!openingEventModal || shouldHideOpeningEventModal()) {
+  if (!openingEventModal) {
     return;
   }
 
