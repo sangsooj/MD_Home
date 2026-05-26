@@ -12,7 +12,6 @@ import {
 } from "./utils/assessment.js";
 import { generateReport, isAnswerCorrect } from "./utils/scoring.js";
 
-const STORAGE_KEY = "mathdoing-arithmetic-diagnosis";
 const initialStudent = { name: "", grade: "", semester: "" };
 
 function getQuestionFile(student) {
@@ -23,67 +22,25 @@ function findFirstIndexByArea(questions, area) {
   return questions.findIndex((question) => question.area === area);
 }
 
-function getStoredState() {
-  try {
-    const saved = window.localStorage.getItem(STORAGE_KEY);
-    return saved ? JSON.parse(saved) : null;
-  } catch {
-    return null;
-  }
-}
-
 export default function App() {
-  const savedState = getStoredState();
-  const [student, setStudent] = useState(savedState?.student ?? initialStudent);
-  const [assessment, setAssessment] = useState(savedState?.assessment ?? null);
-  const [questions, setQuestions] = useState(savedState?.questions ?? []);
-  const [responses, setResponses] = useState(savedState?.responses ?? []);
-  const [currentIndex, setCurrentIndex] = useState(savedState?.currentIndex ?? 0);
-  const [currentAnswer, setCurrentAnswer] = useState(savedState?.currentAnswer ?? "");
-  const [showCIntro, setShowCIntro] = useState(savedState?.showCIntro ?? false);
-  const [cStarted, setCStarted] = useState(savedState?.cStarted ?? false);
-  const [remainingSeconds, setRemainingSeconds] = useState(savedState?.remainingSeconds ?? 60);
-  const [retryQuestionId, setRetryQuestionId] = useState(savedState?.retryQuestionId ?? null);
+  const [student, setStudent] = useState(initialStudent);
+  const [assessment, setAssessment] = useState(null);
+  const [questions, setQuestions] = useState([]);
+  const [responses, setResponses] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentAnswer, setCurrentAnswer] = useState("");
+  const [showCIntro, setShowCIntro] = useState(false);
+  const [cStarted, setCStarted] = useState(false);
+  const [remainingSeconds, setRemainingSeconds] = useState(60);
+  const [retryQuestionId, setRetryQuestionId] = useState(null);
   const [retryModalOpen, setRetryModalOpen] = useState(false);
-  const [finished, setFinished] = useState(savedState?.finished ?? false);
-  const [showReport, setShowReport] = useState(savedState?.showReport ?? savedState?.finished ?? false);
+  const [finished, setFinished] = useState(false);
+  const [showReport, setShowReport] = useState(false);
   const [report, setReport] = useState(null);
   const [reportLoading, setReportLoading] = useState(false);
   const [error, setError] = useState("");
 
   const currentQuestion = questions[currentIndex];
-
-  useEffect(() => {
-    const state = {
-      student,
-      assessment,
-      questions,
-      responses,
-      currentIndex,
-      currentAnswer,
-      showCIntro,
-      cStarted,
-      remainingSeconds,
-      retryQuestionId,
-      finished,
-      showReport,
-    };
-
-    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-  }, [
-    student,
-    assessment,
-    questions,
-    responses,
-    currentIndex,
-    currentAnswer,
-    showCIntro,
-    cStarted,
-    remainingSeconds,
-    retryQuestionId,
-    finished,
-    showReport,
-  ]);
 
   useEffect(() => {
     let cancelled = false;
@@ -278,7 +235,6 @@ export default function App() {
   }
 
   function restart() {
-    window.localStorage.removeItem(STORAGE_KEY);
     setStudent(initialStudent);
     setAssessment(null);
     setQuestions([]);
