@@ -125,7 +125,7 @@ export default function ReportModal({ report, onClose, onRestart }) {
             </button>
           )}
           <button className="secondary-button" type="button" onClick={onClose}>
-            닫기
+            진단 화면으로 돌아가기
           </button>
           <button className={showDetail ? "primary-button" : "secondary-button"} type="button" onClick={onRestart}>
             다시 검사하기

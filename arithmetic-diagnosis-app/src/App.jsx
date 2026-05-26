@@ -340,7 +340,7 @@ export default function App() {
         </div>
       ) : null}
       {finished && showReport && report ? (
-        <ReportModal report={report} onClose={() => setShowReport(false)} onRestart={restart} />
+        <ReportModal report={report} onClose={restart} onRestart={restart} />
       ) : null}
     </div>
   );
