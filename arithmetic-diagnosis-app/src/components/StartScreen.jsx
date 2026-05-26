@@ -1,7 +1,36 @@
-const grades = [1, 2, 3, 4, 5, 6];
+const availableAssessments = [
+  { grade: 4, semester: 1 },
+  { grade: 4, semester: 2 },
+  { grade: 5, semester: 1 },
+  { grade: 5, semester: 2 },
+  { grade: 6, semester: 1 },
+  { grade: 6, semester: 2 },
+];
+
+const availableGrades = [...new Set(availableAssessments.map((assessment) => assessment.grade))];
+
+function getAvailableSemesters(grade) {
+  const selectedGrade = Number(grade);
+
+  return availableAssessments
+    .filter((assessment) => assessment.grade === selectedGrade)
+    .map((assessment) => assessment.semester);
+}
+
+function isAssessmentAvailable(grade, semester) {
+  return availableAssessments.some(
+    (assessment) =>
+      assessment.grade === Number(grade) && assessment.semester === Number(semester)
+  );
+}
 
 export default function StartScreen({ student, onChange, onStart, error }) {
-  const isReady = student.name.trim() && student.grade && student.semester;
+  const semesters = getAvailableSemesters(student.grade);
+  const isReady =
+    student.name.trim() &&
+    student.grade &&
+    student.semester &&
+    isAssessmentAvailable(student.grade, student.semester);
 
   return (
     <section className="start-card" aria-labelledby="start-title">
@@ -52,10 +81,18 @@ export default function StartScreen({ student, onChange, onStart, error }) {
           학년
           <select
             value={student.grade}
-            onChange={(event) => onChange({ ...student, grade: event.target.value })}
+            onChange={(event) => {
+              const nextGrade = event.target.value;
+              const nextSemesters = getAvailableSemesters(nextGrade);
+              const nextSemester = nextSemesters.includes(Number(student.semester))
+                ? student.semester
+                : "";
+
+              onChange({ ...student, grade: nextGrade, semester: nextSemester });
+            }}
           >
             <option value="">학년 선택</option>
-            {grades.map((grade) => (
+            {availableGrades.map((grade) => (
               <option key={grade} value={grade}>초등 {grade}학년</option>
             ))}
           </select>
@@ -65,10 +102,12 @@ export default function StartScreen({ student, onChange, onStart, error }) {
           <select
             value={student.semester}
             onChange={(event) => onChange({ ...student, semester: event.target.value })}
+            disabled={!student.grade}
           >
             <option value="">학기 선택</option>
-            <option value="1">1학기</option>
-            <option value="2">2학기</option>
+            {semesters.map((semester) => (
+              <option key={semester} value={semester}>{semester}학기</option>
+            ))}
           </select>
         </label>
       </div>
