@@ -2218,23 +2218,23 @@ a {
 }
 
 .consultation-heading p {
-  max-width: none;
+  max-width: 620px;
 }
 
 .consultation-intro {
-  width: min(100%, 720px);
+  width: min(100%, 620px);
   margin: 24px auto 0;
   color: var(--text);
   font-size: clamp(1rem, 1.6vw, 1.2rem);
   font-weight: 600;
   line-height: 1.55;
-  text-align: center;
+  text-align: left;
 }
 
 .consultation-steps {
   display: grid;
   gap: 8px;
-  width: min(100%, 720px);
+  width: min(100%, 620px);
   margin: 18px auto 0;
   padding-left: 1.4em;
   color: var(--text-soft);
