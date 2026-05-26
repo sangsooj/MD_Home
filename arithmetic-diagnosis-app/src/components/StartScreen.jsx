@@ -1,4 +1,6 @@
 const availableAssessments = [
+  { grade: 3, semester: 1 },
+  { grade: 3, semester: 2 },
   { grade: 4, semester: 1 },
   { grade: 4, semester: 2 },
   { grade: 5, semester: 1 },
