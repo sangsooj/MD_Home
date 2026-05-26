@@ -28,6 +28,7 @@ function isAssessmentAvailable(grade, semester) {
 
 export default function StartScreen({ student, onChange, onStart, error }) {
   const semesters = getAvailableSemesters(student.grade);
+  const solvingTime = Number(student.grade) === 3 ? "20~25분" : "25~30분";
   const isReady =
     student.name.trim() &&
     student.grade &&
@@ -56,7 +57,7 @@ export default function StartScreen({ student, onChange, onStart, error }) {
           </div>
           <div>
             <dt>풀이 시간</dt>
-            <dd>25~30분, 학생 단독</dd>
+            <dd>{solvingTime}, 학생 단독</dd>
           </div>
           <div>
             <dt>C 영역</dt>
