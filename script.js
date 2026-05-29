@@ -1,4 +1,9 @@
 const openingEventModal = document.querySelector("[data-opening-event-modal]");
+const consultationReservationStart = new Date("2026-06-06T00:00:00+09:00");
+
+function isConsultationReservationOpen() {
+  return Date.now() >= consultationReservationStart.getTime();
+}
 
 function closeOpeningEventModal() {
   if (!openingEventModal) {
@@ -16,7 +21,13 @@ function initOpeningEventModal() {
   const closeButtons = openingEventModal.querySelectorAll("[data-opening-event-modal-close]");
 
   closeButtons.forEach((button) => {
-    button.addEventListener("click", closeOpeningEventModal);
+    button.addEventListener("click", () => {
+      if (button.matches(".button[href='#consultation']") && !isConsultationReservationOpen()) {
+        return;
+      }
+
+      closeOpeningEventModal();
+    });
   });
 
   openingEventModal.addEventListener("click", (event) => {
@@ -42,6 +53,19 @@ function initOpeningEventModal() {
 }
 
 initOpeningEventModal();
+
+const consultationReservationButtons = document.querySelectorAll(".button[href='#consultation']");
+
+consultationReservationButtons.forEach((button) => {
+  button.addEventListener("click", (event) => {
+    if (isConsultationReservationOpen()) {
+      return;
+    }
+
+    event.preventDefault();
+    alert("상담예약은 2026년 6월 6일부터 시행됩니다");
+  });
+});
 
 const revealTargets = document.querySelectorAll(
   ".opening-banner, .hero, .opening-event, .arithmetic-hero, .numbered-content-card, .program-cause-grid article, .bottom-cta, .program-hero, .program-section, .program-cta, .feature-card, .book-cover-showcase, .philosophy, .program-card, .diagnosis, .stat-item, .journey-banner, .director, .report-highlight, .section-heading, .testimonial-card, .center-lead, .consultation-action, .location, .site-footer"
