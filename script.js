@@ -67,6 +67,15 @@ consultationReservationButtons.forEach((button) => {
   });
 });
 
+const phoneReservationAlertButtons = document.querySelectorAll("[data-phone-reservation-alert]");
+
+phoneReservationAlertButtons.forEach((button) => {
+  button.addEventListener("click", (event) => {
+    event.preventDefault();
+    alert("전화 예약은 6월 4일부터 가능합니다.");
+  });
+});
+
 const revealTargets = document.querySelectorAll(
   ".opening-banner, .hero, .opening-event, .arithmetic-hero, .numbered-content-card, .program-cause-grid article, .bottom-cta, .program-hero, .program-section, .program-cta, .feature-card, .book-cover-showcase, .philosophy, .program-card, .diagnosis, .stat-item, .journey-banner, .director, .report-highlight, .section-heading, .testimonial-card, .center-lead, .consultation-action, .location, .site-footer"
 );
