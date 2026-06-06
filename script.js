@@ -72,7 +72,7 @@ const phoneReservationAlertButtons = document.querySelectorAll("[data-phone-rese
 phoneReservationAlertButtons.forEach((button) => {
   button.addEventListener("click", (event) => {
     event.preventDefault();
-    alert("전화 예약은 6월 4일부터 가능합니다.");
+    alert("전화 예약은 6월 8일부터 가능합니다.");
   });
 });
 
