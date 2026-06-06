@@ -425,8 +425,15 @@ a {
   align-items: stretch;
 }
 
+.opening-event-copy {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
 .opening-label {
   display: inline-flex;
+  align-self: flex-start;
   align-items: center;
   min-height: 28px;
   margin: 0 0 14px;
@@ -448,16 +455,16 @@ a {
 }
 
 .opening-event h2 {
-  max-width: 640px;
-  font-size: clamp(1.9rem, 4vw, 3.25rem);
-  line-height: 0.98;
+  max-width: 720px;
+  font-size: clamp(2.4rem, 4.9vw, 4.15rem);
+  line-height: 0.96;
 }
 
 .opening-lead {
-  margin: 14px 0 18px;
+  margin: 18px 0 22px;
   color: var(--text);
-  font-size: clamp(1.05rem, 1.7vw, 1.28rem);
-  font-weight: 700;
+  font-size: clamp(1.16rem, 1.9vw, 1.5rem);
+  font-weight: 800;
   line-height: 1.4;
 }
 
@@ -465,13 +472,14 @@ a {
 .event-parent-note p {
   margin: 0 0 12px;
   color: var(--text-soft);
-  line-height: 1.72;
-  font-size: 0.94rem;
+  line-height: 1.78;
+  font-size: 1.04rem;
 }
 
 .opening-emphasis {
-  padding-top: 6px;
+  padding-top: 14px;
   color: var(--ink-blue) !important;
+  font-size: 1.09rem !important;
   font-weight: 800;
 }
 
@@ -483,14 +491,31 @@ a {
 
 .opening-notice-actions {
   justify-content: flex-start;
-  margin-top: 24px;
+  margin-top: auto;
+  padding-top: 34px;
+}
+
+.event-actions.opening-notice-actions {
+  justify-content: flex-start;
+}
+
+.opening-notice-actions .button {
+  min-height: 48px;
+  padding: 0 22px;
+  font-size: 0.92rem;
+}
+
+.opening-event-side {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 16px;
 }
 
 .opening-date-panel {
   display: grid;
   place-items: center;
   align-content: center;
-  min-height: 100%;
+  min-height: 178px;
   padding: 30px 28px;
   border: 1px solid rgba(185, 154, 89, 0.28);
   border-radius: 26px;
@@ -502,29 +527,113 @@ a {
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
 }
 
-.opening-date-panel span {
-  color: var(--accent);
-  font-size: 0.74rem;
-  font-weight: 800;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-}
-
-.opening-date-panel strong {
+.opening-date-panel > strong {
   display: block;
-  margin-top: 12px;
   color: #ffffff;
-  font-size: clamp(2.4rem, 4vw, 3.35rem);
+  font-size: clamp(2rem, 3.25vw, 2.85rem);
   line-height: 1;
   letter-spacing: 0;
   white-space: nowrap;
 }
 
-.opening-date-panel p {
-  margin: 12px 0 0;
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 0.96rem;
-  font-weight: 700;
+.opening-countdown {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  width: 100%;
+  max-width: 300px;
+  margin-top: 22px;
+}
+
+.opening-countdown div {
+  min-width: 0;
+  padding: 9px 6px 8px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.opening-countdown strong {
+  display: block;
+  color: #ffffff;
+  font-size: clamp(1.08rem, 1.9vw, 1.38rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+.opening-countdown span {
+  display: block;
+  margin-top: 6px;
+  color: var(--accent);
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.opening-countdown.is-open {
+  display: block;
+  max-width: none;
+}
+
+.opening-countdown-complete {
+  margin: 0;
+  color: var(--accent);
+  font-size: clamp(1rem, 1.8vw, 1.28rem);
+  font-weight: 900;
+}
+
+.opening-consult-panel {
+  padding: 24px 24px 22px;
+  border: 1px solid rgba(185, 154, 89, 0.24);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.76);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.42);
+}
+
+.opening-consult-intro,
+.opening-consult-note {
+  margin: 0;
+  color: var(--text);
+  font-size: 0.95rem;
+  line-height: 1.68;
+}
+
+.opening-consult-intro strong {
+  color: var(--ink-blue);
+  font-weight: 900;
+}
+
+.opening-consult-list {
+  display: grid;
+  gap: 9px;
+  margin: 18px 0;
+}
+
+.opening-consult-list div {
+  display: grid;
+  grid-template-columns: 54px minmax(0, 1fr);
+  gap: 10px;
+  align-items: baseline;
+}
+
+.opening-consult-list dt {
+  color: var(--accent-deep);
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.opening-consult-list dd {
+  margin: 0;
+  color: var(--ink-blue);
+  font-size: 0.94rem;
+  font-weight: 800;
+  line-height: 1.42;
+}
+
+.opening-consult-note {
+  padding-top: 16px;
+  border-top: 1px solid rgba(185, 154, 89, 0.2);
+  color: var(--text-soft);
 }
 
 .event-summary-grid {
@@ -2508,12 +2617,15 @@ a {
     border-radius: 28px;
   }
 
-  .opening-date-panel {
+  .opening-event-side {
     order: -1;
-    min-height: 188px;
   }
 
-  .opening-date-panel strong {
+  .opening-date-panel {
+    min-height: 156px;
+  }
+
+  .opening-date-panel > strong {
     font-size: clamp(2.15rem, 9vw, 3.1rem);
   }
 
@@ -2741,12 +2853,12 @@ a {
   }
 
   .opening-date-panel {
-    min-height: 156px;
+    min-height: 136px;
     padding: 22px 16px;
     border-radius: 20px;
   }
 
-  .opening-date-panel strong {
+  .opening-date-panel > strong {
     font-size: clamp(1.85rem, 9vw, 2.25rem);
   }
 
@@ -2762,6 +2874,15 @@ a {
 
   .opening-lead {
     font-size: 1rem;
+  }
+
+  .opening-consult-panel {
+    padding: 20px 16px;
+    border-radius: 18px;
+  }
+
+  .opening-consult-list div {
+    grid-template-columns: 46px minmax(0, 1fr);
   }
 
   .event-summary-grid {

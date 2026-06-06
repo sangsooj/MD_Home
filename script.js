@@ -1,5 +1,52 @@
 const openingEventModal = document.querySelector("[data-opening-event-modal]");
 const consultationReservationStart = new Date("2026-06-06T00:00:00+09:00");
+const openingDate = new Date("2026-07-06T00:00:00+09:00");
+
+function padCountdownNumber(value) {
+  return String(value).padStart(2, "0");
+}
+
+function initOpeningCountdown() {
+  const countdown = document.querySelector("[data-opening-countdown]");
+
+  if (!countdown) {
+    return;
+  }
+
+  const daysElement = countdown.querySelector("[data-countdown-days]");
+  const hoursElement = countdown.querySelector("[data-countdown-hours]");
+  const minutesElement = countdown.querySelector("[data-countdown-minutes]");
+  const secondsElement = countdown.querySelector("[data-countdown-seconds]");
+
+  if (!daysElement || !hoursElement || !minutesElement || !secondsElement) {
+    return;
+  }
+
+  const updateCountdown = () => {
+    const remainingMs = Math.max(0, openingDate.getTime() - Date.now());
+
+    if (remainingMs === 0) {
+      countdown.classList.add("is-open");
+      countdown.innerHTML = '<p class="opening-countdown-complete">매쓰두잉 센터 오픈</p>';
+      window.clearInterval(countdownTimer);
+      return;
+    }
+
+    const totalSeconds = Math.floor(remainingMs / 1000);
+    const days = Math.floor(totalSeconds / 86400);
+    const hours = Math.floor((totalSeconds % 86400) / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
+
+    daysElement.textContent = padCountdownNumber(days);
+    hoursElement.textContent = padCountdownNumber(hours);
+    minutesElement.textContent = padCountdownNumber(minutes);
+    secondsElement.textContent = padCountdownNumber(seconds);
+  };
+
+  const countdownTimer = window.setInterval(updateCountdown, 1000);
+  updateCountdown();
+}
 
 function isConsultationReservationOpen() {
   return Date.now() >= consultationReservationStart.getTime();
@@ -53,6 +100,7 @@ function initOpeningEventModal() {
 }
 
 initOpeningEventModal();
+initOpeningCountdown();
 
 const consultationReservationButtons = document.querySelectorAll(".button[href='#consultation']");
 
