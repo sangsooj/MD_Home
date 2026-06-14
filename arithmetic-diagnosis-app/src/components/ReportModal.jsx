@@ -1,4 +1,5 @@
 import { useState } from "react";
+import MaintenancePlan from "./MaintenancePlan.jsx";
 import PrescriptionDetail from "./PrescriptionDetail.jsx";
 
 const AREA_LABELS = {
@@ -9,7 +10,7 @@ const AREA_LABELS = {
 };
 
 function getStatusClassName(status) {
-  return `status-pill status-${status.replace(/\s+/g, "-")}`;
+  return `status-pill status-${String(status).replace(/\s+/g, "-")}`;
 }
 
 function StudentSummary({ report }) {
@@ -52,23 +53,22 @@ function AreaResultTable({ areaResults }) {
   );
 }
 
-function DAnalysisSummary({ dAnalysis }) {
+function DiagnosisNotices({ notices }) {
+  if (!Array.isArray(notices) || notices.length === 0) {
+    return null;
+  }
+
   return (
     <section className="report-section">
-      <h3>D영역 자기점검 분석</h3>
-      <div className="d-analysis-grid">
-        <article>
-          <span>처음 틀린 개수</span>
-          <strong>{dAnalysis.firstWrongCount}</strong>
-        </article>
-        <article>
-          <span>다시 확인 후 고친 개수</span>
-          <strong>{dAnalysis.retryCorrectedCount}</strong>
-        </article>
-        <article>
-          <span>최종 틀린 개수</span>
-          <strong>{dAnalysis.finalWrongCount}</strong>
-        </article>
+      <h3>보조 안내</h3>
+      <div className="notice-list">
+        {notices.map((notice) => (
+          <article className="notice-card" key={notice.code}>
+            <strong>{notice.title}</strong>
+            <p>{notice.message}</p>
+            {notice.recommendation ? <p className="recommendation">{notice.recommendation}</p> : null}
+          </article>
+        ))}
       </div>
     </section>
   );
@@ -80,23 +80,26 @@ function DiagnosisSummary({ diagnosis }) {
       <span>최종 진단 유형</span>
       <strong>{diagnosis.typeName}</strong>
       {diagnosis.summary ? <p>{diagnosis.summary}</p> : null}
+      {diagnosis.recommendation ? <p className="recommendation">{diagnosis.recommendation}</p> : null}
     </section>
   );
 }
 
 export default function ReportModal({ report, onClose, onRestart }) {
   const [showDetail, setShowDetail] = useState(false);
+  const isPerfectScore = report?.isPerfectScore === true || report?.diagnosis?.flags?.includes("PERFECT_SCORE");
 
   return (
     <div className="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="report-title">
       <div className="modal-card report-card">
         {showDetail ? (
           <>
-            <p className="eyebrow">Prescription Detail</p>
-            <h2 id="report-title">유형판정 상세페이지</h2>
+            <p className="eyebrow">{isPerfectScore ? "Maintenance Plan" : "Prescription Detail"}</p>
+            <h2 id="report-title">{isPerfectScore ? "유지·확장 계획" : "유형판정 상세페이지"}</h2>
             <StudentSummary report={report} />
             <DiagnosisSummary diagnosis={report.diagnosis} />
-            <PrescriptionDetail report={report} />
+            <DiagnosisNotices notices={report.diagnosis?.notices} />
+            {isPerfectScore ? <MaintenancePlan report={report} /> : <PrescriptionDetail report={report} />}
           </>
         ) : (
           <>
@@ -112,6 +115,7 @@ export default function ReportModal({ report, onClose, onRestart }) {
               <AreaResultTable areaResults={report.areaResults} />
             </section>
             <DiagnosisSummary diagnosis={report.diagnosis} />
+            <DiagnosisNotices notices={report.diagnosis?.notices} />
           </>
         )}
         <div className="report-actions">
@@ -121,7 +125,7 @@ export default function ReportModal({ report, onClose, onRestart }) {
             </button>
           ) : (
             <button className="primary-button" type="button" onClick={() => setShowDetail(true)}>
-              상세 처방 보기
+              {isPerfectScore ? "유지·확장 계획 보기" : "상세 처방 보기"}
             </button>
           )}
           <button className="secondary-button" type="button" onClick={onClose}>

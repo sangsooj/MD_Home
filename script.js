@@ -1,4 +1,5 @@
 const openingEventModal = document.querySelector("[data-opening-event-modal]");
+const consultationReservationModal = document.querySelector("[data-consultation-reservation-modal]");
 const consultationReservationStart = new Date("2026-06-06T00:00:00+09:00");
 const openingDate = new Date("2026-07-06T00:00:00+09:00");
 
@@ -102,6 +103,61 @@ function initOpeningEventModal() {
 initOpeningEventModal();
 initOpeningCountdown();
 
+function closeConsultationReservationModal() {
+  if (!consultationReservationModal) {
+    return;
+  }
+
+  consultationReservationModal.hidden = true;
+}
+
+function openConsultationReservationModal() {
+  if (!consultationReservationModal) {
+    return;
+  }
+
+  consultationReservationModal.hidden = false;
+  const closeButton = consultationReservationModal.querySelector(".modal-close");
+
+  if (closeButton) {
+    closeButton.focus();
+  }
+}
+
+function initConsultationReservationModal() {
+  if (!consultationReservationModal) {
+    return;
+  }
+
+  const openButtons = document.querySelectorAll("[data-consultation-reservation-modal-open]");
+  const closeButtons = consultationReservationModal.querySelectorAll("[data-consultation-reservation-modal-close]");
+
+  openButtons.forEach((button) => {
+    button.addEventListener("click", (event) => {
+      event.preventDefault();
+      openConsultationReservationModal();
+    });
+  });
+
+  closeButtons.forEach((button) => {
+    button.addEventListener("click", closeConsultationReservationModal);
+  });
+
+  consultationReservationModal.addEventListener("click", (event) => {
+    if (event.target === consultationReservationModal) {
+      closeConsultationReservationModal();
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && !consultationReservationModal.hidden) {
+      closeConsultationReservationModal();
+    }
+  });
+}
+
+initConsultationReservationModal();
+
 const consultationReservationButtons = document.querySelectorAll(".button[href='#consultation']");
 
 consultationReservationButtons.forEach((button) => {
@@ -112,15 +168,6 @@ consultationReservationButtons.forEach((button) => {
 
     event.preventDefault();
     alert("상담예약은 2026년 6월 6일부터 시행됩니다");
-  });
-});
-
-const phoneReservationAlertButtons = document.querySelectorAll("[data-phone-reservation-alert]");
-
-phoneReservationAlertButtons.forEach((button) => {
-  button.addEventListener("click", (event) => {
-    event.preventDefault();
-    alert("전화 예약은 6월 8일부터 가능합니다.");
   });
 });
 

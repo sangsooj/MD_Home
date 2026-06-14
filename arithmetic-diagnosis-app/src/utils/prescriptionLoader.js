@@ -1,5 +1,5 @@
 export async function loadPrescriptionData(grade, semester) {
-  const normalizedGrade = Number(grade);
+  const normalizedGrade = Number(grade) === 1 ? 3 : Number(grade);
   const normalizedSemester = Number(semester);
   const filePath = `./prescriptions/grade${normalizedGrade}-semester${normalizedSemester}-prescription.json`;
 

@@ -630,6 +630,56 @@ select {
   margin-top: 24px;
 }
 
+.status-안정 {
+  background: rgba(34, 197, 94, 0.13);
+  color: #166534;
+}
+
+.status-보강,
+.status-경계-보강,
+.status-집중-보강 {
+  background: rgba(185, 154, 89, 0.16);
+  color: #8a641f;
+}
+
+.status-우세-가능,
+.status-우세-오류형 {
+  background: rgba(180, 35, 24, 0.12);
+  color: #9f1f17;
+}
+
+.notice-list {
+  display: grid;
+  gap: 10px;
+}
+
+.notice-card {
+  padding: 16px;
+  border: 1px solid rgba(185, 154, 89, 0.22);
+  border-radius: 18px;
+  background: rgba(255, 253, 249, 0.9);
+}
+
+.notice-card strong {
+  display: block;
+  color: var(--ink);
+}
+
+.notice-card p {
+  margin: 8px 0 0;
+  color: var(--soft);
+  line-height: 1.65;
+}
+
+.notice-card .recommendation {
+  color: var(--text);
+  font-weight: 700;
+}
+
+.maintenance-plan > p {
+  margin-bottom: 18px;
+}
+
 @media (max-width: 720px) {
   .app-shell {
     padding: 16px;

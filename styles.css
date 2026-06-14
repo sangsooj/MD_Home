@@ -104,8 +104,70 @@ a {
   backdrop-filter: blur(5px);
 }
 
-.opening-event-modal[hidden] {
+.opening-event-modal[hidden],
+.consultation-reservation-modal[hidden] {
   display: none;
+}
+
+.consultation-reservation-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: grid;
+  place-items: center;
+  padding: 22px;
+  background: rgba(20, 40, 73, 0.34);
+  backdrop-filter: blur(5px);
+}
+
+.consultation-reservation-modal-card {
+  position: relative;
+  width: min(100%, 620px);
+  padding: clamp(28px, 5vw, 42px);
+  border: 1px solid rgba(185, 154, 89, 0.22);
+  border-radius: 24px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.97), rgba(246, 243, 239, 0.94)),
+    #fffaf1;
+  box-shadow: 0 26px 70px rgba(20, 40, 73, 0.2);
+}
+
+.consultation-reservation-modal-card h2 {
+  margin: 10px 0 16px;
+  color: var(--ink-blue);
+  font-size: clamp(1.55rem, 4vw, 2rem);
+  line-height: 1.15;
+  letter-spacing: 0;
+}
+
+.consultation-director-message {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.consultation-school-info {
+  display: grid;
+  gap: 9px;
+  margin-top: 22px;
+  padding: 18px 20px;
+  border: 1px solid rgba(185, 154, 89, 0.26);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.66);
+  color: var(--ink-blue);
+  font-size: 1.08rem;
+  line-height: 1.55;
+}
+
+.consultation-school-info strong {
+  font-size: 1.2rem;
+}
+
+.consultation-school-info a {
+  color: var(--ink-blue);
+  font-weight: 800;
+  text-decoration: none;
 }
 
 .opening-event-modal-card {

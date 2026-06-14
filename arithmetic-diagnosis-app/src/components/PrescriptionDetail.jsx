@@ -37,7 +37,7 @@ function PrescriptionCard({ prescription }) {
       </section>
       {Array.isArray(prescription.checklist) && prescription.checklist.length > 0 ? (
         <section>
-          <h4>점검 체크리스트</h4>
+          <h4>자가 체크리스트</h4>
           <TextList items={prescription.checklist} />
         </section>
       ) : null}

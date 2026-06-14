@@ -1,5 +1,5 @@
 import { AREA_ORDER } from "./assessment.js";
-import { evaluateDiagnosisRules } from "./diagnosisRuleEngine.js";
+import { detectPerfectScoreResult, evaluateDiagnosisRules } from "./diagnosisRuleEngine.js";
 import { loadCommonCriteria, loadPrescriptionData } from "./prescriptionLoader.js";
 
 export function normalizeAnswer(answer, answerType) {
@@ -43,6 +43,10 @@ function isInRange(value, rangeText) {
 }
 
 export function getAreaStatus(correctCount, wrongCount, commonCriteria) {
+  if (wrongCount === 0) {
+    return { status: "안정", meaning: "" };
+  }
+
   const areaJudgement = commonCriteria?.commonCriteria?.areaJudgement;
 
   if (Array.isArray(areaJudgement)) {
@@ -125,7 +129,7 @@ export function analyzeDArea(dResponses) {
   };
 }
 
-export async function generateReport(studentInfo, testData, questions, responses) {
+export async function generateReport(studentInfo, testData, questions, responses, testMeta = {}) {
   const commonCriteria = await loadCommonCriteria();
   const areaResults = calculateAreaResults(questions, responses, commonCriteria);
   const dAnalysis = analyzeDArea(responses.filter((response) => response.area === "D"));
@@ -135,6 +139,8 @@ export async function generateReport(studentInfo, testData, questions, responses
   const semester = Number(studentInfo.semester || testData?.semester);
   const prescriptionData = await loadPrescriptionData(grade, semester);
   const reportBase = {
+    totalCorrect,
+    totalQuestions,
     areaResults,
     dAnalysis,
     responses,
@@ -143,8 +149,38 @@ export async function generateReport(studentInfo, testData, questions, responses
       semester,
       testData,
       questions,
+      ...testMeta,
     },
   };
+  const perfectScoreResult = detectPerfectScoreResult(
+    reportBase,
+    reportBase.testMeta,
+    dAnalysis,
+    testMeta.explanationInfo,
+    prescriptionData?.stablePerfectResult
+  );
+
+  if (perfectScoreResult.isPerfectScore) {
+    return {
+      studentName: studentInfo.name,
+      grade,
+      semester,
+      totalCorrect,
+      totalQuestions,
+      areaResults,
+      dAnalysis,
+      candidateRuleIds: [],
+      diagnosis: perfectScoreResult.diagnosis,
+      prescriptionIds: [],
+      maintenancePlan: perfectScoreResult.maintenancePlan,
+      isPerfectScore: true,
+      prescriptionData,
+      prescriptionDataAvailable: Boolean(prescriptionData),
+      commonCriteria,
+      testMeta: reportBase.testMeta,
+    };
+  }
+
   const { candidateRuleIds, diagnosis, prescriptionIds, prescriptionDataAvailable } =
     evaluateDiagnosisRules(prescriptionData, reportBase);
 
@@ -162,5 +198,6 @@ export async function generateReport(studentInfo, testData, questions, responses
     prescriptionData,
     prescriptionDataAvailable,
     commonCriteria,
+    testMeta: reportBase.testMeta,
   };
 }

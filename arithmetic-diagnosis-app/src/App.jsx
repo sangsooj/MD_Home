@@ -15,7 +15,8 @@ import { generateReport, isAnswerCorrect } from "./utils/scoring.js";
 const initialStudent = { name: "", grade: "", semester: "" };
 
 function getQuestionFile(student) {
-  return `./questions/grade${student.grade}-semester${student.semester}.json`;
+  const dataGrade = Number(student.grade) === 1 ? 3 : student.grade;
+  return `./questions/grade${dataGrade}-semester${student.semester}.json`;
 }
 
 function findFirstIndexByArea(questions, area) {
@@ -39,6 +40,9 @@ export default function App() {
   const [report, setReport] = useState(null);
   const [reportLoading, setReportLoading] = useState(false);
   const [error, setError] = useState("");
+  const [cAreaStartedAt, setCAreaStartedAt] = useState(null);
+  const [cAreaElapsedSeconds, setCAreaElapsedSeconds] = useState(null);
+  const [cAreaTimedOut, setCAreaTimedOut] = useState(false);
 
   const currentQuestion = questions[currentIndex];
 
@@ -53,7 +57,12 @@ export default function App() {
       }
 
       setReportLoading(true);
-      const nextReport = await generateReport(student, assessment, questions, responses);
+      const cAreaTimeLimitSeconds = normalizeAreas(assessment?.areas)?.C?.timeLimitSeconds ?? 60;
+      const nextReport = await generateReport(student, assessment, questions, responses, {
+        cAreaElapsedSeconds,
+        cAreaTimeLimitSeconds,
+        cAreaTimedOut,
+      });
 
       if (!cancelled) {
         setReport(nextReport);
@@ -66,7 +75,7 @@ export default function App() {
     return () => {
       cancelled = true;
     };
-  }, [finished, student, assessment, questions, responses]);
+  }, [finished, student, assessment, questions, responses, cAreaElapsedSeconds, cAreaTimedOut]);
 
   useEffect(() => {
     if (!cStarted || !currentQuestion || currentQuestion.area !== "C") {
@@ -114,6 +123,9 @@ export default function App() {
       setFinished(false);
       setReport(null);
       setReportLoading(false);
+      setCAreaStartedAt(null);
+      setCAreaElapsedSeconds(null);
+      setCAreaTimedOut(false);
     } catch {
       setError("선택한 학년/학기의 문제 파일을 불러오지 못했습니다. 문제 JSON을 확인해 주세요.");
     }
@@ -130,12 +142,25 @@ export default function App() {
     setCurrentAnswer("");
   }
 
+  function recordCAreaTiming(timedOut = false) {
+    const timeLimitSeconds = normalizeAreas(assessment?.areas)?.C?.timeLimitSeconds ?? 60;
+    const elapsedSeconds =
+      typeof cAreaStartedAt === "number"
+        ? Math.ceil((Date.now() - cAreaStartedAt) / 1000)
+        : timeLimitSeconds - remainingSeconds;
+
+    setCAreaElapsedSeconds(Math.max(0, elapsedSeconds));
+    setCAreaTimedOut((current) => current || timedOut);
+    setCAreaStartedAt(null);
+  }
+
   function moveToDAreaByTimeout() {
     setResponses((items) =>
       items.map((item) =>
         item.area === "C" && !item.answer ? { ...item, skippedByTimer: true } : item
       )
     );
+    recordCAreaTiming(true);
     setCStarted(false);
     moveToIndex(findFirstIndexByArea(questions, "D"));
   }
@@ -160,6 +185,7 @@ export default function App() {
     if (question.area === "C") {
       const nextQuestion = questions[nextIndex];
       if (!nextQuestion || nextQuestion.area !== "C") {
+        recordCAreaTiming(false);
         setCStarted(false);
         moveToIndex(findFirstIndexByArea(questions, "D"));
         return;
@@ -231,6 +257,9 @@ export default function App() {
     setShowCIntro(false);
     setCStarted(true);
     setRemainingSeconds(normalizeAreas(assessment?.areas)?.C?.timeLimitSeconds ?? 60);
+    setCAreaStartedAt(Date.now());
+    setCAreaElapsedSeconds(null);
+    setCAreaTimedOut(false);
     moveToIndex(firstCIndex);
   }
 
@@ -251,6 +280,9 @@ export default function App() {
     setReport(null);
     setReportLoading(false);
     setError("");
+    setCAreaStartedAt(null);
+    setCAreaElapsedSeconds(null);
+    setCAreaTimedOut(false);
   }
 
   if (!assessment) {

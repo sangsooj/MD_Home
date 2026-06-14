@@ -30,7 +30,7 @@
     {
       "area": "C",
       "title": "기초사실·유창성",
-      "description": "기본 덧셈·뺄셈과 곱셈구구의 빠른 인출을 확인합니다.",
+      "description": "기본 덧셈·뺄셈과 곱셈을 확인합니다.",
       "timeLimitSeconds": 120,
       "questions": [
         {"id":"C-01","number":9,"type":"short","promptText":"계산하세요.","formula":"7 + 8 =","renderType":"math","answer":"15","answerType":"number"},

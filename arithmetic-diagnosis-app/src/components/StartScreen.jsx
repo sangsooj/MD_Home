@@ -1,6 +1,6 @@
 const availableAssessments = [
-  { grade: 3, semester: 1 },
-  { grade: 3, semester: 2 },
+  { grade: 1, semester: 1 },
+  { grade: 1, semester: 2 },
   { grade: 4, semester: 1 },
   { grade: 4, semester: 2 },
   { grade: 5, semester: 1 },
@@ -28,7 +28,7 @@ function isAssessmentAvailable(grade, semester) {
 
 export default function StartScreen({ student, onChange, onStart, error }) {
   const semesters = getAvailableSemesters(student.grade);
-  const solvingTime = Number(student.grade) === 3 ? "20~25분" : "25~30분";
+  const solvingTime = Number(student.grade) === 1 ? "20~25분" : "25~30분";
   const isReady =
     student.name.trim() &&
     student.grade &&
