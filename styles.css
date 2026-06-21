@@ -2411,6 +2411,38 @@ a {
   list-style: none;
 }
 
+.center-lead-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 26px;
+}
+
+.center-lead-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+  padding: 0 16px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.64);
+  color: var(--text);
+  font-size: 0.86rem;
+  font-weight: 700;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background-color 180ms ease;
+}
+
+.center-lead-links a:hover,
+.center-lead-links a:focus-visible {
+  transform: translateY(-1px);
+  border-color: rgba(20, 40, 73, 0.28);
+  background: rgba(255, 255, 255, 0.86);
+}
+
 .book-cover-showcase {
   margin-top: 34px;
   padding: 18px 0 16px;
