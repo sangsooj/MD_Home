@@ -1536,7 +1536,13 @@ a {
 }
 
 .program-note-highlight {
-  color: var(--accent-deep);
+  display: block;
+  margin-top: 10px;
+  padding: 12px 14px;
+  border-left: 4px solid #b84a32;
+  border-radius: 10px;
+  background: rgba(184, 74, 50, 0.08);
+  color: #8f3324;
   font-weight: 800;
 }
 
