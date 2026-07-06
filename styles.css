@@ -1535,6 +1535,11 @@ a {
   margin: 18px 0 0;
 }
 
+.program-note-highlight {
+  color: var(--accent-deep);
+  font-weight: 800;
+}
+
 .level-compare .is-choice {
   border-color: rgba(185, 154, 89, 0.34);
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(210, 176, 137, 0.12));
