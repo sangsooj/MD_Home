@@ -2,6 +2,7 @@ const openingEventModal = document.querySelector("[data-opening-event-modal]");
 const consultationReservationModal = document.querySelector("[data-consultation-reservation-modal]");
 const consultationReservationStart = new Date("2026-06-06T00:00:00+09:00");
 const openingDate = new Date("2026-07-06T00:00:00+09:00");
+const openingEventModalEnd = new Date("2026-07-07T00:00:00+09:00");
 
 function padCountdownNumber(value) {
   return String(value).padStart(2, "0");
@@ -53,6 +54,10 @@ function isConsultationReservationOpen() {
   return Date.now() >= consultationReservationStart.getTime();
 }
 
+function shouldShowOpeningEventModal() {
+  return Date.now() < openingEventModalEnd.getTime();
+}
+
 function closeOpeningEventModal() {
   if (!openingEventModal) {
     return;
@@ -62,7 +67,7 @@ function closeOpeningEventModal() {
 }
 
 function initOpeningEventModal() {
-  if (!openingEventModal) {
+  if (!openingEventModal || !shouldShowOpeningEventModal()) {
     return;
   }
 
