@@ -1,4 +1,80 @@
 const openingEventModal = document.querySelector("[data-opening-event-modal]");
+
+function initAnnualSchedule() {
+  const grid = document.querySelector("[data-schedule-grid]");
+  const monthNav = document.querySelector("[data-schedule-month-nav]");
+  if (!grid || !monthNav) return;
+
+  const months = [[2026, 6], [2026, 7], [2026, 8], [2026, 9], [2026, 10], [2026, 11], [2027, 0], [2027, 1]];
+  const closures = new Set(["2026-09-24", "2026-09-25", "2026-09-26", "2026-09-27", "2026-12-25", "2027-01-01", "2027-02-06", "2027-02-07", "2027-02-08", "2027-02-09"]);
+  const holidayClasses = new Set(["2026-07-17", "2026-10-05", "2026-10-09"]);
+  const holidays = new Map([["2026-07-17", "제헌절"], ["2026-08-15", "광복절"], ["2026-09-24", "추석 연휴"], ["2026-09-25", "추석"], ["2026-09-26", "추석 연휴"], ["2026-09-27", "추석 연휴"], ["2026-10-03", "개천절"], ["2026-10-05", "공휴일"], ["2026-10-09", "한글날"], ["2026-12-25", "성탄절"], ["2027-01-01", "신정"], ["2027-02-06", "설 연휴"], ["2027-02-07", "설날"], ["2027-02-08", "설 연휴"], ["2027-02-09", "설 연휴"]]);
+  const dayNames = ["일", "월", "화", "수", "목", "금", "토"];
+  const toKey = (date) => `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
+  const now = new Date();
+  const currentIndex = months.findIndex(([year, month]) => year === now.getFullYear() && month === now.getMonth());
+
+  months.forEach(([year, month], index) => {
+    const canonicalId = `schedule-${year}-${String(month + 1).padStart(2, "0")}`;
+    const id = index === currentIndex || (currentIndex < 0 && index === 0) ? "schedule-current" : canonicalId;
+    const navLink = document.createElement("a");
+    navLink.href = `#${id}`;
+    navLink.textContent = `${month + 1}월`;
+    if (index === currentIndex) navLink.setAttribute("aria-current", "date");
+    monthNav.append(navLink);
+
+    const card = document.createElement("article");
+    card.className = "schedule-month";
+    card.id = id;
+    if (id === "schedule-current") card.dataset.current = "true";
+    const title = document.createElement("h3");
+    title.innerHTML = `<strong>${month + 1}월</strong><span>${year}</span>`;
+    card.append(title);
+    const calendar = document.createElement("div");
+    calendar.className = "schedule-calendar";
+    calendar.setAttribute("role", "grid");
+    calendar.setAttribute("aria-label", `${year}년 ${month + 1}월 수업일정`);
+    dayNames.forEach((name) => {
+      const header = document.createElement("span");
+      header.className = "schedule-weekday";
+      header.textContent = name;
+      header.setAttribute("role", "columnheader");
+      calendar.append(header);
+    });
+    const firstDay = new Date(year, month, 1).getDay();
+    const lastDate = new Date(year, month + 1, 0).getDate();
+    for (let blank = 0; blank < firstDay; blank += 1) {
+      const cell = document.createElement("span");
+      cell.className = "schedule-day is-empty";
+      cell.setAttribute("aria-hidden", "true");
+      calendar.append(cell);
+    }
+    for (let day = 1; day <= lastDate; day += 1) {
+      const date = new Date(year, month, day);
+      const key = toKey(date);
+      const weekday = date.getDay();
+      const isClass = key >= "2026-07-06" && key <= "2027-02-26" && weekday >= 1 && weekday <= 5 && !closures.has(key);
+      const cell = document.createElement("span");
+      cell.className = "schedule-day";
+      if (isClass) cell.classList.add("is-class");
+      if (closures.has(key)) cell.classList.add("is-closed");
+      if (holidayClasses.has(key)) cell.classList.add("is-holiday-class");
+      if (holidays.has(key) && !holidayClasses.has(key)) cell.classList.add("is-holiday");
+      cell.innerHTML = `<b>${day}</b>${closures.has(key) ? '<small>휴원</small>' : holidayClasses.has(key) ? '<small>수업</small>' : ''}`;
+      cell.setAttribute("role", "gridcell");
+      const description = [`${month + 1}월 ${day}일`];
+      if (holidays.has(key)) description.push(holidays.get(key));
+      if (isClass) description.push(holidayClasses.has(key) ? "정상 수업" : "수업일");
+      if (closures.has(key)) description.push("휴원");
+      cell.setAttribute("aria-label", description.join(", "));
+      calendar.append(cell);
+    }
+    card.append(calendar);
+    grid.append(card);
+  });
+}
+
+initAnnualSchedule();
 const consultationReservationModal = document.querySelector("[data-consultation-reservation-modal]");
 const consultationReservationStart = new Date("2026-06-06T00:00:00+09:00");
 const openingDate = new Date("2026-07-06T00:00:00+09:00");
