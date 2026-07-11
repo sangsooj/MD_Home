@@ -408,7 +408,6 @@ a {
 .schedule-weekday:first-child { color: #cf553e; }
 .schedule-day { position: relative; display: grid; place-items: center; aspect-ratio: 1; border-radius: 7px; color: #53606e; font-size: .75rem; }
 .schedule-day b { font-weight: 650; }
-.schedule-day small { position: absolute; bottom: 2px; font-size: .46rem; font-weight: 900; line-height: 1; }
 .schedule-day.is-class { background: #e3f3d2; color: #23420c; }
 .schedule-day.is-exam { background: #e4e70f; color: #263300; }
 .schedule-footnote { margin: 18px 0 0; color: var(--text-soft); font-size: .75rem; text-align: right; }

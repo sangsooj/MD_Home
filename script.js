@@ -59,7 +59,7 @@ function initAnnualSchedule() {
       cell.className = "schedule-day";
       if (isClass) cell.classList.add("is-class");
       if (mockExams.has(key)) cell.classList.add("is-exam");
-      cell.innerHTML = `<b>${day}</b>${mockExams.has(key) ? '<small>모의평가</small>' : ''}`;
+      cell.innerHTML = `<b>${day}</b>`;
       cell.setAttribute("role", "gridcell");
       const description = [`${month + 1}월 ${day}일`];
       if (holidays.has(key)) description.push(holidays.get(key));
