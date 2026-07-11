@@ -58,17 +58,13 @@ function initAnnualSchedule() {
       const cell = document.createElement("span");
       cell.className = "schedule-day";
       if (isClass) cell.classList.add("is-class");
-      if (closures.has(key)) cell.classList.add("is-closed");
-      if (holidayClasses.has(key)) cell.classList.add("is-holiday-class");
-      if (holidays.has(key) && !holidayClasses.has(key)) cell.classList.add("is-holiday");
       if (mockExams.has(key)) cell.classList.add("is-exam");
-      cell.innerHTML = `<b>${day}</b>${mockExams.has(key) ? '<small>시험</small>' : closures.has(key) ? '<small>휴원</small>' : holidayClasses.has(key) ? '<small>수업</small>' : ''}`;
+      cell.innerHTML = `<b>${day}</b>${mockExams.has(key) ? '<small>모의평가</small>' : ''}`;
       cell.setAttribute("role", "gridcell");
       const description = [`${month + 1}월 ${day}일`];
       if (holidays.has(key)) description.push(holidays.get(key));
-      if (isClass) description.push(holidayClasses.has(key) ? "정상 수업" : "수업일");
-      if (closures.has(key)) description.push("휴원");
-      if (mockExams.has(key)) description.push("모의고사, 사전 예약 필요");
+      if (isClass) description.push("수업일");
+      if (mockExams.has(key)) description.push("모의평가, 사전 예약 필요");
       cell.setAttribute("aria-label", description.join(", "));
       calendar.append(cell);
     }

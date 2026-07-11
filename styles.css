@@ -393,8 +393,6 @@ a {
 .schedule-legend, .schedule-month-nav { display: flex; gap: 10px 16px; align-items: center; flex-wrap: wrap; }
 .schedule-legend span { display: inline-flex; gap: 7px; align-items: center; color: var(--text-soft); font-size: .78rem; font-weight: 700; }
 .legend-swatch { width: 13px; height: 13px; border-radius: 4px; background: #88ce48; }
-.legend-swatch.closed-day { background: #fff; border: 2px solid #e46a43; }
-.legend-swatch.holiday-class-day { background: #88ce48; border: 2px solid #e46a43; }
 .legend-swatch.exam-day { background: #e4e70f; }
 .schedule-month-nav { gap: 5px; }
 .schedule-month-nav a { min-width: 37px; padding: 6px 8px; border-radius: 999px; text-align: center; color: var(--text-soft); font-size: .74rem; font-weight: 800; }
@@ -412,9 +410,6 @@ a {
 .schedule-day b { font-weight: 650; }
 .schedule-day small { position: absolute; bottom: 2px; font-size: .46rem; font-weight: 900; line-height: 1; }
 .schedule-day.is-class { background: #e3f3d2; color: #23420c; }
-.schedule-day.is-closed { outline: 2px solid #e46a43; outline-offset: -2px; background: #fff7f3; color: #c3462c; }
-.schedule-day.is-holiday { color: #d4533a; }
-.schedule-day.is-holiday-class { outline: 2px solid #e46a43; outline-offset: -2px; background: #dff1ca; color: #ad321f; }
 .schedule-day.is-exam { background: #e4e70f; color: #263300; }
 .schedule-footnote { margin: 18px 0 0; color: var(--text-soft); font-size: .75rem; text-align: right; }
 
