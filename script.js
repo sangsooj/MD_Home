@@ -58,6 +58,7 @@ function initAnnualSchedule() {
       const cell = document.createElement("span");
       cell.className = "schedule-day";
       if (isClass) cell.classList.add("is-class");
+      if (holidays.has(key)) cell.classList.add("is-holiday");
       if (mockExams.has(key)) cell.classList.add("is-exam");
       cell.innerHTML = `<b>${day}</b>`;
       cell.setAttribute("role", "gridcell");
