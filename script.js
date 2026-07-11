@@ -8,6 +8,7 @@ function initAnnualSchedule() {
   const months = [[2026, 6], [2026, 7], [2026, 8], [2026, 9], [2026, 10], [2026, 11], [2027, 0], [2027, 1]];
   const closures = new Set(["2026-09-24", "2026-09-25", "2026-09-26", "2026-09-27", "2026-12-25", "2027-01-01", "2027-02-06", "2027-02-07", "2027-02-08", "2027-02-09"]);
   const holidayClasses = new Set(["2026-07-17", "2026-10-05", "2026-10-09"]);
+  const mockExams = new Set(["2026-08-01", "2026-08-22", "2026-09-19", "2026-10-31", "2026-11-28", "2026-12-26", "2027-01-30", "2027-02-27"]);
   const holidays = new Map([["2026-07-17", "제헌절"], ["2026-08-15", "광복절"], ["2026-09-24", "추석 연휴"], ["2026-09-25", "추석"], ["2026-09-26", "추석 연휴"], ["2026-09-27", "추석 연휴"], ["2026-10-03", "개천절"], ["2026-10-05", "공휴일"], ["2026-10-09", "한글날"], ["2026-12-25", "성탄절"], ["2027-01-01", "신정"], ["2027-02-06", "설 연휴"], ["2027-02-07", "설날"], ["2027-02-08", "설 연휴"], ["2027-02-09", "설 연휴"]]);
   const dayNames = ["일", "월", "화", "수", "목", "금", "토"];
   const toKey = (date) => `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
@@ -60,12 +61,14 @@ function initAnnualSchedule() {
       if (closures.has(key)) cell.classList.add("is-closed");
       if (holidayClasses.has(key)) cell.classList.add("is-holiday-class");
       if (holidays.has(key) && !holidayClasses.has(key)) cell.classList.add("is-holiday");
-      cell.innerHTML = `<b>${day}</b>${closures.has(key) ? '<small>휴원</small>' : holidayClasses.has(key) ? '<small>수업</small>' : ''}`;
+      if (mockExams.has(key)) cell.classList.add("is-exam");
+      cell.innerHTML = `<b>${day}</b>${mockExams.has(key) ? '<small>시험</small>' : closures.has(key) ? '<small>휴원</small>' : holidayClasses.has(key) ? '<small>수업</small>' : ''}`;
       cell.setAttribute("role", "gridcell");
       const description = [`${month + 1}월 ${day}일`];
       if (holidays.has(key)) description.push(holidays.get(key));
       if (isClass) description.push(holidayClasses.has(key) ? "정상 수업" : "수업일");
       if (closures.has(key)) description.push("휴원");
+      if (mockExams.has(key)) description.push("모의고사, 사전 예약 필요");
       cell.setAttribute("aria-label", description.join(", "));
       calendar.append(cell);
     }

@@ -385,12 +385,17 @@ a {
 .schedule-today-link { flex: 0 0 auto; padding: 10px 15px; border: 1px solid rgba(20,40,73,.16); border-radius: 999px; color: var(--ink-blue); font-size: .82rem; font-weight: 800; background: #fff; }
 .schedule-notice { display: flex; gap: 12px; margin-top: 24px; padding: 15px 18px; border-radius: 16px; background: #fff2e8; color: #7d3c1e; font-size: .9rem; line-height: 1.55; }
 .schedule-notice strong { flex: 0 0 auto; }
+.schedule-exam-notice { display: flex; gap: 8px 18px; align-items: center; flex-wrap: wrap; margin-top: 10px; padding: 15px 18px; border: 1px solid #dedf19; border-radius: 16px; background: #ffffef; color: #30435b; font-size: .86rem; line-height: 1.5; }
+.schedule-exam-notice > strong { color: #bd2e20; font-size: 1rem; }
+.schedule-exam-notice b { color: var(--ink-blue); }
+.schedule-exam-notice em { color: var(--text-soft); font-size: .78rem; font-style: normal; }
 .schedule-tools { display: flex; justify-content: space-between; gap: 18px; align-items: center; margin-top: 22px; }
 .schedule-legend, .schedule-month-nav { display: flex; gap: 10px 16px; align-items: center; flex-wrap: wrap; }
 .schedule-legend span { display: inline-flex; gap: 7px; align-items: center; color: var(--text-soft); font-size: .78rem; font-weight: 700; }
 .legend-swatch { width: 13px; height: 13px; border-radius: 4px; background: #88ce48; }
 .legend-swatch.closed-day { background: #fff; border: 2px solid #e46a43; }
 .legend-swatch.holiday-class-day { background: #88ce48; border: 2px solid #e46a43; }
+.legend-swatch.exam-day { background: #e4e70f; }
 .schedule-month-nav { gap: 5px; }
 .schedule-month-nav a { min-width: 37px; padding: 6px 8px; border-radius: 999px; text-align: center; color: var(--text-soft); font-size: .74rem; font-weight: 800; }
 .schedule-month-nav a:hover, .schedule-month-nav a:focus-visible, .schedule-month-nav a[aria-current] { background: var(--ink-blue); color: #fff; }
@@ -410,6 +415,7 @@ a {
 .schedule-day.is-closed { outline: 2px solid #e46a43; outline-offset: -2px; background: #fff7f3; color: #c3462c; }
 .schedule-day.is-holiday { color: #d4533a; }
 .schedule-day.is-holiday-class { outline: 2px solid #e46a43; outline-offset: -2px; background: #dff1ca; color: #ad321f; }
+.schedule-day.is-exam { background: #e4e70f; color: #263300; }
 .schedule-footnote { margin: 18px 0 0; color: var(--text-soft); font-size: .75rem; text-align: right; }
 
 .hero {
@@ -2940,6 +2946,7 @@ a {
   .annual-schedule { margin-inline: -4px; padding: 24px 14px; border-radius: 24px; }
   .schedule-heading { align-items: flex-start; flex-direction: column; }
   .schedule-notice { flex-direction: column; gap: 4px; }
+  .schedule-exam-notice { align-items: flex-start; flex-direction: column; gap: 3px; }
   .schedule-month-nav { width: 100%; flex-wrap: nowrap; overflow-x: auto; padding-bottom: 5px; }
   .schedule-month-nav a { flex: 0 0 auto; }
   .schedule-grid { grid-template-columns: 1fr; gap: 12px; }

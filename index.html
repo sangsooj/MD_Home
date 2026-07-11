@@ -14,7 +14,7 @@
       href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@500;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260711-annual-schedule" />
+    <link rel="stylesheet" href="styles.css?v=20260711-mock-exams" />
   </head>
   <body>
     <div class="page-shell">
@@ -215,11 +215,19 @@
             <strong>꼭 확인해 주세요</strong>
             <span>성탄절·구정·추석·설날은 휴원입니다. 일부 공휴일은 정상 수업하며 달력에 별도로 표시했습니다.</span>
           </div>
+          <div class="schedule-exam-notice" role="note">
+            <strong>모의고사</strong>
+            <span>수업 내용 이해도를 측정합니다.</span>
+            <span><b>A타임</b> 10:00~11:40</span>
+            <span><b>B타임</b> 2:30~4:10</span>
+            <em>가능한 시간을 미리 예약해 주세요.</em>
+          </div>
           <div class="schedule-tools" aria-label="수업일정 범례 및 월 바로가기">
             <div class="schedule-legend">
               <span><i class="legend-swatch class-day"></i>수업일</span>
               <span><i class="legend-swatch closed-day"></i>휴원일</span>
               <span><i class="legend-swatch holiday-class-day"></i>공휴일 정상수업</span>
+              <span><i class="legend-swatch exam-day"></i>모의고사</span>
             </div>
             <nav class="schedule-month-nav" data-schedule-month-nav aria-label="월별 일정 바로가기"></nav>
           </div>
@@ -847,6 +855,6 @@
     </div>
 
     <script src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=ye4uf1n3hj&callback=initNaverMap"></script>
-    <script src="script.js?v=20260711-annual-schedule"></script>
+    <script src="script.js?v=20260711-mock-exams"></script>
   </body>
 </html>
