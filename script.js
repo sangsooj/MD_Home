@@ -6,9 +6,18 @@ function initAnnualSchedule() {
   if (!grid || !monthNav) return;
 
   const months = [[2026, 6], [2026, 7], [2026, 8], [2026, 9], [2026, 10], [2026, 11], [2027, 0], [2027, 1]];
-  const closures = new Set(["2026-09-24", "2026-09-25", "2026-09-26", "2026-09-27", "2026-12-25", "2027-01-01", "2027-02-06", "2027-02-07", "2027-02-08", "2027-02-09"]);
-  const holidayClasses = new Set(["2026-07-17", "2026-10-05", "2026-10-09"]);
-  const mockExams = new Set(["2026-08-22", "2026-09-19", "2026-10-31", "2026-11-28", "2026-12-26", "2027-01-30", "2027-02-27"]);
+  const classPeriods = [
+    ["2026-07-06", "2026-07-31"],
+    ["2026-08-03", "2026-08-28"],
+    ["2026-09-03", "2026-09-30"],
+    ["2026-10-01", "2026-10-28"],
+    ["2026-11-03", "2026-11-30"],
+    ["2026-12-01", "2026-12-28"],
+    ["2027-01-04", "2027-01-29"],
+    ["2027-02-01", "2027-02-26"],
+  ];
+  const closures = new Set(["2026-07-17", "2026-09-24", "2026-09-25", "2026-09-26", "2026-09-27", "2026-12-25", "2027-01-01", "2027-02-06", "2027-02-07", "2027-02-08", "2027-02-09"]);
+  const mockExams = new Set(["2026-08-01", "2026-08-22", "2026-09-19", "2026-10-24", "2026-11-28", "2026-12-26", "2027-01-30", "2027-02-27"]);
   const holidays = new Map([["2026-07-17", "제헌절"], ["2026-08-15", "광복절"], ["2026-09-24", "추석 연휴"], ["2026-09-25", "추석"], ["2026-09-26", "추석 연휴"], ["2026-09-27", "추석 연휴"], ["2026-10-03", "개천절"], ["2026-10-05", "공휴일"], ["2026-10-09", "한글날"], ["2026-12-25", "성탄절"], ["2027-01-01", "신정"], ["2027-02-06", "설 연휴"], ["2027-02-07", "설날"], ["2027-02-08", "설 연휴"], ["2027-02-09", "설 연휴"]]);
   const dayNames = ["일", "월", "화", "수", "목", "금", "토"];
   const toKey = (date) => `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
@@ -54,7 +63,8 @@ function initAnnualSchedule() {
       const date = new Date(year, month, day);
       const key = toKey(date);
       const weekday = date.getDay();
-      const isClass = key >= "2026-07-06" && key <= "2027-02-26" && weekday >= 1 && weekday <= 5 && !closures.has(key);
+      const isWithinClassPeriod = classPeriods.some(([start, end]) => key >= start && key <= end);
+      const isClass = isWithinClassPeriod && weekday >= 1 && weekday <= 5 && !closures.has(key);
       const cell = document.createElement("span");
       cell.className = "schedule-day";
       if (isClass) cell.classList.add("is-class");
