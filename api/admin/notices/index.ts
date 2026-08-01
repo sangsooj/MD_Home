@@ -1,15 +1,7 @@
 import type { VercelRequest, VercelResponse } from "../../../lib/vercel.js";
-import sanitizeHtml from "sanitize-html";
 import { ensureSchema, getSql } from "../../../lib/db.js";
 import { isAuthorized, sendError, setApiHeaders } from "../../../lib/http.js";
-
-function sanitizeBody(value: string): string {
-  return sanitizeHtml(value, {
-    allowedTags: sanitizeHtml.defaults.allowedTags.concat(["img", "figure", "figcaption", "h2", "h3"]),
-    allowedAttributes: { a: ["href", "target", "rel"], img: ["src", "alt", "loading"] },
-    allowedSchemes: ["https", "http"],
-  });
-}
+import { htmlToPlainText, sanitizeBodyHtml } from "../../../lib/sanitize.js";
 
 export default async function handler(request: VercelRequest, response: VercelResponse) {
   if (request.method !== "POST") {
@@ -20,9 +12,9 @@ export default async function handler(request: VercelRequest, response: VercelRe
 
   const title = typeof request.body?.title === "string" ? request.body.title.trim() : "";
   const rawBody = typeof request.body?.bodyHtml === "string" ? request.body.bodyHtml : "";
-  const bodyHtml = sanitizeBody(rawBody).trim();
+  const bodyHtml = sanitizeBodyHtml(rawBody);
   const excerptInput = typeof request.body?.excerpt === "string" ? request.body.excerpt.trim() : "";
-  const excerpt = excerptInput || sanitizeHtml(bodyHtml, { allowedTags: [] }).replace(/\s+/g, " ").trim().slice(0, 180);
+  const excerpt = excerptInput || htmlToPlainText(bodyHtml).slice(0, 180);
   if (!title || !bodyHtml) return sendError(response, 400, "제목과 본문은 필수입니다.");
 
   try {

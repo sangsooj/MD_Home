@@ -1,6 +1,6 @@
 import { createHash } from "node:crypto";
 import * as cheerio from "cheerio";
-import sanitizeHtml from "sanitize-html";
+import { htmlToPlainText, sanitizeBodyHtml } from "./sanitize.js";
 
 const DEFAULT_BLOG_ID = "hyunjp88";
 const DEFAULT_CATEGORY = "공지사항";
@@ -91,27 +91,11 @@ export async function fetchNoticePost(item: NaverNoticeFeedItem): Promise<NaverN
     $(anchor).attr("target", "_blank").attr("rel", "noopener noreferrer");
   });
 
-  const bodyHtml = sanitizeHtml(content.html() ?? "", {
-    allowedTags: [
-      "p", "br", "div", "span", "strong", "b", "em", "i", "u", "s",
-      "blockquote", "ul", "ol", "li", "figure", "figcaption", "img", "a",
-      "table", "thead", "tbody", "tr", "th", "td", "h2", "h3", "h4",
-    ],
-    allowedAttributes: {
-      a: ["href", "target", "rel"],
-      img: ["src", "alt", "width", "height", "loading"],
-      td: ["colspan", "rowspan"],
-      th: ["colspan", "rowspan"],
-    },
-    allowedSchemes: ["https", "http"],
-    transformTags: {
-      a: sanitizeHtml.simpleTransform("a", { target: "_blank", rel: "noopener noreferrer" }),
-    },
-  }).trim();
+  const bodyHtml = sanitizeBodyHtml(content.html() ?? "");
 
   if (!bodyHtml) throw new Error(`네이버 글 ${item.externalId}의 정리된 본문이 비어 있습니다.`);
 
-  const plainText = cleanText(cheerio.load(bodyHtml).text());
+  const plainText = htmlToPlainText(bodyHtml);
   const excerpt = plainText.slice(0, 180) + (plainText.length > 180 ? "…" : "");
   const contentHash = createHash("sha256")
     .update(`${item.title}\n${bodyHtml}`)
