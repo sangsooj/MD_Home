@@ -33,7 +33,8 @@ button, input { font: inherit; }
   border-bottom: 1px solid var(--line);
 }
 .site-header .wrap { min-height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
-.brand { color: var(--navy); font-weight: 900; letter-spacing: .05em; }
+.brand { display: flex; align-items: center; gap: 10px; color: var(--navy); font-weight: 900; letter-spacing: .05em; }
+.brand img { display: block; width: 48px; height: 54px; object-fit: contain; }
 .top-nav { display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 700; }
 .top-nav a { padding: 8px 14px; border-radius: 999px; }
 .top-nav .active { color: var(--white); background: var(--navy); }
@@ -82,6 +83,7 @@ h1 { margin: 12px 0 10px; color: var(--navy); font-size: clamp(32px, 5vw, 48px);
 
 @media (max-width: 700px) {
   .site-header .wrap { min-height: 62px; }
+  .brand span { display: none; }
   .top-nav a:first-child { display: none; }
   .hero { padding-top: 52px; }
   .board-tools { padding: 16px; }
