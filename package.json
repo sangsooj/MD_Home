@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "npx vercel@latest dev",
-    "build": "tsc --noEmit",
+    "build": "tsc --noEmit && node scripts/prepare-static.mjs",
     "check": "tsc --noEmit"
   },
   "dependencies": {

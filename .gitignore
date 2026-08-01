@@ -4,3 +4,4 @@ arithmetic-diagnosis-app/node_modules/
 .env
 .env.local
 coverage/
+public/
