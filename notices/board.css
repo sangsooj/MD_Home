@@ -34,7 +34,7 @@ button, input { font: inherit; }
 }
 .site-header .wrap { min-height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
 .brand { display: flex; align-items: center; gap: 10px; color: var(--navy); font-weight: 900; letter-spacing: .05em; }
-.brand img { display: block; width: 48px; height: 54px; object-fit: contain; }
+.brand img { display: block; width: 56px; height: 48px; object-fit: contain; }
 .top-nav { display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 700; }
 .top-nav a { padding: 8px 14px; border-radius: 999px; }
 .top-nav .active { color: var(--white); background: var(--navy); }
