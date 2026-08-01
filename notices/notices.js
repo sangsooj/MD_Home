@@ -11,6 +11,15 @@ function cacheKey() {
   return `mathdoing:notices:${state.page}:${state.limit}:${state.query}`;
 }
 
+function readPreloadedPosts() {
+  const snapshot = window.__NOTICE_SNAPSHOT__;
+  if (!snapshot?.posts?.length || state.page !== 1 || state.query) return false;
+  const posts = snapshot.posts.slice(0, state.limit);
+  renderPosts(posts);
+  renderPagination(snapshot.posts.length);
+  return true;
+}
+
 function readCachedPosts() {
   try {
     const cached = JSON.parse(localStorage.getItem(cacheKey()) || "null");
@@ -76,7 +85,7 @@ function renderPagination(total) {
 }
 
 async function loadPosts() {
-  const hasCachedPosts = readCachedPosts();
+  const hasCachedPosts = readPreloadedPosts() || readCachedPosts();
   if (!hasCachedPosts) {
     listElement.innerHTML = '<div class="state">공지사항을 불러오는 중입니다.</div>';
     paginationElement.innerHTML = "";

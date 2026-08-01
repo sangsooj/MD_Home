@@ -41,6 +41,11 @@ async function loadPost() {
 
   const cacheKey = `mathdoing:notice:${id}`;
   let hasCachedPost = false;
+  const preloadedPost = window.__NOTICE_SNAPSHOT__?.posts?.find((post) => String(post.id) === id);
+  if (preloadedPost) {
+    renderPost(preloadedPost);
+    hasCachedPost = true;
+  }
   try {
     const cached = JSON.parse(localStorage.getItem(cacheKey) || "null");
     if (cached && Date.now() - cached.savedAt <= CACHE_TTL) {
