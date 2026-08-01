@@ -1,0 +1,6 @@
+V2/
+arithmetic-diagnosis-app/
+.git/
+.env
+.env.local
+node_modules/

@@ -1,0 +1,24 @@
+{
+  "name": "mathdoing-v2",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "npx vercel@latest dev",
+    "build": "tsc --noEmit",
+    "check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "cheerio": "1.2.0",
+    "postgres": "3.4.9",
+    "sanitize-html": "2.17.6"
+  },
+  "devDependencies": {
+    "@types/node": "22.20.1",
+    "@types/sanitize-html": "2.16.1",
+    "typescript": "5.9.3"
+  },
+  "engines": {
+    "node": "22.x"
+  }
+}

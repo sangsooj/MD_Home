@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>공지사항 | 매쓰두잉 센터</title>
+  <meta name="description" content="매쓰두잉 센터의 수업 및 운영 공지사항입니다.">
+  <link rel="stylesheet" href="/notices/board.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="/">MATHDOING CENTER</a>
+      <nav class="top-nav" aria-label="주요 메뉴">
+        <a href="/">홈으로</a>
+        <a class="active" href="/notices" aria-current="page">공지사항</a>
+        <a href="/#/consult">상담 예약</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <span class="eyebrow">Notice</span>
+      <h1>공지사항</h1>
+      <p class="intro">매쓰두잉 센터의 새로운 소식과 수업 안내를 확인하세요.</p>
+    </section>
+
+    <section class="board-card" aria-label="공지사항 목록">
+      <div class="board-tools">
+        <form class="search" id="search-form" role="search">
+          <input id="search-input" type="search" placeholder="공지사항 검색" aria-label="공지사항 검색어">
+          <button type="submit">검색</button>
+        </form>
+      </div>
+      <div class="notice-list" id="notice-list" aria-live="polite">
+        <div class="state">공지사항을 불러오는 중입니다.</div>
+      </div>
+      <nav class="pagination" id="pagination" aria-label="페이지 이동"></nav>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">매쓰두잉 센터 · 서울 강동구 양재대로 1377 · 02-400-5967</div>
+  </footer>
+  <script src="/notices/notices.js" defer></script>
+</body>
+</html>
