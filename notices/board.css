@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Noto+Sans+KR:wght@400;500;700;900&display=swap');
-
 :root {
   --navy: #142849;
   --gold: #b99a59;
@@ -16,6 +14,7 @@
 html { scroll-behavior: smooth; }
 body {
   margin: 0;
+  font-family: "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", Arial, sans-serif;
   color: var(--ink);
   background: linear-gradient(180deg, var(--cream) 0%, var(--cream-light) 100%);
   font: 16px/1.7 "Manrope", "Noto Sans KR", "Apple SD Gothic Neo", sans-serif;
