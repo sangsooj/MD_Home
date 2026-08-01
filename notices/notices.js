@@ -5,6 +5,31 @@ const searchInput = document.getElementById("search-input");
 const dateFormatter = new Intl.DateTimeFormat("ko-KR", { year: "numeric", month: "2-digit", day: "2-digit" });
 
 const state = { page: 1, limit: 10, query: "" };
+const CACHE_TTL = 10 * 60 * 1000;
+
+function cacheKey() {
+  return `mathdoing:notices:${state.page}:${state.limit}:${state.query}`;
+}
+
+function readCachedPosts() {
+  try {
+    const cached = JSON.parse(localStorage.getItem(cacheKey()) || "null");
+    if (!cached || Date.now() - cached.savedAt > CACHE_TTL) return false;
+    renderPosts(cached.data.posts);
+    renderPagination(cached.data.pagination.total);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function saveCachedPosts(data) {
+  try {
+    localStorage.setItem(cacheKey(), JSON.stringify({ savedAt: Date.now(), data }));
+  } catch {
+    // 저장 공간을 사용할 수 없어도 서버 저장본은 정상적으로 표시된다.
+  }
+}
 
 function escapeHtml(value) {
   const node = document.createElement("div");
@@ -51,19 +76,25 @@ function renderPagination(total) {
 }
 
 async function loadPosts() {
-  listElement.innerHTML = '<div class="state">공지사항을 불러오는 중입니다.</div>';
-  paginationElement.innerHTML = "";
+  const hasCachedPosts = readCachedPosts();
+  if (!hasCachedPosts) {
+    listElement.innerHTML = '<div class="state">공지사항을 불러오는 중입니다.</div>';
+    paginationElement.innerHTML = "";
+  }
   try {
     const params = new URLSearchParams({ page: state.page, limit: state.limit });
     if (state.query) params.set("q", state.query);
     const response = await fetch(`/api/notices?${params}`);
     const data = await response.json();
     if (!response.ok || !data.ok) throw new Error(data.error || "요청 실패");
+    saveCachedPosts(data);
     renderPosts(data.posts);
     renderPagination(data.pagination.total);
   } catch (error) {
     console.error(error);
-    listElement.innerHTML = '<div class="state error">공지사항을 불러오지 못했습니다.<br>잠시 후 다시 시도해 주세요.</div>';
+    if (!hasCachedPosts) {
+      listElement.innerHTML = '<div class="state error">공지사항을 불러오지 못했습니다.<br>잠시 후 다시 시도해 주세요.</div>';
+    }
   }
 }
 

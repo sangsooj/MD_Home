@@ -50,9 +50,29 @@ export async function ensureSchema(): Promise<void> {
         CREATE INDEX IF NOT EXISTS board_posts_public_list_idx
         ON board_posts (category, is_published, published_at DESC)
       `;
+      await sql`
+        CREATE TABLE IF NOT EXISTS board_post_assets (
+          id BIGSERIAL PRIMARY KEY,
+          post_id BIGINT NOT NULL REFERENCES board_posts(id) ON DELETE CASCADE,
+          source_url TEXT NOT NULL,
+          mime_type TEXT NOT NULL,
+          content BYTEA NOT NULL,
+          content_hash TEXT NOT NULL,
+          created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+          updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+          CONSTRAINT board_post_assets_post_source_key UNIQUE (post_id, source_url)
+        )
+      `;
+      await sql`
+        CREATE INDEX IF NOT EXISTS board_post_assets_post_idx
+        ON board_post_assets (post_id)
+      `;
       await sql`ALTER TABLE board_posts ENABLE ROW LEVEL SECURITY`;
+      await sql`ALTER TABLE board_post_assets ENABLE ROW LEVEL SECURITY`;
       await sql`REVOKE ALL ON TABLE board_posts FROM anon, authenticated`;
+      await sql`REVOKE ALL ON TABLE board_post_assets FROM anon, authenticated`;
       await sql`REVOKE ALL ON SEQUENCE board_posts_id_seq FROM anon, authenticated`;
+      await sql`REVOKE ALL ON SEQUENCE board_post_assets_id_seq FROM anon, authenticated`;
     })().catch((error) => {
       schemaReady = undefined;
       throw error;

@@ -24,6 +24,7 @@ export default async function handler(request: VercelRequest, response: VercelRe
 
     if (!posts[0]) return sendError(response, 404, "공지사항을 찾을 수 없습니다.");
     setApiHeaders(response);
+    response.setHeader("Cache-Control", "public, s-maxage=300, stale-while-revalidate=86400");
     return response.status(200).json({ ok: true, post: posts[0] });
   } catch (error) {
     console.error(error);

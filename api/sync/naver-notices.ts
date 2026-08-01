@@ -2,6 +2,7 @@ import type { VercelRequest, VercelResponse } from "../../lib/vercel.js";
 import { ensureSchema, getSql } from "../../lib/db.js";
 import { isAuthorized, sendError, setApiHeaders } from "../../lib/http.js";
 import { fetchNoticeFeed, fetchNoticePost } from "../../lib/naver.js";
+import { cacheNoticeImages } from "../../lib/notice-assets.js";
 
 export default async function handler(request: VercelRequest, response: VercelResponse) {
   if (request.method !== "GET" && request.method !== "POST") {
@@ -14,19 +15,29 @@ export default async function handler(request: VercelRequest, response: VercelRe
     await ensureSchema();
     const sql = getSql();
     const feedItems = await fetchNoticeFeed();
-    const result = { found: feedItems.length, imported: 0, updated: 0, unchanged: 0, failed: [] as string[] };
+    const result = {
+      found: feedItems.length,
+      imported: 0,
+      updated: 0,
+      unchanged: 0,
+      imagesCached: 0,
+      imagesFailed: 0,
+      failed: [] as string[],
+    };
 
     for (const item of feedItems) {
       try {
         const existing = await sql`
-          SELECT id, content_hash
-          FROM board_posts
-          WHERE source = 'naver' AND external_id = ${item.externalId}
+          SELECT p.id, p.content_hash, COUNT(a.id)::int AS asset_count
+          FROM board_posts p
+          LEFT JOIN board_post_assets a ON a.post_id = p.id
+          WHERE p.source = 'naver' AND p.external_id = ${item.externalId}
+          GROUP BY p.id, p.content_hash
           LIMIT 1
         `;
         const post = await fetchNoticePost(item);
 
-        if (existing[0]?.content_hash === post.contentHash) {
+        if (existing[0]?.content_hash === post.contentHash && Number(existing[0].asset_count) > 0) {
           await sql`
             UPDATE board_posts SET synced_at = NOW(), source_url = ${post.sourceUrl}
             WHERE source = 'naver' AND external_id = ${post.externalId}
@@ -35,7 +46,7 @@ export default async function handler(request: VercelRequest, response: VercelRe
           continue;
         }
 
-        await sql`
+        const saved = await sql`
           INSERT INTO board_posts (
             category, title, excerpt, body_html, source, external_id,
             source_url, published_at, synced_at, content_hash, is_published
@@ -54,8 +65,19 @@ export default async function handler(request: VercelRequest, response: VercelRe
             synced_at = NOW(),
             content_hash = EXCLUDED.content_hash,
             is_published = TRUE
+          RETURNING id
         `;
-        if (existing[0]) result.updated += 1;
+        const postId = Number(saved[0].id);
+        const cached = await cacheNoticeImages(sql, postId, post.bodyHtml, post.sourceUrl);
+        result.imagesCached += cached.cached;
+        result.imagesFailed += cached.failed;
+        await sql`
+          UPDATE board_posts SET body_html = ${cached.bodyHtml}, updated_at = NOW()
+          WHERE id = ${postId}
+        `;
+
+        if (existing[0]?.content_hash === post.contentHash) result.unchanged += 1;
+        else if (existing[0]) result.updated += 1;
         else result.imported += 1;
       } catch (error) {
         console.error(error);

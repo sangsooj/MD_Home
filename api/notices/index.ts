@@ -49,6 +49,7 @@ export default async function handler(request: VercelRequest, response: VercelRe
         `;
 
     setApiHeaders(response);
+    response.setHeader("Cache-Control", "public, s-maxage=300, stale-while-revalidate=86400");
     return response.status(200).json({
       ok: true,
       posts,
