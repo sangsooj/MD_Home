@@ -791,7 +791,14 @@
   };
   const EXAMS={"2026-8":[22],"2026-9":[1,2,19],"2026-10":[17],"2026-11":[21],"2026-12":[19],"2027-1":[23],"2027-2":[20],"2027-3":[20]};
   const HOLIDAYS={"2026-8":[15,17],"2026-9":[24,25,26],"2026-10":[3,5,9],"2026-12":[25],"2027-1":[1],"2027-2":[6,7,8,9],"2027-3":[1,6,7]};
-  const CUR_Y=2026,CUR_M=8;
+  const KST_DATE_PARTS=Object.fromEntries(
+    new Intl.DateTimeFormat("en-US",{
+      timeZone:"Asia/Seoul",
+      year:"numeric",
+      month:"numeric"
+    }).formatToParts(new Date()).filter(part=>part.type!=="literal").map(part=>[part.type,part.value])
+  );
+  const CUR_Y=Number(KST_DATE_PARTS.year),CUR_M=Number(KST_DATE_PARTS.month);
   const grid=document.getElementById("calGrid");
   MONTHS.forEach(([y,m])=>{
     const key=y+"-"+m, classes=CLASS_DAYS[key]||[], exam=EXAMS[key]||[], holidays=HOLIDAYS[key]||[];
