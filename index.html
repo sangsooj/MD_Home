@@ -171,6 +171,9 @@
   .curr li:last-child{border-bottom:none}
   .curr li b{display:inline-block;background:var(--green-bg);color:var(--green-ink);border-radius:999px;padding:2px 11px;font-size:13px;margin-right:8px;font-weight:800;white-space:nowrap}
   .curr .act{display:inline-block;color:var(--gold);font-weight:800;font-size:12.5px;letter-spacing:.06em;margin:4px 6px 0 0}
+  .curr-detail{display:flex;align-items:center;justify-content:center;gap:7px;margin:0 22px 22px;padding:11px 18px;border:1px solid var(--line);border-radius:999px;color:var(--navy);font-size:13.5px;font-weight:800;transition:.18s}
+  .curr-detail::after{content:"↗";font-size:14px;color:var(--gold)}
+  .curr-detail:hover{background:var(--navy);border-color:var(--navy);color:#fff;transform:translateY(-1px)}
   .week-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:36px}
   .wk{background:var(--card);border-radius:16px;padding:24px 20px;box-shadow:0 4px 18px rgba(20,40,73,.05)}
   .wk-n{font-size:12.5px;font-weight:800;letter-spacing:.16em;color:var(--gold);margin-bottom:10px}
@@ -490,6 +493,7 @@
           <li><b>55분</b><span class="act">수업 활동 1</span>학생 개인 선행 시중 교재 — 개념 학습 및 문제 해결<br><span class="act">수업 활동 2</span>센터 자체 pre 매쓰두잉 문제해결서(수와 연산) + 수학동화 워크북<br>센터 자체 pre 매쓰두잉 문제해결서(도형과 측정 외) + 펜토미노 기하 · 대수 연결 활동</li>
           <li><b>20분</b>오늘 학습한 내용 평가</li>
         </ul>
+        <a class="curr-detail" href="/elementary-lower.html" target="_blank" rel="noopener noreferrer" aria-label="초등 저학년 프로그램 상세보기, 새 창 열림">상세보기</a>
       </div>
       <div class="curr">
         <div class="curr-head"><h4>초등 중 · 고학년</h4><span>150분 수업</span></div>
@@ -510,8 +514,6 @@
         </ul>
       </div>
     </div>
-    <div class="note"><b>반영 — 원장 확인 수업 구성.</b> 수업 흐름과 교육과정별(저학년 105분 / 중·고학년 150분 / 중등 150·180분) 세부 구성을 원장님이 확정한 실제 내용으로 교체했습니다. "현 학년과 상관없이 교육과정에 따라 구성"된다는 원칙이 맞춤 수업의 핵심 증거이므로 별도 섹션으로 강조했습니다.</div>
-
     <div class="center" style="margin-top:72px"><span class="eyebrow">First 4 Weeks</span><h2>등록 후 첫 4주, 이렇게 갑니다</h2><p class="sub" style="margin:0 auto">매쓰두잉의 모든 과정은 4주 단위로 돌아갑니다.</p></div>
     <div class="week-grid">
       <div class="wk"><div class="wk-n">WEEK 1</div><h4>진단과 출발점</h4><p>진단 결과로 정한 출발점에서 맞춤 교재로 수업을 시작합니다.</p></div>
