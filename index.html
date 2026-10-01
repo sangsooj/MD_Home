@@ -799,7 +799,12 @@
     const key=y+"-"+m, classes=CLASS_DAYS[key]||[], holidays=HOLIDAYS[key]||[];
     const first=new Date(y,m-1,1), days=new Date(y,m,0).getDate();
     let rows="<tr>", col=first.getDay();
-    for(let i=0;i<col;i++)rows+="<td></td>";
+    for(let i=0;i<col;i++){
+      // 12월 수업일정에는 첫 주 월요일인 11월 30일도 포함한다.
+      rows+=(y===2026&&m===12&&i===1)
+        ?'<td><span class="cls" aria-label="11월 30일">30</span></td>'
+        :"<td></td>";
+    }
     for(let d=1;d<=days;d++){
       const dow=new Date(y,m-1,d).getDay();
       let cls=classes.includes(d)?"cls":"off";
