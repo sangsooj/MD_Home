@@ -28,6 +28,25 @@ details > summary::after { content: '+'; float: right; font-weight: 900; }
 details[open] > summary::after { content: '\2212'; }
 details > summary:hover { background: var(--field); }
 details > summary:focus-visible { outline: 3px solid #2E5FA3; outline-offset: -3px; }
+
+/* ── 좁은 화면 ── */
+.g2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) }
+.g3 { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)) }
+.g4 { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) }
+.g5 { grid-template-columns: repeat(auto-fit, minmax(165px, 1fr)) }
+.g8 { grid-template-columns: repeat(auto-fit, minmax(108px, 1fr)) }
+.g-split { grid-template-columns: minmax(0, 1fr) }
+@media (min-width: 900px) { .g-split { grid-template-columns: var(--split) } }
+@media (max-width: 760px) {
+  .rule-col { border-left: 0; border-top: 1px solid #111111; padding-left: 0; padding-top: 16px }
+  .scroll-x { overflow-x: auto }
+}
+img, svg, table { max-width: 100% }
+@media (max-width: 760px) {
+  .nav-link { padding: 10px 8px !important; font-size: 14.5px !important }
+  .hw-stage { aspect-ratio: auto; overflow-x: auto; justify-content: flex-start }
+  .hw-sheet { width: 620px; flex: 0 0 auto }
+}
 </style>
 <script>
 (function () {
@@ -49,10 +68,10 @@ details > summary:focus-visible { outline: 3px solid #2E5FA3; outline-offset: -3
 <a class="skip-link" href="#main">본문으로 건너뛰기</a>
 
   <header style="border-bottom: 2px solid #111111; background: #FFFFFF">
-    <div style="max-width: 1180px; margin: 0 auto; padding: 16px 40px; box-sizing: border-box; display: flex; flex-wrap: wrap; gap: 20px; align-items: center; justify-content: space-between">
+    <div style="max-width: 1180px; margin: 0 auto; padding: 16px clamp(20px, 5vw, 40px); box-sizing: border-box; display: flex; flex-wrap: wrap; gap: 20px; align-items: center; justify-content: space-between">
       <a href="/" style="display: flex; align-items: center; gap: 10px; text-decoration: none">
         <img src="/assets/mathdoing-logo.png" width="600" height="442" alt="" style="display: block; width: 40px; height: auto">
-        <span style="font-size: 21px; font-weight: 900; letter-spacing: -0.04em; color: #111111">매쓰두잉센터</span>
+        <span style="font-size: clamp(17.5px, 2.9vw, 21px); font-weight: 900; letter-spacing: -0.04em; color: #111111">매쓰두잉센터</span>
       </a>
       <nav aria-label="주요 메뉴" style="display: flex; flex-wrap: wrap; gap: 4px; align-items: center">
         <a class="nav-link" href="/method" style="font-size: 15px; font-weight: 700; color: #111111; text-decoration: none; padding: 12px 12px">매쓰두잉 방법론</a>
@@ -68,14 +87,14 @@ details > summary:focus-visible { outline: 3px solid #2E5FA3; outline-offset: -3
   <main id="main">
 
   <section style="background: var(--field); border-bottom: 2px solid #111111">
-    <div style="max-width: 1180px; margin: 0 auto; padding: 72px 40px 64px; box-sizing: border-box">
-      <h1 style="margin: 0 0 22px; font-size: 56px; font-weight: 900; line-height: 1.14; color: #111111; letter-spacing: -0.045em; max-width: 16em">매쓰두잉의 수업은 이렇게 진행됩니다</h1>
+    <div style="max-width: 1180px; margin: 0 auto; padding: clamp(40px, 6.54545vw, 72px) clamp(20px, 5vw, 40px) 64px; box-sizing: border-box">
+      <h1 style="margin: 0 0 22px; font-size: clamp(30px, 7vw, 56px); font-weight: 900; line-height: 1.14; color: #111111; letter-spacing: -0.045em; max-width: 16em">매쓰두잉의 수업은 이렇게 진행됩니다</h1>
       <p style="margin: 0; font-size: 18px; line-height: 1.75; color: #111111; font-weight: 500">아이마다 사고의 특색이 다릅니다. 말로 하는 철학 대신, 스스로 발견하고 해결하는 수업으로 보여드립니다.</p>
     </div>
   </section>
 
-  <section style="max-width: 1180px; margin: 0 auto; padding: 88px 40px; box-sizing: border-box">
-    <h2 style="margin: 0 0 20px; font-size: 42px; font-weight: 900; line-height: 1.25; color: #111111; letter-spacing: -0.035em; max-width: 16em">한 번의 수업은 다섯 토막입니다</h2>
+  <section style="max-width: 1180px; margin: 0 auto; padding: clamp(48px, 8vw, 88px) clamp(20px, 5vw, 40px); box-sizing: border-box">
+    <h2 style="margin: 0 0 20px; font-size: clamp(25px, 5vw, 42px); font-weight: 900; line-height: 1.25; color: #111111; letter-spacing: -0.035em; max-width: 16em">한 번의 수업은 다섯 토막입니다</h2>
     <p style="margin: 0 0 48px; font-size: 17px; line-height: 1.8; color: #4A4A4A; max-width: 44em">교육과정에 따라 105분, 150분, 180분으로 구성됩니다.</p>
     <ol style="list-style: none; margin: 0; padding: 0; border-top: 2px solid #111111">
       <li style="display: flex; flex-wrap: wrap; gap: 24px; align-items: baseline; padding: 24px 20px; border-bottom: 1px solid #111111">
@@ -117,12 +136,12 @@ details > summary:focus-visible { outline: 3px solid #2E5FA3; outline-offset: -3
   </section>
 
   <section style="background: #F4F4F4; border-top: 2px solid #111111; border-bottom: 2px solid #111111">
-    <div style="max-width: 1180px; margin: 0 auto; padding: 88px 40px; box-sizing: border-box">
-      <h2 style="margin: 0 0 20px; font-size: 42px; font-weight: 900; line-height: 1.25; color: #111111; letter-spacing: -0.035em; max-width: 16em">교육과정에 따른 수업 구성</h2>
+    <div style="max-width: 1180px; margin: 0 auto; padding: clamp(48px, 8vw, 88px) clamp(20px, 5vw, 40px); box-sizing: border-box">
+      <h2 style="margin: 0 0 20px; font-size: clamp(25px, 5vw, 42px); font-weight: 900; line-height: 1.25; color: #111111; letter-spacing: -0.035em; max-width: 16em">교육과정에 따른 수업 구성</h2>
       <p style="margin: 0 0 48px; font-size: 17px; line-height: 1.8; color: #4A4A4A; max-width: 44em">현 학년과 상관없이, 학생이 학습하는 교육과정에 따라 구성됩니다.</p>
-      <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px">
+      <div class="g3" style="display: grid; gap: 32px">
         <div style="border-top: 6px solid #FFD92E; padding: 18px 0 0">
-          <h3 style="margin: 0 0 4px; font-size: 21px; font-weight: 900; color: #111111; letter-spacing: -0.02em">초등 저학년</h3>
+          <h3 style="margin: 0 0 4px; font-size: clamp(17.5px, 2.9vw, 21px); font-weight: 900; color: #111111; letter-spacing: -0.02em">초등 저학년</h3>
           <p style="margin: 0 0 16px; font-size: 14.5px; font-weight: 700; color: #4A4A4A">105분 수업</p>
           <dl style="margin: 0">
             <dt style="font-size: 14px; font-weight: 900; color: #111111; border-top: 1px solid #D4D4D4; padding-top: 12px">10분</dt>
@@ -136,7 +155,7 @@ details > summary:focus-visible { outline: 3px solid #2E5FA3; outline-offset: -3
           </dl>
         </div>
         <div style="border-top: 6px solid #7ECECE; padding: 18px 0 0">
-          <h3 style="margin: 0 0 4px; font-size: 21px; font-weight: 900; color: #111111; letter-spacing: -0.02em">초등 중·고학년</h3>
+          <h3 style="margin: 0 0 4px; font-size: clamp(17.5px, 2.9vw, 21px); font-weight: 900; color: #111111; letter-spacing: -0.02em">초등 중·고학년</h3>
           <p style="margin: 0 0 16px; font-size: 14.5px; font-weight: 700; color: #4A4A4A">150분 수업</p>
           <dl style="margin: 0">
             <dt style="font-size: 14px; font-weight: 900; color: #111111; border-top: 1px solid #D4D4D4; padding-top: 12px">10분</dt>
@@ -150,7 +169,7 @@ details > summary:focus-visible { outline: 3px solid #2E5FA3; outline-offset: -3
           </dl>
         </div>
         <div style="border-top: 6px solid #F08BB4; padding: 18px 0 0">
-          <h3 style="margin: 0 0 4px; font-size: 21px; font-weight: 900; color: #111111; letter-spacing: -0.02em">중등</h3>
+          <h3 style="margin: 0 0 4px; font-size: clamp(17.5px, 2.9vw, 21px); font-weight: 900; color: #111111; letter-spacing: -0.02em">중등</h3>
           <p style="margin: 0 0 16px; font-size: 14.5px; font-weight: 700; color: #4A4A4A">150분 또는 180분 수업</p>
           <dl style="margin: 0">
             <dt style="font-size: 14px; font-weight: 900; color: #111111; border-top: 1px solid #D4D4D4; padding-top: 12px">10~15분</dt>
@@ -168,10 +187,10 @@ details > summary:focus-visible { outline: 3px solid #2E5FA3; outline-offset: -3
     </div>
   </section>
 
-  <section style="max-width: 1180px; margin: 0 auto; padding: 88px 40px; box-sizing: border-box">
-    <h2 style="margin: 0 0 20px; font-size: 42px; font-weight: 900; line-height: 1.25; color: #111111; letter-spacing: -0.035em; max-width: 16em">등록 후 첫 4주, 이렇게 갑니다</h2>
+  <section style="max-width: 1180px; margin: 0 auto; padding: clamp(48px, 8vw, 88px) clamp(20px, 5vw, 40px); box-sizing: border-box">
+    <h2 style="margin: 0 0 20px; font-size: clamp(25px, 5vw, 42px); font-weight: 900; line-height: 1.25; color: #111111; letter-spacing: -0.035em; max-width: 16em">등록 후 첫 4주, 이렇게 갑니다</h2>
     <p style="margin: 0 0 48px; font-size: 17px; line-height: 1.8; color: #4A4A4A; max-width: 44em">매쓰두잉의 모든 과정은 4주 단위로 돕니다.</p>
-    <ol style="list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px">
+    <ol class="g4" style="list-style: none; margin: 0; padding: 0; display: grid; gap: 28px">
         <li style="border-top: 5px solid #FFD92E; padding: 18px 0 0">
           <p style="margin: 0 0 8px; font-size: 14px; font-weight: 900; color: #4A4A4A">WEEK 1</p>
           <h3 style="margin: 0 0 12px; font-size: 20px; font-weight: 900; color: #111111; letter-spacing: -0.02em">진단과 출발점</h3>
@@ -196,10 +215,10 @@ details > summary:focus-visible { outline: 3px solid #2E5FA3; outline-offset: -3
   </section>
 
   <section style="background: #F4F4F4; border-top: 2px solid #111111; border-bottom: 2px solid #111111">
-    <div style="max-width: 1180px; margin: 0 auto; padding: 88px 40px; box-sizing: border-box">
-      <h2 style="margin: 0 0 20px; font-size: 42px; font-weight: 900; line-height: 1.25; color: #111111; letter-spacing: -0.035em; max-width: 20em">이 수업 설계의 근거, 네 가지 교육 이론</h2>
+    <div style="max-width: 1180px; margin: 0 auto; padding: clamp(48px, 8vw, 88px) clamp(20px, 5vw, 40px); box-sizing: border-box">
+      <h2 style="margin: 0 0 20px; font-size: clamp(25px, 5vw, 42px); font-weight: 900; line-height: 1.25; color: #111111; letter-spacing: -0.035em; max-width: 20em">이 수업 설계의 근거, 네 가지 교육 이론</h2>
       <p style="margin: 0 0 48px; font-size: 17px; line-height: 1.8; color: #4A4A4A; max-width: 44em">유행하는 공부법이 아니라 수십 년간 검증된 교육 이론이고, 대학에서 수학교육학을 가르치는 원장이 이 이론들을 수업에 그대로 적용합니다.</p>
-      <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px 32px">
+      <div class="g2" style="display: grid; gap: 40px 32px">
         <div>
           <h3 style="margin: 0 0 6px; font-size: 20px; font-weight: 900; color: #111111; border-top: 2px solid #111111; padding-top: 16px; letter-spacing: -0.02em">정밀 진단과 비계 설정</h3>
           <p style="margin: 0 0 10px; font-size: 13.5px; font-weight: 700; color: #4A4A4A">비고츠키</p>
@@ -230,8 +249,8 @@ details > summary:focus-visible { outline: 3px solid #2E5FA3; outline-offset: -3
     </div>
   </section>
 
-  <section style="max-width: 1180px; margin: 0 auto; padding: 88px 40px; box-sizing: border-box">
-    <h2 style="margin: 0 0 20px; font-size: 42px; font-weight: 900; line-height: 1.25; color: #111111; letter-spacing: -0.035em; max-width: 16em">자주 묻는 질문</h2>
+  <section style="max-width: 1180px; margin: 0 auto; padding: clamp(48px, 8vw, 88px) clamp(20px, 5vw, 40px); box-sizing: border-box">
+    <h2 style="margin: 0 0 20px; font-size: clamp(25px, 5vw, 42px); font-weight: 900; line-height: 1.25; color: #111111; letter-spacing: -0.035em; max-width: 16em">자주 묻는 질문</h2>
     <div style="border-top: 2px solid #111111; max-width: 60em">
         <details style="border-bottom: 1px solid #111111">
           <summary>숙제가 있나요?</summary>
@@ -263,9 +282,9 @@ details > summary:focus-visible { outline: 3px solid #2E5FA3; outline-offset: -3
   </main>
 
   <footer id="visit" style="background: var(--field); border-top: 2px solid #111111">
-    <div style="max-width: 1180px; margin: 0 auto; padding: 72px 40px 40px; box-sizing: border-box; display: flex; flex-wrap: wrap; gap: 56px; align-items: flex-start; justify-content: space-between">
+    <div style="max-width: 1180px; margin: 0 auto; padding: clamp(40px, 6.54545vw, 72px) clamp(20px, 5vw, 40px) 40px; box-sizing: border-box; display: flex; flex-wrap: wrap; gap: 56px; align-items: flex-start; justify-content: space-between">
       <div style="flex: 999 1 380px; min-width: 0">
-        <h2 style="margin: 0 0 16px; font-size: 38px; font-weight: 900; line-height: 1.25; color: #111111; letter-spacing: -0.035em">진단평가부터 시작합니다</h2>
+        <h2 style="margin: 0 0 16px; font-size: clamp(25px, 5vw, 38px); font-weight: 900; line-height: 1.25; color: #111111; letter-spacing: -0.035em">진단평가부터 시작합니다</h2>
         <p style="margin: 0 0 28px; font-size: 16px; line-height: 1.75; color: #2B2B2B; max-width: 24em">지금의 수준을 확인하는 것이 첫 단계입니다. 전화로 상담 시간을 예약해 주세요.</p>
         <a class="btn-ink" href="tel:024005967" style="display: inline-block; padding: 16px 30px; background: #111111; color: #FFFFFF; font-size: 17px; font-weight: 700; border-radius: 999px; text-decoration: none">02-400-5967</a>
       </div>
@@ -277,7 +296,7 @@ details > summary:focus-visible { outline: 3px solid #2E5FA3; outline-offset: -3
       </div>
     </div>
     <div style="border-top: 1px solid #111111">
-      <div style="max-width: 1180px; margin: 0 auto; padding: 20px 40px; box-sizing: border-box; display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between">
+      <div style="max-width: 1180px; margin: 0 auto; padding: 20px clamp(20px, 5vw, 40px); box-sizing: border-box; display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between">
         <p style="margin: 0; font-size: 13px; font-weight: 700; color: #2B2B2B">매쓰두잉센터</p>
         <p style="margin: 0; font-size: 13px; color: #2B2B2B">수학교육 방법론 연구·개발</p>
       </div>
