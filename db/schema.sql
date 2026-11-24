@@ -21,3 +21,19 @@ CREATE INDEX IF NOT EXISTS board_posts_public_list_idx
 ALTER TABLE board_posts ENABLE ROW LEVEL SECURITY;
 REVOKE ALL ON TABLE board_posts FROM anon, authenticated;
 REVOKE ALL ON SEQUENCE board_posts_id_seq FROM anon, authenticated;
+
+CREATE TABLE IF NOT EXISTS admin_account (
+  id TEXT PRIMARY KEY,
+  password_hash TEXT,
+  password_salt TEXT,
+  failed_attempts INTEGER NOT NULL DEFAULT 0,
+  locked_until TIMESTAMPTZ,
+  last_login_at TIMESTAMPTZ,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+ALTER TABLE admin_account ENABLE ROW LEVEL SECURITY;
+REVOKE ALL ON TABLE admin_account FROM anon, authenticated;
+
+INSERT INTO admin_account (id) VALUES ('director') ON CONFLICT (id) DO NOTHING;

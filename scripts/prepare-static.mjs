@@ -9,4 +9,5 @@ for (const page of ["method", "class", "schedule", "director"]) {
 }
 await cp("assets", "public/assets", { recursive: true });
 await cp("notices", "public/notices", { recursive: true });
+await cp("admin", "public/admin", { recursive: true });
 await cp("CNAME", "public/CNAME");

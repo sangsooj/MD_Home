@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>글 관리 | 매쓰두잉센터</title>
+  <link rel="icon" href="/assets/mathdoing-logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&amp;display=swap">
+  <link rel="stylesheet" href="/admin/admin.css">
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap">
+    <a class="mark" href="/">
+      <img src="/assets/mathdoing-logo.png" width="600" height="442" alt="">
+      <b>매쓰두잉센터</b>
+      <span>글 관리</span>
+    </a>
+    <nav id="bar-nav" class="hidden">
+      <a class="btn line small" href="/notices" target="_blank" rel="noopener">공지사항 보기</a>
+      <button class="btn line small" type="button" id="to-password">비밀번호 변경</button>
+      <button class="btn line small" type="button" id="sign-out">로그아웃</button>
+    </nav>
+  </div>
+</header>
+
+<!-- 로그인 -->
+<section class="wrap gate hidden" id="view-login">
+  <h1>로그인</h1>
+  <p class="lead">원장님만 쓰는 화면입니다.</p>
+  <div class="notice bad hidden" id="login-error" role="alert"></div>
+  <form id="login-form">
+    <div class="field">
+      <label for="login-id">아이디</label>
+      <div class="fixed-id" id="login-id-shown">director</div>
+      <input type="hidden" id="login-id" value="director">
+    </div>
+    <div class="field">
+      <label for="login-password">비밀번호</label>
+      <input type="password" id="login-password" autocomplete="current-password" required>
+    </div>
+    <button class="btn" type="submit" id="login-submit">로그인</button>
+  </form>
+</section>
+
+<!-- 최초 비밀번호 설정 -->
+<section class="wrap gate hidden" id="view-setup">
+  <h1>비밀번호 만들기</h1>
+  <p class="lead">처음 한 번만 하는 설정입니다. 설치 코드는 Vercel 환경변수 <b>ADMIN_TOKEN</b>에 넣어 둔 값입니다.</p>
+  <div class="notice bad hidden" id="setup-error" role="alert"></div>
+  <form id="setup-form">
+    <div class="field">
+      <label for="setup-code">설치 코드</label>
+      <input type="password" id="setup-code" autocomplete="off" required>
+      <p class="hint">이 코드는 비밀번호를 처음 정할 때만 씁니다.</p>
+    </div>
+    <div class="field">
+      <label for="setup-password">새 비밀번호</label>
+      <input type="password" id="setup-password" autocomplete="new-password" required>
+      <p class="hint">영문자와 숫자를 섞어 10자 이상으로 지어 주세요.</p>
+    </div>
+    <div class="field">
+      <label for="setup-confirm">새 비밀번호 확인</label>
+      <input type="password" id="setup-confirm" autocomplete="new-password" required>
+    </div>
+    <button class="btn" type="submit" id="setup-submit">비밀번호 저장하고 시작하기</button>
+  </form>
+</section>
+
+<!-- 비밀번호 변경 -->
+<section class="wrap gate hidden" id="view-password">
+  <h1>비밀번호 변경</h1>
+  <p class="lead">새 비밀번호로 바꾸면 지금 로그인은 그대로 이어집니다.</p>
+  <div class="notice bad hidden" id="password-error" role="alert"></div>
+  <form id="password-form">
+    <div class="field">
+      <label for="password-current">현재 비밀번호</label>
+      <input type="password" id="password-current" autocomplete="current-password" required>
+    </div>
+    <div class="field">
+      <label for="password-next">새 비밀번호</label>
+      <input type="password" id="password-next" autocomplete="new-password" required>
+      <p class="hint">영문자와 숫자를 섞어 10자 이상.</p>
+    </div>
+    <div class="field">
+      <label for="password-confirm">새 비밀번호 확인</label>
+      <input type="password" id="password-confirm" autocomplete="new-password" required>
+    </div>
+    <div class="editor-foot">
+      <div class="left">
+        <button class="btn" type="submit" id="password-submit">바꾸기</button>
+        <button class="btn line" type="button" id="password-cancel">그만두기</button>
+      </div>
+    </div>
+  </form>
+</section>
+
+<!-- 글 목록 -->
+<main class="wrap hidden" id="view-list">
+  <div class="head">
+    <div>
+      <h1>올린 글</h1>
+      <p id="list-count"></p>
+    </div>
+    <button class="btn" type="button" id="new-post">새 글 쓰기</button>
+  </div>
+  <div class="notice good hidden" id="list-flash" role="status"></div>
+  <div class="rows" id="rows"></div>
+</main>
+
+<!-- 글쓰기 · 고치기 -->
+<main class="wrap hidden" id="view-editor">
+  <div class="editor-head">
+    <h1 id="editor-title">새 글 쓰기</h1>
+    <button class="btn line small" type="button" id="editor-back">목록으로</button>
+  </div>
+  <div class="notice bad hidden" id="editor-error" role="alert"></div>
+  <div class="field">
+    <label for="title">제목</label>
+    <input type="text" id="title" maxlength="200" autocomplete="off">
+  </div>
+  <div class="field">
+    <label for="body">본문</label>
+    <div class="toolbar" role="toolbar" aria-label="글자 꾸미기">
+      <button type="button" data-cmd="bold" title="굵게"><b>굵게</b></button>
+      <button type="button" data-cmd="italic" title="기울임"><i>기울임</i></button>
+      <button type="button" data-cmd="underline" title="밑줄"><u>밑줄</u></button>
+      <span class="sep"></span>
+      <button type="button" data-block="h2">큰 제목</button>
+      <button type="button" data-block="h3">작은 제목</button>
+      <button type="button" data-block="p">본문</button>
+      <span class="sep"></span>
+      <button type="button" data-cmd="insertUnorderedList">• 목록</button>
+      <button type="button" data-cmd="insertOrderedList">1. 목록</button>
+      <button type="button" data-block="blockquote">인용</button>
+      <span class="sep"></span>
+      <button type="button" id="add-link">링크</button>
+      <button type="button" id="add-image">이미지</button>
+      <span class="sep"></span>
+      <button type="button" data-cmd="removeFormat" title="꾸밈 지우기">지우기</button>
+    </div>
+    <div id="body" contenteditable="true" role="textbox" aria-multiline="true"
+         aria-label="본문" data-placeholder="여기에 글을 쓰세요."></div>
+    <p class="hint">저장할 때 서버가 허용하지 않는 태그는 걸러 냅니다. 이미지는 주소(https)로 넣습니다.</p>
+  </div>
+  <div class="editor-foot">
+    <div class="left">
+      <button class="btn" type="button" id="save">저장</button>
+      <button class="btn line" type="button" id="cancel">그만두기</button>
+    </div>
+    <span id="editor-state" style="font-size: 14px; color: #4A4A4A"></span>
+  </div>
+</main>
+
+<script src="/admin/admin.js" defer></script>
+</body>
+</html>

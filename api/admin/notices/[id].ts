@@ -19,11 +19,22 @@ export default async function handler(request: VercelRequest, response: VercelRe
     if (request.method === "DELETE") {
       const rows = await sql`
         UPDATE board_posts SET is_published = FALSE, updated_at = NOW()
-        WHERE id = ${id} AND source = 'website' RETURNING id
+        WHERE id = ${id} RETURNING id
       `;
       if (!rows[0]) return sendError(response, 404, "공지사항을 찾을 수 없습니다.");
       setApiHeaders(response);
       return response.status(200).json({ ok: true, id });
+    }
+
+    // 공개·숨김만 바꾸는 요청은 네이버에서 들어온 글에도 쓸 수 있다.
+    if (typeof request.body?.isPublished === "boolean" && request.body?.title === undefined) {
+      const rows = await sql`
+        UPDATE board_posts SET is_published = ${request.body.isPublished}, updated_at = NOW()
+        WHERE id = ${id} RETURNING id, is_published
+      `;
+      if (!rows[0]) return sendError(response, 404, "공지사항을 찾을 수 없습니다.");
+      setApiHeaders(response);
+      return response.status(200).json({ ok: true, post: rows[0] });
     }
 
     const title = typeof request.body?.title === "string" ? request.body.title.trim() : "";
