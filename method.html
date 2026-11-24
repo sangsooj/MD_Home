@@ -39,6 +39,7 @@ img, svg, table { max-width: 100% }
 }
 
 /* ── 좁은 화면 전용 ── */
+.nav-wide { display: flex; flex-wrap: wrap; gap: 4px; align-items: center }
 .nav-narrow { display: none }
 @media (max-width: 860px) {
   .nav-wide { display: none }
@@ -53,7 +54,8 @@ img, svg, table { max-width: 100% }
   .nav-narrow[open] > summary { background: #111111; color: #FFFFFF }
   .nav-narrow[open] > summary::after { content: '\00D7'; font-size: 20px }
   .nav-panel {
-    position: absolute; right: 0; top: calc(100% + 10px); z-index: 30; min-width: 232px;
+    position: absolute; right: 0; left: auto; top: calc(100% + 10px); z-index: 30;
+    width: max-content; min-width: 232px; max-width: min(86vw, 320px);
     background: #FFFFFF; border: 2px solid #111111;
   }
   .nav-panel a {
@@ -98,7 +100,7 @@ img, svg, table { max-width: 100% }
         <img src="/assets/mathdoing-logo.png" width="600" height="442" alt="" style="display: block; width: 40px; height: auto">
         <span style="font-size: clamp(17.5px, 2.9vw, 21px); font-weight: 900; letter-spacing: -0.04em; color: #111111">매쓰두잉센터</span>
       </a>
-      <nav class="nav-wide" aria-label="주요 메뉴" style="display: flex; flex-wrap: wrap; gap: 4px; align-items: center">
+      <nav class="nav-wide" aria-label="주요 메뉴">
         <a class="nav-link" href="/method" aria-current="page" style="font-size: 15px; font-weight: 700; color: #111111; text-decoration: none; padding: 12px 12px; background: var(--field)">매쓰두잉 방법론</a>
         <a class="nav-link" href="/class" style="font-size: 15px; font-weight: 700; color: #111111; text-decoration: none; padding: 12px 12px">수업안내</a>
         <a class="nav-link" href="/schedule" style="font-size: 15px; font-weight: 700; color: #111111; text-decoration: none; padding: 12px 12px">수업일정</a>
@@ -175,7 +177,7 @@ img, svg, table { max-width: 100% }
                   <span style="font-size: 16px; color: #111111">…</span>
                   <span style="display: flex; align-items: center; justify-content: center; width: 52px; height: 36px; border: 2px solid #111111; font-size: 16px; font-weight: 700; color: #111111; background: #FFFFFF">34</span>
                   <span style="font-size: 18px; font-weight: 700; color: #111111">+</span>
-                  <span style="display: flex; align-items: center; justify-content: center; width: 52px; height: 36px; border: 2px solid #111111; font-size: 16px; font-weight: 700; color: #111111; background: #FFFFFF width: auto; padding: 0 12px">20마리</span>
+                  <span style="display: flex; align-items: center; justify-content: center; width: 52px; height: 36px; border: 2px solid #111111; font-size: 16px; font-weight: 700; color: #111111; background: #FFFFFF; width: auto; padding: 0 12px">20마리</span>
                 </div>
                 <p style="margin: 10px 0 0; font-size: 13px; font-weight: 700; color: #111111">21무리</p>
               </div>
@@ -187,7 +189,7 @@ img, svg, table { max-width: 100% }
                   <span style="font-size: 16px; color: #111111">…</span>
                   <span style="display: flex; align-items: center; justify-content: center; width: 52px; height: 36px; border: 2px solid #111111; font-size: 16px; font-weight: 700; color: #111111; background: #FFFFFF">40</span>
                   <span style="font-size: 18px; font-weight: 700; color: #111111">+</span>
-                  <span style="display: flex; align-items: center; justify-content: center; width: 52px; height: 36px; border: 2px solid #111111; font-size: 16px; font-weight: 700; color: #111111; background: #FFFFFF width: auto; padding: 0 12px; border-style: dashed; border-color: #2E5FA3; color: #2E5FA3">?마리</span>
+                  <span style="display: flex; align-items: center; justify-content: center; width: 52px; height: 36px; border: 2px solid #111111; font-size: 16px; font-weight: 700; color: #111111; background: #FFFFFF; width: auto; padding: 0 12px; border-style: dashed; border-color: #2E5FA3; color: #2E5FA3">?마리</span>
                 </div>
                 <p style="margin: 10px 0 0; font-size: 13px; font-weight: 700; color: #2E5FA3">?무리</p>
               </div>
@@ -277,7 +279,7 @@ img, svg, table { max-width: 100% }
           <caption id="strat-cap" style="caption-side: top; text-align: left; padding: 0 16px 18px; font-size: 14px; color: #4A4A4A">학년·학기별로 Part 1부터 Part 3까지 배우는 전략입니다.</caption>
           <thead>
             <tr>
-              <th scope="col" style="text-align: left; vertical-align: bottom; padding: 0 16px 14px; border-bottom: 2px solid #111111; color: #111111 white-space: nowrap">
+              <th scope="col" style="text-align: left; vertical-align: bottom; padding: 0 16px 14px; border-bottom: 2px solid #111111; color: #111111; white-space: nowrap">
                 <span style="display: block; font-size: 17px; font-weight: 900; letter-spacing: -0.02em">학년·학기</span>
               </th>
           <th scope="col" style="text-align: left; vertical-align: bottom; padding: 0 16px 14px; border-bottom: 2px solid #111111; color: #111111">
@@ -296,7 +298,7 @@ img, svg, table { max-width: 100% }
           </thead>
           <tbody>
         <tr>
-          <th scope="row" style="vertical-align: top; padding: 16px 16px; border-bottom: 1px solid #D4D4D4 text-align: left; white-space: nowrap; border-left: 6px solid #FFD92E; font-size: 15.5px; font-weight: 900; color: #111111">3학년 1학기</th>
+          <th scope="row" style="vertical-align: top; padding: 16px 16px; border-bottom: 1px solid #D4D4D4; text-align: left; white-space: nowrap; border-left: 6px solid #FFD92E; font-size: 15.5px; font-weight: 900; color: #111111">3학년 1학기</th>
           <td style="vertical-align: top; padding: 16px 16px; border-bottom: 1px solid #D4D4D4">
             <ol style="list-style: none; margin: 0; padding: 0; font-size: 14.5px; line-height: 1.6; color: #2B2B2B">
               <li style="display: flex; gap: 8px; padding: 0 0 8px"><span style="flex: 0 0 auto; font-weight: 900; color: #111111">1</span><span>식·그림으로 나타내고 거꾸로 풀기</span></li>
@@ -317,7 +319,7 @@ img, svg, table { max-width: 100% }
           </td>
         </tr>
         <tr>
-          <th scope="row" style="vertical-align: top; padding: 16px 16px; border-bottom: 1px solid #D4D4D4 text-align: left; white-space: nowrap; border-left: 6px solid #FFD92E; font-size: 15.5px; font-weight: 900; color: #111111">3학년 2학기</th>
+          <th scope="row" style="vertical-align: top; padding: 16px 16px; border-bottom: 1px solid #D4D4D4; text-align: left; white-space: nowrap; border-left: 6px solid #FFD92E; font-size: 15.5px; font-weight: 900; color: #111111">3학년 2학기</th>
           <td style="vertical-align: top; padding: 16px 16px; border-bottom: 1px solid #D4D4D4">
             <ol style="list-style: none; margin: 0; padding: 0; font-size: 14.5px; line-height: 1.6; color: #2B2B2B">
               <li style="display: flex; gap: 8px; padding: 0 0 8px"><span style="flex: 0 0 auto; font-weight: 900; color: #111111">1</span><span>식·그림으로 나타내고 거꾸로 풀기</span></li>
@@ -337,20 +339,20 @@ img, svg, table { max-width: 100% }
           </td>
         </tr>
         <tr>
-          <th scope="row" style="vertical-align: top; padding: 16px 16px; border-bottom: 1px solid #D4D4D4 border-top: 2px solid #111111; text-align: left; white-space: nowrap; border-left: 6px solid #C9DC3F; font-size: 15.5px; font-weight: 900; color: #111111">4학년 1학기</th>
-          <td style="vertical-align: top; padding: 16px 16px; border-bottom: 1px solid #D4D4D4 border-top: 2px solid #111111;">
+          <th scope="row" style="vertical-align: top; padding: 16px 16px; border-bottom: 1px solid #D4D4D4; border-top: 2px solid #111111; text-align: left; white-space: nowrap; border-left: 6px solid #C9DC3F; font-size: 15.5px; font-weight: 900; color: #111111">4학년 1학기</th>
+          <td style="vertical-align: top; padding: 16px 16px; border-bottom: 1px solid #D4D4D4; border-top: 2px solid #111111;">
             <ol style="list-style: none; margin: 0; padding: 0; font-size: 14.5px; line-height: 1.6; color: #2B2B2B">
               <li style="display: flex; gap: 8px; padding: 0 0 8px"><span style="flex: 0 0 auto; font-weight: 900; color: #111111">1</span><span>예상하고 식을 세워 거꾸로 풀기</span></li>
               <li style="display: flex; gap: 8px; padding: 0 0 8px"><span style="flex: 0 0 auto; font-weight: 900; color: #111111">2</span><span>표·규칙으로 조건 연결하기</span></li>
             </ol>
           </td>
-          <td style="vertical-align: top; padding: 16px 16px; border-bottom: 1px solid #D4D4D4 border-top: 2px solid #111111;">
+          <td style="vertical-align: top; padding: 16px 16px; border-bottom: 1px solid #D4D4D4; border-top: 2px solid #111111;">
             <ol style="list-style: none; margin: 0; padding: 0; font-size: 14.5px; line-height: 1.6; color: #2B2B2B">
               <li style="display: flex; gap: 8px; padding: 0 0 8px"><span style="flex: 0 0 auto; font-weight: 900; color: #111111">1</span><span>식을 세우고 조건 연결하기</span></li>
               <li style="display: flex; gap: 8px; padding: 0 0 8px"><span style="flex: 0 0 auto; font-weight: 900; color: #111111">2</span><span>단순하게 바꾸고 규칙 찾기</span></li>
             </ol>
           </td>
-          <td style="vertical-align: top; padding: 16px 16px; border-bottom: 1px solid #D4D4D4 border-top: 2px solid #111111;">
+          <td style="vertical-align: top; padding: 16px 16px; border-bottom: 1px solid #D4D4D4; border-top: 2px solid #111111;">
             <ol style="list-style: none; margin: 0; padding: 0; font-size: 14.5px; line-height: 1.6; color: #2B2B2B">
               <li style="display: flex; gap: 8px; padding: 0 0 8px"><span style="flex: 0 0 auto; font-weight: 900; color: #111111">1</span><span>식·표로 정리하기</span></li>
               <li style="display: flex; gap: 8px; padding: 0 0 8px"><span style="flex: 0 0 auto; font-weight: 900; color: #111111">2</span><span>규칙 찾고 조건 연결하기</span></li>
@@ -358,7 +360,7 @@ img, svg, table { max-width: 100% }
           </td>
         </tr>
         <tr>
-          <th scope="row" style="vertical-align: top; padding: 16px 16px; border-bottom: 1px solid #D4D4D4 text-align: left; white-space: nowrap; border-left: 6px solid #C9DC3F; font-size: 15.5px; font-weight: 900; color: #111111">4학년 2학기</th>
+          <th scope="row" style="vertical-align: top; padding: 16px 16px; border-bottom: 1px solid #D4D4D4; text-align: left; white-space: nowrap; border-left: 6px solid #C9DC3F; font-size: 15.5px; font-weight: 900; color: #111111">4학년 2학기</th>
           <td style="vertical-align: top; padding: 16px 16px; border-bottom: 1px solid #D4D4D4">
             <ol style="list-style: none; margin: 0; padding: 0; font-size: 14.5px; line-height: 1.6; color: #2B2B2B">
               <li style="display: flex; gap: 8px; padding: 0 0 8px"><span style="flex: 0 0 auto; font-weight: 900; color: #111111">1</span><span>식·그림으로 나타내고 거꾸로 풀기</span></li>
@@ -378,27 +380,27 @@ img, svg, table { max-width: 100% }
           </td>
         </tr>
         <tr>
-          <th scope="row" style="vertical-align: top; padding: 16px 16px; border-bottom: 1px solid #D4D4D4 border-top: 2px solid #111111; text-align: left; white-space: nowrap; border-left: 6px solid #7ECECE; font-size: 15.5px; font-weight: 900; color: #111111">5학년 1학기</th>
-          <td style="vertical-align: top; padding: 16px 16px; border-bottom: 1px solid #D4D4D4 border-top: 2px solid #111111;">
+          <th scope="row" style="vertical-align: top; padding: 16px 16px; border-bottom: 1px solid #D4D4D4; border-top: 2px solid #111111; text-align: left; white-space: nowrap; border-left: 6px solid #7ECECE; font-size: 15.5px; font-weight: 900; color: #111111">5학년 1학기</th>
+          <td style="vertical-align: top; padding: 16px 16px; border-bottom: 1px solid #D4D4D4; border-top: 2px solid #111111;">
             <ol style="list-style: none; margin: 0; padding: 0; font-size: 14.5px; line-height: 1.6; color: #2B2B2B">
               <li style="display: flex; gap: 8px; padding: 0 0 8px"><span style="flex: 0 0 auto; font-weight: 900; color: #111111">1</span><span>식·그림으로 나타내고 거꾸로 풀기</span></li>
               <li style="display: flex; gap: 8px; padding: 0 0 8px"><span style="flex: 0 0 auto; font-weight: 900; color: #111111">2</span><span>단순화·규칙으로 조건 연결하기</span></li>
             </ol>
           </td>
-          <td style="vertical-align: top; padding: 16px 16px; border-bottom: 1px solid #D4D4D4 border-top: 2px solid #111111;">
+          <td style="vertical-align: top; padding: 16px 16px; border-bottom: 1px solid #D4D4D4; border-top: 2px solid #111111;">
             <ol style="list-style: none; margin: 0; padding: 0; font-size: 14.5px; line-height: 1.6; color: #2B2B2B">
               <li style="display: flex; gap: 8px; padding: 0 0 8px"><span style="flex: 0 0 auto; font-weight: 900; color: #111111">1</span><span>식·표·그림으로 나타내기</span></li>
               <li style="display: flex; gap: 8px; padding: 0 0 8px"><span style="flex: 0 0 auto; font-weight: 900; color: #111111">2</span><span>단순하게 바꾸고 조건 연결하기</span></li>
             </ol>
           </td>
-          <td style="vertical-align: top; padding: 16px 16px; border-bottom: 1px solid #D4D4D4 border-top: 2px solid #111111;">
+          <td style="vertical-align: top; padding: 16px 16px; border-bottom: 1px solid #D4D4D4; border-top: 2px solid #111111;">
             <ol style="list-style: none; margin: 0; padding: 0; font-size: 14.5px; line-height: 1.6; color: #2B2B2B">
               <li style="display: flex; gap: 8px; padding: 0 0 8px"><span style="flex: 0 0 auto; font-weight: 900; color: #111111">1</span><span>식·표로 정리하고 규칙 찾기</span></li>
             </ol>
           </td>
         </tr>
         <tr>
-          <th scope="row" style="vertical-align: top; padding: 16px 16px; border-bottom: 1px solid #D4D4D4 text-align: left; white-space: nowrap; border-left: 6px solid #7ECECE; font-size: 15.5px; font-weight: 900; color: #111111">5학년 2학기</th>
+          <th scope="row" style="vertical-align: top; padding: 16px 16px; border-bottom: 1px solid #D4D4D4; text-align: left; white-space: nowrap; border-left: 6px solid #7ECECE; font-size: 15.5px; font-weight: 900; color: #111111">5학년 2학기</th>
           <td style="vertical-align: top; padding: 16px 16px; border-bottom: 1px solid #D4D4D4">
             <ol style="list-style: none; margin: 0; padding: 0; font-size: 14.5px; line-height: 1.6; color: #2B2B2B">
               <li style="display: flex; gap: 8px; padding: 0 0 8px"><span style="flex: 0 0 auto; font-weight: 900; color: #111111">1</span><span>식·그림으로 나타내고 거꾸로 풀기</span></li>
@@ -418,20 +420,20 @@ img, svg, table { max-width: 100% }
           </td>
         </tr>
         <tr>
-          <th scope="row" style="vertical-align: top; padding: 16px 16px; border-bottom: 1px solid #D4D4D4 border-top: 2px solid #111111; text-align: left; white-space: nowrap; border-left: 6px solid #F08BB4; font-size: 15.5px; font-weight: 900; color: #111111">6학년 1학기</th>
-          <td style="vertical-align: top; padding: 16px 16px; border-bottom: 1px solid #D4D4D4 border-top: 2px solid #111111;">
+          <th scope="row" style="vertical-align: top; padding: 16px 16px; border-bottom: 1px solid #D4D4D4; border-top: 2px solid #111111; text-align: left; white-space: nowrap; border-left: 6px solid #F08BB4; font-size: 15.5px; font-weight: 900; color: #111111">6학년 1학기</th>
+          <td style="vertical-align: top; padding: 16px 16px; border-bottom: 1px solid #D4D4D4; border-top: 2px solid #111111;">
             <ol style="list-style: none; margin: 0; padding: 0; font-size: 14.5px; line-height: 1.6; color: #2B2B2B">
               <li style="display: flex; gap: 8px; padding: 0 0 8px"><span style="flex: 0 0 auto; font-weight: 900; color: #111111">1</span><span>식·그림으로 나타내고 거꾸로 풀기</span></li>
               <li style="display: flex; gap: 8px; padding: 0 0 8px"><span style="flex: 0 0 auto; font-weight: 900; color: #111111">2</span><span>단순화·규칙으로 조건 연결하기</span></li>
             </ol>
           </td>
-          <td style="vertical-align: top; padding: 16px 16px; border-bottom: 1px solid #D4D4D4 border-top: 2px solid #111111;">
+          <td style="vertical-align: top; padding: 16px 16px; border-bottom: 1px solid #D4D4D4; border-top: 2px solid #111111;">
             <ol style="list-style: none; margin: 0; padding: 0; font-size: 14.5px; line-height: 1.6; color: #2B2B2B">
               <li style="display: flex; gap: 8px; padding: 0 0 8px"><span style="flex: 0 0 auto; font-weight: 900; color: #111111">1</span><span>식·그림으로 나타내고 단순화하기</span></li>
               <li style="display: flex; gap: 8px; padding: 0 0 8px"><span style="flex: 0 0 auto; font-weight: 900; color: #111111">2</span><span>조건을 연결해 거꾸로 풀기</span></li>
             </ol>
           </td>
-          <td style="vertical-align: top; padding: 16px 16px; border-bottom: 1px solid #D4D4D4 border-top: 2px solid #111111;">
+          <td style="vertical-align: top; padding: 16px 16px; border-bottom: 1px solid #D4D4D4; border-top: 2px solid #111111;">
             <ol style="list-style: none; margin: 0; padding: 0; font-size: 14.5px; line-height: 1.6; color: #2B2B2B">
               <li style="display: flex; gap: 8px; padding: 0 0 8px"><span style="flex: 0 0 auto; font-weight: 900; color: #111111">1</span><span>식·표·그림으로 나타내기</span></li>
               <li style="display: flex; gap: 8px; padding: 0 0 8px"><span style="flex: 0 0 auto; font-weight: 900; color: #111111">2</span><span>조건을 연결해 예상하고 확인하기</span></li>
@@ -439,7 +441,7 @@ img, svg, table { max-width: 100% }
           </td>
         </tr>
         <tr>
-          <th scope="row" style="vertical-align: top; padding: 16px 16px; border-bottom: 1px solid #D4D4D4 text-align: left; white-space: nowrap; border-left: 6px solid #F08BB4; font-size: 15.5px; font-weight: 900; color: #111111">6학년 2학기</th>
+          <th scope="row" style="vertical-align: top; padding: 16px 16px; border-bottom: 1px solid #D4D4D4; text-align: left; white-space: nowrap; border-left: 6px solid #F08BB4; font-size: 15.5px; font-weight: 900; color: #111111">6학년 2학기</th>
           <td style="vertical-align: top; padding: 16px 16px; border-bottom: 1px solid #D4D4D4">
             <ol style="list-style: none; margin: 0; padding: 0; font-size: 14.5px; line-height: 1.6; color: #2B2B2B">
               <li style="display: flex; gap: 8px; padding: 0 0 8px"><span style="flex: 0 0 auto; font-weight: 900; color: #111111">1</span><span>식·그림으로 나타내고 거꾸로 풀기</span></li>

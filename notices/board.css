@@ -197,7 +197,8 @@ img, svg, table { max-width: 100%; }
   .nav-narrow[open] > summary { background: var(--ink); color: #FFFFFF; }
   .nav-narrow[open] > summary::after { content: '\00D7'; font-size: 20px; }
   .nav-panel {
-    position: absolute; right: 0; top: calc(100% + 10px); z-index: 30; min-width: 232px;
+    position: absolute; right: 0; left: auto; top: calc(100% + 10px); z-index: 30;
+    width: max-content; min-width: 232px; max-width: min(86vw, 320px);
     background: #FFFFFF; border: 2px solid var(--ink);
   }
   .nav-panel a {

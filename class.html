@@ -46,6 +46,7 @@ img, svg, table { max-width: 100% }
 }
 
 /* ── 좁은 화면 전용 ── */
+.nav-wide { display: flex; flex-wrap: wrap; gap: 4px; align-items: center }
 .nav-narrow { display: none }
 @media (max-width: 860px) {
   .nav-wide { display: none }
@@ -60,7 +61,8 @@ img, svg, table { max-width: 100% }
   .nav-narrow[open] > summary { background: #111111; color: #FFFFFF }
   .nav-narrow[open] > summary::after { content: '\00D7'; font-size: 20px }
   .nav-panel {
-    position: absolute; right: 0; top: calc(100% + 10px); z-index: 30; min-width: 232px;
+    position: absolute; right: 0; left: auto; top: calc(100% + 10px); z-index: 30;
+    width: max-content; min-width: 232px; max-width: min(86vw, 320px);
     background: #FFFFFF; border: 2px solid #111111;
   }
   .nav-panel a {
@@ -104,7 +106,7 @@ img, svg, table { max-width: 100% }
         <img src="/assets/mathdoing-logo.png" width="600" height="442" alt="" style="display: block; width: 40px; height: auto">
         <span style="font-size: clamp(17.5px, 2.9vw, 21px); font-weight: 900; letter-spacing: -0.04em; color: #111111">매쓰두잉센터</span>
       </a>
-      <nav class="nav-wide" aria-label="주요 메뉴" style="display: flex; flex-wrap: wrap; gap: 4px; align-items: center">
+      <nav class="nav-wide" aria-label="주요 메뉴">
         <a class="nav-link" href="/method" style="font-size: 15px; font-weight: 700; color: #111111; text-decoration: none; padding: 12px 12px">매쓰두잉 방법론</a>
         <a class="nav-link" href="/class" aria-current="page" style="font-size: 15px; font-weight: 700; color: #111111; text-decoration: none; padding: 12px 12px; background: var(--field)">수업안내</a>
         <a class="nav-link" href="/schedule" style="font-size: 15px; font-weight: 700; color: #111111; text-decoration: none; padding: 12px 12px">수업일정</a>
