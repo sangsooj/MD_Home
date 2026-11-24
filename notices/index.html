@@ -3,37 +3,63 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>공지사항 | 매쓰두잉 센터</title>
-  <meta name="description" content="매쓰두잉 센터의 수업 및 운영 공지사항입니다.">
+  <title>공지사항 | 매쓰두잉센터</title>
+  <meta name="description" content="매쓰두잉센터의 수업 및 운영 공지사항입니다.">
   <link rel="stylesheet" href="/notices/board.css">
+  <link rel="icon" href="/assets/mathdoing-logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&amp;display=swap">
+  <script>
+  (function () {
+    try {
+      var pick = sessionStorage.getItem('md-field');
+      if (!pick) {
+        var field = ['#FFD92E', '#C9DC3F', '#7ECECE', '#F08BB4'];
+        pick = field[Math.floor(Math.random() * field.length)];
+        sessionStorage.setItem('md-field', pick);
+      }
+      document.documentElement.style.setProperty('--field', pick);
+    } catch (e) {}
+  })();
+  </script>
 </head>
 <body>
+  <a class="skip-link" href="#main">본문으로 건너뛰기</a>
   <header class="site-header">
     <div class="wrap">
-      <a class="brand" href="/"><img src="/assets/mathdoing-logo.png" alt="매쓰두잉 센터 로고" width="56" height="48"><span>MATHDOING CENTER</span></a>
+      <a class="brand" href="/">
+        <svg width="30" height="26" viewBox="0 0 34 30" role="img" aria-label="매쓰두잉센터 심볼">
+          <path d="M3 27 L12 6 L18 18 L24 9 L31 27 Z" fill="none" stroke="#111111" stroke-width="3" stroke-linejoin="round"></path>
+        </svg>
+        <span>매쓰두잉센터</span>
+      </a>
       <nav class="top-nav" aria-label="주요 메뉴">
-        <a href="/">홈으로</a>
+        <a href="/method">매쓰두잉 방법론</a>
+        <a href="/class">수업안내</a>
+        <a href="/schedule">수업일정</a>
+        <a href="/director">원장소개</a>
         <a class="active" href="/notices" aria-current="page">공지사항</a>
-        <a href="/#/consult">상담 예약</a>
+        <a class="cta" href="#visit">상담 예약</a>
       </nav>
     </div>
   </header>
 
-  <main class="wrap">
-    <section class="hero">
-      <span class="eyebrow">Notice</span>
+  <section class="hero">
+    <div class="wrap">
       <h1>공지사항</h1>
-      <p class="intro">매쓰두잉 센터의 새로운 소식과 수업 안내를 확인하세요.</p>
-    </section>
+      <p class="intro">매쓰두잉센터의 새로운 소식과 수업 안내입니다. 네이버 블로그에 올린 공지도 이곳에 함께 모입니다.</p>
+    </div>
+  </section>
 
+  <main class="wrap" id="main">
     <aside class="press-notice" aria-label="언론보도 소식">
       <a href="https://themosttimes.co.kr/66403" target="_blank" rel="noopener noreferrer">
-        <img src="/assets/mathdoing-press-interview-20261026.png" width="1672" height="941" decoding="async" alt="박현정 원장과 매쓰두잉 교재를 담은 인터뷰 소개 이미지">
+        <img src="/assets/mathdoing-interview-staged-small.jpg" width="560" height="420" decoding="async" alt="박현정 원장과 매쓰두잉 교재를 담은 인터뷰 소개 이미지">
         <div>
-          <span class="eyebrow">언론보도</span>
           <h2>더모스트타임즈, 매쓰두잉센터 박현정 원장 인터뷰</h2>
           <p>스스로 질문하고 생각하며 문제를 해결하는 힘을 기르는 매쓰두잉의 교육 이야기를 소개합니다.</p>
-          <p class="meta"><time datetime="2026-10-26">2026.10.26</time> · 기사 원문 보기 ↗ (새 창)</p>
+          <p class="meta"><time datetime="2026-10-26">2026.10.26</time> &nbsp; 기사 원문 보기 (새 창)</p>
         </div>
       </a>
     </aside>
@@ -41,6 +67,7 @@
     <section class="board-card" aria-label="공지사항 목록">
       <div class="board-tools">
         <form class="search" id="search-form" role="search">
+          <label for="search-input" class="skip-link">공지사항 검색어</label>
           <input id="search-input" type="search" placeholder="공지사항 검색" aria-label="공지사항 검색어">
           <button type="submit">검색</button>
         </form>
@@ -52,8 +79,25 @@
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="wrap">매쓰두잉 센터 · 서울 강동구 양재대로 1377 · 02-400-5967</div>
+  <footer class="site-footer" id="visit">
+    <div class="wrap top">
+      <div style="flex: 999 1 380px; min-width: 0">
+        <h2>진단평가부터 시작합니다</h2>
+        <p class="lead">지금의 수준을 확인하는 것이 첫 단계입니다. 전화로 상담 시간을 잡아 주세요.</p>
+        <a class="tel" href="tel:024005967">02-400-5967</a>
+      </div>
+      <div style="flex: 1 1 300px; min-width: 0">
+        <p class="col-head">찾아오시는 길</p>
+        <p>서울 강동구 양재대로 1377<br>삼원빌딩 4층 404-1호</p>
+        <p>포레온 길 건너 우리은행 빌딩 4층</p>
+      </div>
+    </div>
+    <div class="bottom">
+      <div class="wrap">
+        <p style="font-weight: 700">매쓰두잉센터</p>
+        <p>수학교육 방법론 연구·개발</p>
+      </div>
+    </div>
   </footer>
   <script src="/notices/snapshot.js" defer></script>
   <script src="/notices/notices.js" defer></script>
