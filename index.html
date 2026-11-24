@@ -32,7 +32,12 @@ a:focus-visible { outline: 3px solid #2E5FA3; outline-offset: 3px; }
 .skip-link { position: absolute; left: -9999px; top: 0; z-index: 10; background: #111111; color: #FFFFFF; padding: 12px 20px; font-size: 14px; font-weight: 700; text-decoration: none; }
 .skip-link:focus { left: 0; }
 .rule-col { border-left: 1px solid #111111; padding-left: 20px; }
-.hw-stage { position: relative; container-type: inline-size }
+.hw-stage {
+  position: relative; aspect-ratio: 2.2;
+  display: flex; align-items: center; justify-content: center;
+}
+.hw-sheet { position: relative; container-type: inline-size; width: var(--pct, 100%); aspect-ratio: var(--ar, 2.285) }
+.hw-sheet img { display: block; width: 100%; height: 100% }
 .hw {
   position: absolute;
   transform: translate(-50%, -50%) rotate(-2.5deg);
@@ -183,16 +188,16 @@ a:focus-visible { outline: 3px solid #2E5FA3; outline-offset: 3px; }
     <p style="margin: 0 0 40px; font-size: 17px; line-height: 1.8; color: #4A4A4A; max-width: 44em">문제의 조건을 그림으로 옮기고, 무엇을 구하는지부터 적습니다. 《매쓰두잉》 문제해결서의 실제 지면입니다.</p>
       <figure style="margin: 0; background: #FFFFFF; border: 3px solid #111111; padding: 26px 26px 20px">
         <div class="hw-stage" id="hw-stage">
-          <img id="hw-page" src="/assets/v3/munje-grigi-6.png" width="1129" height="494"
-               alt="《매쓰두잉》 문제해결서의 문제 그리기 지면. 리본 전체를 띠그림으로 그려 액자, 창문과 문, 남은 리본으로 나눈 뒤 빈칸에 전체의 4/9와 남은 리본 7.68 m를 채워 넣는다."
-               style="display: block; width: 100%; height: auto">
-          <span class="hw" aria-hidden="true" style="left: 25.69%; top: 83.4%; --s: 3.4cqw">4</span>
-          <span class="hw" aria-hidden="true" style="left: 25.69%; top: 93.12%; --s: 3.4cqw">9</span>
-          <span class="hw" aria-hidden="true" style="left: 55.27%; top: 63.97%; --s: 3.1cqw">7.68</span>
-          <span class="hw" aria-hidden="true" style="left: 65.1%; top: 83.4%; --s: 3.1cqw">7.68</span>
-          <span class="hw" aria-hidden="true" style="left: 72.81%; top: 60.53%; --s: 2.5cqw">처음 사온</span>
-          <span class="hw" aria-hidden="true" style="left: 86.09%; top: 60.53%; --s: 2.8cqw">길이</span>
-          <span class="hw" aria-hidden="true" style="left: 78.48%; top: 71.66%; --s: 2.8cqw">m</span>
+          <div class="hw-sheet" id="hw-sheet" style="--ar: 2.2854; --pct: 100.0%">
+            <img id="hw-page" src="/assets/v3/munje-grigi-6.png" width="1129" height="494" alt="《매쓰두잉》 문제해결서의 문제 그리기 지면. 리본 전체를 띠그림으로 그려 액자, 창문과 문, 남은 리본으로 나눈 뒤 빈칸에 전체의 4/9와 남은 리본 7.68 m를 채워 넣는다.">
+            <span class="hw" aria-hidden="true" style="left: 25.69%; top: 83.4%; --s: 3.4cqw">4</span>
+            <span class="hw" aria-hidden="true" style="left: 25.69%; top: 93.12%; --s: 3.4cqw">9</span>
+            <span class="hw" aria-hidden="true" style="left: 55.27%; top: 63.97%; --s: 3.1cqw">7.68</span>
+            <span class="hw" aria-hidden="true" style="left: 65.1%; top: 83.4%; --s: 3.1cqw">7.68</span>
+            <span class="hw" aria-hidden="true" style="left: 72.81%; top: 60.53%; --s: 2.5cqw">처음 사온</span>
+            <span class="hw" aria-hidden="true" style="left: 86.09%; top: 60.53%; --s: 2.8cqw">길이</span>
+            <span class="hw" aria-hidden="true" style="left: 78.48%; top: 71.66%; --s: 2.8cqw">m</span>
+          </div>
                 </div>
         <figcaption style="margin: 18px 0 0; font-size: 14.5px; line-height: 1.7; color: #4A4A4A; border-top: 1px solid #111111; padding-top: 14px">파란 글씨가 학생이 채워 가는 자리입니다. 교재는 그릴 뼈대만 주고, 빈칸은 학생이 채웁니다.</figcaption>
       </figure>
@@ -520,20 +525,23 @@ a:focus-visible { outline: 3px solid #2E5FA3; outline-offset: 3px; }
 
   <script>
 (function () {
-  var PAGES = [{"src": "/assets/v3/munje-grigi-6.png", "w": 1129, "h": 494, "alt": "《매쓰두잉》 문제해결서의 문제 그리기 지면. 리본 전체를 띠그림으로 그려 액자, 창문과 문, 남은 리본으로 나눈 뒤 빈칸에 전체의 4/9와 남은 리본 7.68 m를 채워 넣는다.", "fields": [{"t": "4", "x": 25.69, "y": 83.4, "s": 3.4}, {"t": "9", "x": 25.69, "y": 93.12, "s": 3.4}, {"t": "7.68", "x": 55.27, "y": 63.97, "s": 3.1}, {"t": "7.68", "x": 65.1, "y": 83.4, "s": 3.1}, {"t": "처음 사온", "x": 72.81, "y": 60.53, "s": 2.5}, {"t": "길이", "x": 86.09, "y": 60.53, "s": 2.8}, {"t": "m", "x": 78.48, "y": 71.66, "s": 2.8}]}, {"src": "/assets/v3/munje-grigi-8.png", "w": 819, "h": 426, "alt": "《매쓰두잉》 문제해결서의 문제 그리기 지면. 9와 6으로 만든 투명한 숫자판을 뒤집고 돌리는 순서를 빈칸에 적어 풀이 계획을 세운다.", "fields": [{"t": "4", "x": 26.5, "y": 49.3, "s": 4.2}, {"t": "180", "x": 24.66, "y": 93.43, "s": 3.6}, {"t": "오른", "x": 45.18, "y": 93.43, "s": 3.4}, {"t": "2", "x": 55.56, "y": 93.43, "s": 4.2}, {"t": "큰", "x": 71.31, "y": 65.02, "s": 3.6}, {"t": "작은", "x": 67.03, "y": 75.59, "s": 3.2}, {"t": "합", "x": 83.39, "y": 75.59, "s": 3.6}]}];
+  var PAGES = [{"src": "/assets/v3/munje-grigi-6.png", "w": 1129, "h": 494, "alt": "《매쓰두잉》 문제해결서의 문제 그리기 지면. 리본 전체를 띠그림으로 그려 액자, 창문과 문, 남은 리본으로 나눈 뒤 빈칸에 전체의 4/9와 남은 리본 7.68 m를 채워 넣는다.", "ar": 2.2854, "pct": 100.0, "fields": [{"t": "4", "x": 25.69, "y": 83.4, "s": 3.4}, {"t": "9", "x": 25.69, "y": 93.12, "s": 3.4}, {"t": "7.68", "x": 55.27, "y": 63.97, "s": 3.1}, {"t": "7.68", "x": 65.1, "y": 83.4, "s": 3.1}, {"t": "처음 사온", "x": 72.81, "y": 60.53, "s": 2.5}, {"t": "길이", "x": 86.09, "y": 60.53, "s": 2.8}, {"t": "m", "x": 78.48, "y": 71.66, "s": 2.8}]}, {"src": "/assets/v3/munje-grigi-8.png", "w": 819, "h": 426, "alt": "《매쓰두잉》 문제해결서의 문제 그리기 지면. 9와 6으로 만든 투명한 숫자판을 뒤집고 돌리는 순서를 빈칸에 적어 풀이 계획을 세운다.", "ar": 1.9225, "pct": 87.39, "fields": [{"t": "4", "x": 26.5, "y": 49.3, "s": 4.2}, {"t": "180", "x": 24.66, "y": 93.43, "s": 3.6}, {"t": "오른", "x": 45.18, "y": 93.43, "s": 3.4}, {"t": "2", "x": 55.56, "y": 93.43, "s": 4.2}, {"t": "큰", "x": 71.31, "y": 65.02, "s": 3.6}, {"t": "작은", "x": 67.03, "y": 75.59, "s": 3.2}, {"t": "합", "x": 83.39, "y": 75.59, "s": 3.6}]}, {"src": "/assets/v3/munje-grigi-9.png", "w": 800, "h": 349, "alt": "《매쓰두잉》 문제해결서의 문제 그리기 지면. 사각형부터 팔각형까지 네 도형을 삼각형으로 나누어 그 개수를 빈칸에 적고, 십이각형의 각의 크기의 합을 구할 계획을 세운다.", "ar": 2.2923, "pct": 100.0, "fields": [{"t": "2", "x": 23.38, "y": 77.65, "s": 3.2}, {"t": "3", "x": 42.88, "y": 77.65, "s": 3.2}, {"t": "4", "x": 62.88, "y": 77.65, "s": 3.2}, {"t": "6", "x": 82.5, "y": 77.65, "s": 3.2}, {"t": "십이각", "x": 57.25, "y": 90.54, "s": 2.5}, {"t": "열두", "x": 68.13, "y": 90.54, "s": 2.9}, {"t": "합", "x": 84.63, "y": 90.54, "s": 3.2}]}, {"src": "/assets/v3/munje-grigi-22.png", "w": 735, "h": 301, "alt": "《매쓰두잉》 문제해결서의 문제 그리기 지면. 집 출발과 공항 도착, 비행기 출발을 한 줄에 놓고 걸리는 시간을 빈칸에 적어 집에서 나설 시각을 거슬러 구한다.", "ar": 2.4419, "pct": 100.0, "fields": [{"t": "1", "x": 16.05, "y": 57.14, "s": 3.6}, {"t": "45", "x": 27.76, "y": 57.14, "s": 3.6}, {"t": "2", "x": 48.44, "y": 57.14, "s": 3.6}, {"t": "30", "x": 59.86, "y": 57.14, "s": 3.6}, {"t": "11", "x": 79.86, "y": 72.43, "s": 3.6}, {"t": "50", "x": 90.2, "y": 72.43, "s": 3.6}, {"t": "출발", "x": 23.81, "y": 86.71, "s": 3.0}, {"t": "시각", "x": 40.54, "y": 86.71, "s": 3.0}, {"t": "시", "x": 56.33, "y": 86.71, "s": 3.2}, {"t": "분", "x": 64.49, "y": 86.71, "s": 3.2}]}, {"src": "/assets/v3/munje-grigi-2.png", "w": 793, "h": 492, "alt": "《매쓰두잉》 문제해결서의 문제 그리기 지면. 정사각형 케이크를 자른 여섯 조각을 크기별로 늘어놓고 개수와 길이를 빈칸에 적어 처음 한 변의 길이를 구할 계획을 세운다.", "ar": 1.6118, "pct": 73.26, "fields": [{"t": "3", "x": 74.02, "y": 60.98, "s": 3.4}, {"t": "25", "x": 64.19, "y": 69.11, "s": 3.4}, {"t": "2", "x": 74.02, "y": 75.2, "s": 3.4}, {"t": "25", "x": 64.19, "y": 81.5, "s": 3.4}, {"t": "한", "x": 37.58, "y": 90.24, "s": 3.4}, {"t": "길이", "x": 48.17, "y": 90.24, "s": 3.0}]}];
   var START = 0.6, WRITE = 0.8, GAP = 0.5, HOLD = 3, FADE = 0.45;
 
   function run() {
     var stage = document.getElementById('hw-stage');
+    var sheet = document.getElementById('hw-sheet');
     var img = document.getElementById('hw-page');
-    if (!stage || !img || !PAGES.length) return;
+    if (!stage || !sheet || !img || !PAGES.length) return;
 
     function render(page) {
+      sheet.style.setProperty('--ar', String(page.ar));
+      sheet.style.setProperty('--pct', page.pct + '%');
       img.setAttribute('src', page.src);
       img.setAttribute('width', page.w);
       img.setAttribute('height', page.h);
       img.setAttribute('alt', page.alt);
-      var old = stage.querySelectorAll('.hw');
+      var old = sheet.querySelectorAll('.hw');
       for (var i = 0; i < old.length; i++) old[i].remove();
       var ends = START;
       page.fields.forEach(function (field, index) {
@@ -544,7 +552,7 @@ a:focus-visible { outline: 3px solid #2E5FA3; outline-offset: 3px; }
         mark.textContent = field.t;
         mark.style.cssText = 'left:' + field.x + '%;top:' + field.y + '%;'
           + '--s:' + field.s + 'cqw;--d:' + delay + 's;--w:' + WRITE + 's';
-        stage.appendChild(mark);
+        sheet.appendChild(mark);
         ends = delay + WRITE;
       });
       return ends;
