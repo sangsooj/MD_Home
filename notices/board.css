@@ -34,7 +34,7 @@ img { max-width: 100%; height: auto; }
   padding-top: 16px; padding-bottom: 16px;
 }
 .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-.brand svg { display: block; }
+.brand img { display: block; width: 40px; height: auto; }
 .brand span { font-size: 21px; font-weight: 900; letter-spacing: -0.04em; color: var(--ink); }
 .top-nav { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; }
 .top-nav a {
