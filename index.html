@@ -59,6 +59,29 @@ a:focus-visible { outline: 3px solid #2E5FA3; outline-offset: 3px; }
   .hw-stage.anim.fade .hw { opacity: 1; transition: none }
 }
 
+/* 문장 속 조건과 다섯 칸 ─ 누를 수 있는 것처럼 보이게 */
+.pg-cue {
+  appearance: none; -webkit-appearance: none; border: 0; background: transparent;
+  padding: 1px 2px; margin: 0; font: inherit; font-weight: 700; color: #111111;
+  text-decoration: underline; text-decoration-color: #7B3F9D;
+  text-decoration-thickness: 2px; text-underline-offset: 5px;
+  border-radius: 3px; cursor: pointer;
+}
+.pg-cue:hover { background: #F3EAF8 }
+.pg-cue[aria-pressed="true"] { background: #7B3F9D; color: #FFFFFF; text-decoration-color: #FFFFFF }
+.pg-cue:focus-visible { outline: 3px solid #2E5FA3; outline-offset: 2px }
+.pg-cell {
+  flex: 1 1 0; min-width: 0; appearance: none; -webkit-appearance: none;
+  padding: 13px 2px; border: 0; border-right: 1px solid #D8C6E6;
+  background: #FFFFFF; color: #7B3F9D; font-family: inherit; font-size: 13.5px;
+  font-weight: 700; line-height: 1.2; cursor: pointer;
+}
+.pg-cell:last-child { border-right: 0 }
+.pg-cell:hover { background: #F3EAF8 }
+.pg-cell[aria-pressed="true"] { background: #7B3F9D; color: #FFFFFF }
+.pg-cell:focus-visible { outline: 3px solid #2E5FA3; outline-offset: -3px }
+@media (max-width: 760px) { .pg-cell { padding: 16px 1px; font-size: 12.5px } }
+
 /* ── 좁은 화면 ── */
 .g2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) }
 .g3 { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)) }
@@ -402,7 +425,7 @@ img, svg, table { max-width: 100% }
   <!-- 진단과 샘플 -->
   <section id="evidence" style="max-width: 1180px; margin: 0 auto; padding: clamp(48px, 8vw, 88px) clamp(20px, 5vw, 40px); box-sizing: border-box">
     <h2 style="margin: 0 0 20px; font-size: clamp(25px, 5vw, 42px); font-weight: 900; line-height: 1.25; color: #111111; letter-spacing: -0.035em; max-width: 16em">문제그리기를 통해 전략을 세우는 방법</h2>
-    <p style="margin: 0 0 48px; font-size: 17px; line-height: 1.8; color: #4A4A4A; max-width: 40em">맨 위에서 보신 전시판 문제입니다. 문장의 조건을 막대에 옮겨, 무엇을 먼저 구하고 어디서부터 거슬러 갈지 찾아봅니다. 왼쪽 문장의 밑줄 친 부분을 눌러 보세요.</p>
+    <p style="margin: 0 0 48px; font-size: 17px; line-height: 1.8; color: #4A4A4A; max-width: 40em">맨 위에서 보신 전시판 문제입니다. 문장의 조건을 막대에 옮겨, 무엇을 먼저 구하고 어디서부터 거슬러 갈지 찾아봅니다. 문장의 밑줄 친 부분을 눌러 보세요.</p>
 
     <div class="pg g2" data-level="0" style="display: grid; gap: 32px">
 
@@ -425,7 +448,7 @@ img, svg, table { max-width: 100% }
         <div style="border: 1px solid #D8D8D8; padding: 20px; margin: 0 0 20px">
           <p style="margin: 0 0 16px; font-size: 12.5px; font-weight: 900; color: #111111">문제그리기</p>
 
-          <p class="pg-hint" style="margin: 0; font-size: 14.5px; line-height: 1.75; color: #6A6A6A">왼쪽 문장의 밑줄 친 조건을 누르면 막대가 한 단계씩 그려집니다.</p>
+          <p class="pg-hint" style="margin: 0; font-size: 14.5px; line-height: 1.75; color: #6A6A6A">문장의 밑줄 친 조건을 누르면 막대가 한 단계씩 그려집니다.</p>
 
           <div class="pg-step" data-stepbox="1" style="padding: 0 0 18px">
             <h4 style="margin: 0 0 12px; font-size: 15px; font-weight: 900; color: #111111">1. 전체에서 제목을 구분하기</h4>

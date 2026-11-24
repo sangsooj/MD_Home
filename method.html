@@ -30,9 +30,11 @@ a:focus-visible { outline: 3px solid #2E5FA3; outline-offset: 3px; }
 .g8 { grid-template-columns: repeat(auto-fit, minmax(108px, 1fr)) }
 .g-split { grid-template-columns: minmax(0, 1fr) }
 @media (min-width: 900px) { .g-split { grid-template-columns: var(--split) } }
+.swipe-hint { display: none }
 @media (max-width: 760px) {
   .rule-col { border-left: 0; border-top: 1px solid #111111; padding-left: 0; padding-top: 16px }
   .scroll-x { overflow-x: auto }
+  .swipe-hint { display: inline; font-weight: 700; color: #7B3F9D }
 }
 img, svg, table { max-width: 100% }
 @media (max-width: 760px) {
@@ -143,7 +145,7 @@ img, svg, table { max-width: 100% }
   <!-- 여섯 단계 -->
   <section style="max-width: 1180px; margin: 0 auto; padding: clamp(48px, 8vw, 88px) clamp(20px, 5vw, 40px); box-sizing: border-box">
     <h2 style="margin: 0 0 20px; font-size: clamp(25px, 5vw, 42px); font-weight: 900; line-height: 1.25; color: #111111; letter-spacing: -0.035em; max-width: 16em">여섯 단계를 이 문제로 따라갑니다</h2>
-    <p style="margin: 0 0 48px; font-size: 17px; line-height: 1.8; color: #4A4A4A">색이 깔린 3단계와 5단계가 매쓰두잉 고유이고, 나머지는 문제해결의 일반적인 흐름입니다.</p>
+    <p style="margin: 0 0 48px; font-size: 17px; line-height: 1.8; color: #4A4A4A">폴리아의 문제해결 과정을 따르되, 색이 깔린 3번의 ‘문제 그리기’와 5번의 ‘계획-풀기’가 교재 지면에 이름을 달고 들어가 있는 매쓰두잉의 장치입니다.</p>
 
     <ol style="list-style: none; margin: 0; padding: 0; border-top: 2px solid #111111">
       <li style=" display: flex; flex-wrap: wrap; gap: 24px; align-items: baseline; padding: 28px 20px; border-bottom: 1px solid #111111">
@@ -276,7 +278,7 @@ img, svg, table { max-width: 100% }
 
       <div role="region" aria-labelledby="strat-cap" tabindex="0" class="scroll-x" style="overflow-x: auto; background: #FFFFFF; border: 2px solid #111111; padding: 24px 8px 8px">
         <table style="width: 100%; min-width: 880px; border-collapse: collapse">
-          <caption id="strat-cap" style="caption-side: top; text-align: left; padding: 0 16px 18px; font-size: 14px; color: #4A4A4A">학년·학기별로 Part 1부터 Part 3까지 배우는 전략입니다.</caption>
+          <caption id="strat-cap" style="caption-side: top; text-align: left; padding: 0 16px 18px; font-size: 14px; color: #4A4A4A">학년·학기별로 Part 1부터 Part 3까지 배우는 전략입니다.<span class="swipe-hint"> 표를 옆으로 밀어 보세요.</span></caption>
           <thead>
             <tr>
               <th scope="col" style="text-align: left; vertical-align: bottom; padding: 0 16px 14px; border-bottom: 2px solid #111111; color: #111111; white-space: nowrap">
@@ -292,7 +294,7 @@ img, svg, table { max-width: 100% }
           </th>
           <th scope="col" style="text-align: left; vertical-align: bottom; padding: 0 16px 14px; border-bottom: 2px solid #111111; color: #111111">
             <span style="display: block; font-size: 12.5px; font-weight: 700; color: #4A4A4A">Part 3</span>
-            <span style="display: block; font-size: 17px; font-weight: 900; letter-spacing: -0.02em">자료와 규칙성</span>
+            <span style="display: block; font-size: 17px; font-weight: 900; letter-spacing: -0.02em">자료와 가능성, 규칙성</span>
           </th>
             </tr>
           </thead>

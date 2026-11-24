@@ -178,6 +178,7 @@ main.wrap { padding-bottom: 96px; }
   .top-nav a { padding: 10px 8px; font-size: 14.5px; }
   .notice-date { flex-basis: 100%; }
   .notice-row { gap: 12px; padding: 20px 8px; }
+  .notice-number { flex: 0 0 22px; font-size: 15px; }
   .site-footer .top { gap: 32px; padding-top: 48px; }
   .article-body { font-size: 16px; }
 }
