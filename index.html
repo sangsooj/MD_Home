@@ -59,6 +59,44 @@ a:focus-visible { outline: 3px solid #2E5FA3; outline-offset: 3px; }
   .hw-stage.anim.fade .hw { opacity: 1; transition: none }
 }
 
+.pg-cue {
+  display: inline; font: inherit; color: inherit; background: transparent;
+  border: 0; border-bottom: 2px dotted #7B3F9D; padding: 0 2px; margin: 0;
+  cursor: pointer; border-radius: 0;
+}
+.pg-cue:hover { background: #F2E8F8 }
+.pg-cue[aria-pressed="true"] { background: #7B3F9D; color: #FFFFFF; border-bottom-color: #7B3F9D }
+.pg-cue:focus-visible { outline: 3px solid #2E5FA3; outline-offset: 2px }
+.pg-tap {
+  display: inline-block; font-size: 19px; line-height: 1; margin-left: 4px;
+  vertical-align: -2px; animation: pg-tap 1.5s ease-in-out infinite;
+}
+@keyframes pg-tap {
+  0%, 55%, 100% { transform: translateY(0) }
+  22% { transform: translateY(-6px) }
+  38% { transform: translateY(-1px) }
+}
+.pg:not([data-level="0"]) .pg-tap { display: none }
+@media (prefers-reduced-motion: reduce) { .pg-tap { animation: none } }
+.pg-hint { display: block }
+.pg-step { display: none }
+.pg:not([data-level="0"]) .pg-hint { display: none }
+.pg[data-level="1"] .pg-step[data-stepbox="1"],
+.pg[data-level="2"] .pg-step[data-stepbox="1"],
+.pg[data-level="2"] .pg-step[data-stepbox="2"],
+.pg[data-level="3"] .pg-step[data-stepbox="1"],
+.pg[data-level="3"] .pg-step[data-stepbox="2"],
+.pg[data-level="3"] .pg-step[data-stepbox="3"] { display: block }
+.pg-cell {
+  flex: 3 1 0; min-width: 0; min-height: 46px; font: inherit; font-size: 13.5px;
+  background: #FFFFFF; color: #4A4A4A; border: 0; border-left: 1px solid #C9A9DC;
+  cursor: pointer; padding: 10px 2px;
+}
+.pg-cell:first-child { border-left: 0 }
+.pg-cell:hover { background: #F2E8F8 }
+.pg-cell[aria-pressed="true"] { background: #7B3F9D; color: #FFFFFF; font-weight: 700 }
+.pg-cell:focus-visible { outline: 3px solid #2E5FA3; outline-offset: -3px }
+
 /* ── 좁은 화면 ── */
 .g2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) }
 .g3 { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)) }
