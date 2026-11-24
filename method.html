@@ -36,10 +36,41 @@ a:focus-visible { outline: 3px solid #2E5FA3; outline-offset: 3px; }
 }
 img, svg, table { max-width: 100% }
 @media (max-width: 760px) {
-  .nav-link { padding: 10px 8px !important; font-size: 14.5px !important }
-  .hw-stage { aspect-ratio: auto; overflow-x: auto; justify-content: flex-start }
-  .hw-sheet { width: 620px; flex: 0 0 auto }
 }
+
+/* ── 좁은 화면 전용 ── */
+.nav-narrow { display: none }
+@media (max-width: 860px) {
+  .nav-wide { display: none }
+  .nav-narrow { display: block; position: relative }
+  .nav-narrow > summary {
+    display: flex; align-items: center; gap: 8px; list-style: none; cursor: pointer;
+    min-height: 44px; padding: 9px 18px; background: #FFFFFF; color: #111111;
+    border: 2px solid #111111; border-radius: 999px; font-size: 15px; font-weight: 700;
+  }
+  .nav-narrow > summary::-webkit-details-marker { display: none }
+  .nav-narrow > summary::after { content: '\2630'; font-size: 17px; line-height: 1 }
+  .nav-narrow[open] > summary { background: #111111; color: #FFFFFF }
+  .nav-narrow[open] > summary::after { content: '\00D7'; font-size: 20px }
+  .nav-panel {
+    position: absolute; right: 0; top: calc(100% + 10px); z-index: 30; min-width: 232px;
+    background: #FFFFFF; border: 2px solid #111111;
+  }
+  .nav-panel a {
+    display: block; padding: 15px 20px; font-size: 16px; font-weight: 700;
+    color: #111111; text-decoration: none; border-bottom: 1px solid #111111;
+  }
+  .nav-panel a:last-child { border-bottom: 0; background: #111111; color: #FFFFFF }
+  .nav-panel a:hover, .nav-panel a:focus-visible { background: var(--field) }
+  .nav-panel a:last-child:hover { background: #3A3A3A }
+  .nav-panel a[aria-current="page"] { background: var(--field) }
+}
+/* 지면은 화면 폭에 맞추고, 학생이 쓴 글씨만 키운다 */
+.hw { font-size: calc(var(--s) * var(--hw, 1)) }
+@media (max-width: 760px) { .hw-stage { --hw: 1.45 } }
+@media (max-width: 480px) { .hw-stage { --hw: 1.7 } }
+/* 표지 네 묶음은 어느 폭에서도 한 줄 */
+.shelf { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(8px, 2.4vw, 36px) }
 </style>
 <script>
 (function () {
@@ -67,7 +98,7 @@ img, svg, table { max-width: 100% }
         <img src="/assets/mathdoing-logo.png" width="600" height="442" alt="" style="display: block; width: 40px; height: auto">
         <span style="font-size: clamp(17.5px, 2.9vw, 21px); font-weight: 900; letter-spacing: -0.04em; color: #111111">매쓰두잉센터</span>
       </a>
-      <nav aria-label="주요 메뉴" style="display: flex; flex-wrap: wrap; gap: 4px; align-items: center">
+      <nav class="nav-wide" aria-label="주요 메뉴" style="display: flex; flex-wrap: wrap; gap: 4px; align-items: center">
         <a class="nav-link" href="/method" aria-current="page" style="font-size: 15px; font-weight: 700; color: #111111; text-decoration: none; padding: 12px 12px; background: var(--field)">매쓰두잉 방법론</a>
         <a class="nav-link" href="/class" style="font-size: 15px; font-weight: 700; color: #111111; text-decoration: none; padding: 12px 12px">수업안내</a>
         <a class="nav-link" href="/schedule" style="font-size: 15px; font-weight: 700; color: #111111; text-decoration: none; padding: 12px 12px">수업일정</a>
@@ -75,6 +106,17 @@ img, svg, table { max-width: 100% }
         <a class="nav-link" href="/notices" style="font-size: 15px; font-weight: 700; color: #111111; text-decoration: none; padding: 12px 12px">공지사항</a>
         <a class="btn-ink" href="#visit" style="font-size: 15px; font-weight: 700; color: #FFFFFF; background: #111111; padding: 12px 20px; border-radius: 999px; text-decoration: none; margin-left: 8px">상담 예약</a>
       </nav>
+      <details class="nav-narrow">
+        <summary aria-label="메뉴 열기">메뉴</summary>
+        <div class="nav-panel">
+          <a href="/method" aria-current="page">매쓰두잉 방법론</a>
+          <a href="/class">수업안내</a>
+          <a href="/schedule">수업일정</a>
+          <a href="/director">원장소개</a>
+          <a href="/notices">공지사항</a>
+          <a href="#visit">상담 예약</a>
+        </div>
+      </details>
     </div>
   </header>
 

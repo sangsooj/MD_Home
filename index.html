@@ -33,7 +33,7 @@ a:focus-visible { outline: 3px solid #2E5FA3; outline-offset: 3px; }
 .skip-link:focus { left: 0; }
 .rule-col { border-left: 1px solid #111111; padding-left: 20px; }
 .hw-stage {
-  position: relative; aspect-ratio: 2.2;
+  position: relative; aspect-ratio: 2.0;
   display: flex; align-items: center; justify-content: center;
 }
 .hw-sheet { position: relative; container-type: inline-size; width: var(--pct, 100%); aspect-ratio: var(--ar, 2.285) }
@@ -73,10 +73,41 @@ a:focus-visible { outline: 3px solid #2E5FA3; outline-offset: 3px; }
 }
 img, svg, table { max-width: 100% }
 @media (max-width: 760px) {
-  .nav-link { padding: 10px 8px !important; font-size: 14.5px !important }
-  .hw-stage { aspect-ratio: auto; overflow-x: auto; justify-content: flex-start }
-  .hw-sheet { width: 620px; flex: 0 0 auto }
 }
+
+/* ── 좁은 화면 전용 ── */
+.nav-narrow { display: none }
+@media (max-width: 860px) {
+  .nav-wide { display: none }
+  .nav-narrow { display: block; position: relative }
+  .nav-narrow > summary {
+    display: flex; align-items: center; gap: 8px; list-style: none; cursor: pointer;
+    min-height: 44px; padding: 9px 18px; background: #FFFFFF; color: #111111;
+    border: 2px solid #111111; border-radius: 999px; font-size: 15px; font-weight: 700;
+  }
+  .nav-narrow > summary::-webkit-details-marker { display: none }
+  .nav-narrow > summary::after { content: '\2630'; font-size: 17px; line-height: 1 }
+  .nav-narrow[open] > summary { background: #111111; color: #FFFFFF }
+  .nav-narrow[open] > summary::after { content: '\00D7'; font-size: 20px }
+  .nav-panel {
+    position: absolute; right: 0; top: calc(100% + 10px); z-index: 30; min-width: 232px;
+    background: #FFFFFF; border: 2px solid #111111;
+  }
+  .nav-panel a {
+    display: block; padding: 15px 20px; font-size: 16px; font-weight: 700;
+    color: #111111; text-decoration: none; border-bottom: 1px solid #111111;
+  }
+  .nav-panel a:last-child { border-bottom: 0; background: #111111; color: #FFFFFF }
+  .nav-panel a:hover, .nav-panel a:focus-visible { background: var(--field) }
+  .nav-panel a:last-child:hover { background: #3A3A3A }
+  .nav-panel a[aria-current="page"] { background: var(--field) }
+}
+/* 지면은 화면 폭에 맞추고, 학생이 쓴 글씨만 키운다 */
+.hw { font-size: calc(var(--s) * var(--hw, 1)) }
+@media (max-width: 760px) { .hw-stage { --hw: 1.45 } }
+@media (max-width: 480px) { .hw-stage { --hw: 1.7 } }
+/* 표지 네 묶음은 어느 폭에서도 한 줄 */
+.shelf { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(8px, 2.4vw, 36px) }
 </style>
 <script>
 (function () {
@@ -148,7 +179,7 @@ img, svg, table { max-width: 100% }
         <img src="/assets/mathdoing-logo.png" width="600" height="442" alt="" style="display: block; width: 40px; height: auto">
         <span style="font-size: clamp(17.5px, 2.9vw, 21px); font-weight: 900; letter-spacing: -0.04em; color: #111111">매쓰두잉센터</span>
       </a>
-      <nav aria-label="주요 메뉴" style="display: flex; flex-wrap: wrap; gap: 4px; align-items: center">
+      <nav class="nav-wide" aria-label="주요 메뉴" style="display: flex; flex-wrap: wrap; gap: 4px; align-items: center">
         <a class="nav-link" href="/method" style="font-size: 15px; font-weight: 700; color: #111111; text-decoration: none; padding: 12px 12px">매쓰두잉 방법론</a>
         <a class="nav-link" href="/class" style="font-size: 15px; font-weight: 700; color: #111111; text-decoration: none; padding: 12px 12px">수업안내</a>
         <a class="nav-link" href="/schedule" style="font-size: 15px; font-weight: 700; color: #111111; text-decoration: none; padding: 12px 12px">수업일정</a>
@@ -156,6 +187,17 @@ img, svg, table { max-width: 100% }
         <a class="nav-link" href="/notices" style="font-size: 15px; font-weight: 700; color: #111111; text-decoration: none; padding: 12px 12px">공지사항</a>
         <a class="btn-ink" href="#visit" style="font-size: 15px; font-weight: 700; color: #FFFFFF; background: #111111; padding: 12px 20px; border-radius: 999px; text-decoration: none; margin-left: 8px">상담 예약</a>
       </nav>
+      <details class="nav-narrow">
+        <summary aria-label="메뉴 열기">메뉴</summary>
+        <div class="nav-panel">
+          <a href="/method">매쓰두잉 방법론</a>
+          <a href="/class">수업안내</a>
+          <a href="/schedule">수업일정</a>
+          <a href="/director">원장소개</a>
+          <a href="/notices">공지사항</a>
+          <a href="#visit">상담 예약</a>
+        </div>
+      </details>
     </div>
   </header>
 
@@ -207,15 +249,15 @@ img, svg, table { max-width: 100% }
     <p style="margin: 0 0 40px; font-size: 17px; line-height: 1.8; color: #4A4A4A; max-width: 44em">문제의 조건을 그림으로 옮기고, 무엇을 구하는지부터 적습니다. 《매쓰두잉》 문제해결서의 실제 지면입니다.</p>
     <figure style="margin: 0; background: #FFFFFF; border: 3px solid #111111; padding: 26px 26px 20px">
       <div class="hw-stage" id="hw-stage">
-        <div class="hw-sheet" id="hw-sheet" style="--ar: 2.2854; --pct: 100.0%">
-          <img id="hw-page" src="/assets/v3/munje-grigi-6.png" width="1129" height="494" alt="《매쓰두잉》 문제해결서의 문제 그리기 지면. 리본 전체를 띠그림으로 그려 액자, 창문과 문, 남은 리본으로 나눈 뒤 빈칸에 전체의 4/9와 남은 리본 7.68 m를 채워 넣는다.">
-          <span class="hw" aria-hidden="true" style="left: 25.69%; top: 83.4%; --s: 3.4cqw">4</span>
-          <span class="hw" aria-hidden="true" style="left: 25.69%; top: 93.12%; --s: 3.4cqw">9</span>
-          <span class="hw" aria-hidden="true" style="left: 55.27%; top: 63.97%; --s: 3.1cqw">7.68</span>
-          <span class="hw" aria-hidden="true" style="left: 65.1%; top: 83.4%; --s: 3.1cqw">7.68</span>
-          <span class="hw" aria-hidden="true" style="left: 72.81%; top: 60.53%; --s: 2.5cqw">처음 사온</span>
-          <span class="hw" aria-hidden="true" style="left: 86.09%; top: 60.53%; --s: 2.8cqw">길이</span>
-          <span class="hw" aria-hidden="true" style="left: 78.48%; top: 71.66%; --s: 2.8cqw">m</span>
+        <div class="hw-sheet" id="hw-sheet" style="--ar: 2.0979; --pct: 100.0%">
+          <img id="hw-page" src="/assets/v3/munje-grigi-6-fit.png" width="986" height="470" alt="《매쓰두잉》 문제해결서의 문제 그리기 지면. 리본 전체를 띠그림으로 그려 액자, 창문과 문, 남은 리본으로 나눈 뒤 빈칸에 전체의 4/9와 남은 리본 7.68 m를 채워 넣는다.">
+          <span class="hw" aria-hidden="true" style="left: 24.14%; top: 82.55%; --s: 3.89cqw">4</span>
+            <span class="hw" aria-hidden="true" style="left: 24.14%; top: 92.77%; --s: 3.89cqw">9</span>
+            <span class="hw" aria-hidden="true" style="left: 58.01%; top: 62.13%; --s: 3.55cqw">7.68</span>
+            <span class="hw" aria-hidden="true" style="left: 69.27%; top: 82.55%; --s: 3.55cqw">7.68</span>
+            <span class="hw" aria-hidden="true" style="left: 78.1%; top: 58.51%; --s: 2.86cqw">처음 사온</span>
+            <span class="hw" aria-hidden="true" style="left: 93.3%; top: 58.51%; --s: 3.21cqw">길이</span>
+            <span class="hw" aria-hidden="true" style="left: 84.59%; top: 70.21%; --s: 3.21cqw">m</span>
         </div>
       </div>
       <figcaption style="margin: 18px 0 0; font-size: 14.5px; line-height: 1.7; color: #4A4A4A; border-top: 1px solid #111111; padding-top: 14px">파란 글씨가 학생이 채워 가는 자리입니다. 교재는 그릴 뼈대만 주고, 빈칸은 학생이 채웁니다.</figcaption>
@@ -285,7 +327,7 @@ img, svg, table { max-width: 100% }
       <h2 style="margin: 0 0 20px; font-size: clamp(25px, 5vw, 42px); font-weight: 900; line-height: 1.25; color: #111111; letter-spacing: -0.035em; max-width: 16em">단계별로 스스로 수학하기를 만들어갑니다</h2>
       <p style="margin: 0 0 44px; font-size: 17px; line-height: 1.8; color: #4A4A4A; max-width: 40em">개념 학습을 끝낸 뒤에 쓰는 교재입니다. 한 학기를 세 파트로 나누고, 파트마다 네 단계로 올라갑니다. 단계가 올라갈수록 교재가 주는 도움이 줄고, 문제해결의 주체가 학생 본인으로 옮겨 갑니다.</p>
 
-      <ul class="g4" style="list-style: none; margin: 0 0 16px; padding: 0; display: grid; gap: 36px">
+      <ul class="shelf" style="list-style: none; margin: 0 0 16px; padding: 0">
         <li>
           <div style="position: relative; aspect-ratio: 1 / 1.175; margin: 0 0 16px">
             <img src="/assets/v3/cover-3-1.jpg" alt="매쓰두잉 3-1 표지" width="300" height="424" style="display: block; box-sizing: border-box; width: 82%; height: auto; border: 2px solid #111111; aspect-ratio: 300 / 424; object-fit: cover; position: absolute; top: 0; left: 0">
@@ -544,7 +586,7 @@ img, svg, table { max-width: 100% }
 
   <script>
 (function () {
-  var PAGES = [{"src": "/assets/v3/munje-grigi-6.png", "w": 1129, "h": 494, "alt": "《매쓰두잉》 문제해결서의 문제 그리기 지면. 리본 전체를 띠그림으로 그려 액자, 창문과 문, 남은 리본으로 나눈 뒤 빈칸에 전체의 4/9와 남은 리본 7.68 m를 채워 넣는다.", "ar": 2.2854, "pct": 100.0, "fields": [{"t": "4", "x": 25.69, "y": 83.4, "s": 3.4}, {"t": "9", "x": 25.69, "y": 93.12, "s": 3.4}, {"t": "7.68", "x": 55.27, "y": 63.97, "s": 3.1}, {"t": "7.68", "x": 65.1, "y": 83.4, "s": 3.1}, {"t": "처음 사온", "x": 72.81, "y": 60.53, "s": 2.5}, {"t": "길이", "x": 86.09, "y": 60.53, "s": 2.8}, {"t": "m", "x": 78.48, "y": 71.66, "s": 2.8}]}, {"src": "/assets/v3/munje-grigi-8.png", "w": 819, "h": 426, "alt": "《매쓰두잉》 문제해결서의 문제 그리기 지면. 9와 6으로 만든 투명한 숫자판을 뒤집고 돌리는 순서를 빈칸에 적어 풀이 계획을 세운다.", "ar": 1.9225, "pct": 87.39, "fields": [{"t": "4", "x": 26.5, "y": 49.3, "s": 4.2}, {"t": "180", "x": 24.66, "y": 93.43, "s": 3.6}, {"t": "오른", "x": 45.18, "y": 93.43, "s": 3.4}, {"t": "2", "x": 55.56, "y": 93.43, "s": 4.2}, {"t": "큰", "x": 71.31, "y": 65.02, "s": 3.6}, {"t": "작은", "x": 67.03, "y": 75.59, "s": 3.2}, {"t": "합", "x": 83.39, "y": 75.59, "s": 3.6}]}, {"src": "/assets/v3/munje-grigi-9.png", "w": 800, "h": 349, "alt": "《매쓰두잉》 문제해결서의 문제 그리기 지면. 사각형부터 팔각형까지 네 도형을 삼각형으로 나누어 그 개수를 빈칸에 적고, 십이각형의 각의 크기의 합을 구할 계획을 세운다.", "ar": 2.2923, "pct": 100.0, "fields": [{"t": "2", "x": 23.38, "y": 77.65, "s": 3.2}, {"t": "3", "x": 42.88, "y": 77.65, "s": 3.2}, {"t": "4", "x": 62.88, "y": 77.65, "s": 3.2}, {"t": "6", "x": 82.5, "y": 77.65, "s": 3.2}, {"t": "십이각", "x": 57.25, "y": 90.54, "s": 2.5}, {"t": "열두", "x": 68.13, "y": 90.54, "s": 2.9}, {"t": "합", "x": 84.63, "y": 90.54, "s": 3.2}]}, {"src": "/assets/v3/munje-grigi-22.png", "w": 735, "h": 301, "alt": "《매쓰두잉》 문제해결서의 문제 그리기 지면. 집 출발과 공항 도착, 비행기 출발을 한 줄에 놓고 걸리는 시간을 빈칸에 적어 집에서 나설 시각을 거슬러 구한다.", "ar": 2.4419, "pct": 100.0, "fields": [{"t": "1", "x": 16.05, "y": 57.14, "s": 3.6}, {"t": "45", "x": 27.76, "y": 57.14, "s": 3.6}, {"t": "2", "x": 48.44, "y": 57.14, "s": 3.6}, {"t": "30", "x": 59.86, "y": 57.14, "s": 3.6}, {"t": "11", "x": 79.86, "y": 72.43, "s": 3.6}, {"t": "50", "x": 90.2, "y": 72.43, "s": 3.6}, {"t": "출발", "x": 23.81, "y": 86.71, "s": 3.0}, {"t": "시각", "x": 40.54, "y": 86.71, "s": 3.0}, {"t": "시", "x": 56.33, "y": 86.71, "s": 3.2}, {"t": "분", "x": 64.49, "y": 86.71, "s": 3.2}]}, {"src": "/assets/v3/munje-grigi-2.png", "w": 793, "h": 492, "alt": "《매쓰두잉》 문제해결서의 문제 그리기 지면. 정사각형 케이크를 자른 여섯 조각을 크기별로 늘어놓고 개수와 길이를 빈칸에 적어 처음 한 변의 길이를 구할 계획을 세운다.", "ar": 1.6118, "pct": 73.26, "fields": [{"t": "3", "x": 74.02, "y": 60.98, "s": 3.4}, {"t": "25", "x": 64.19, "y": 69.11, "s": 3.4}, {"t": "2", "x": 74.02, "y": 75.2, "s": 3.4}, {"t": "25", "x": 64.19, "y": 81.5, "s": 3.4}, {"t": "한", "x": 37.58, "y": 90.24, "s": 3.4}, {"t": "길이", "x": 48.17, "y": 90.24, "s": 3.0}]}, {"src": "/assets/v3/munje-grigi-10.png", "w": 751, "h": 392, "alt": "《매쓰두잉》 문제해결서의 문제 그리기 지면. 사각기둥 세 개를 위에서 본 모양에 높이와 밑면의 길이를 빈칸에 적고, 잘라낼 삼각기둥을 가려낸다.", "ar": 1.9158, "pct": 87.08, "fields": [{"t": "15", "x": 16.25, "y": 67.6, "s": 4.2}, {"t": "4", "x": 34.62, "y": 65.56, "s": 4.4}, {"t": "9", "x": 56.99, "y": 67.09, "s": 4.4}, {"t": "6", "x": 28.1, "y": 90.82, "s": 4.4}, {"t": "9", "x": 36.62, "y": 90.82, "s": 4.4}, {"t": "13", "x": 47.0, "y": 90.82, "s": 4.2}, {"t": "부피", "x": 76.17, "y": 91.07, "s": 3.4}]}, {"src": "/assets/v3/munje-grigi-16.png", "w": 770, "h": 379, "alt": "《매쓰두잉》 문제해결서의 문제 그리기 지면. 정육면체를 쌓아 만든 입체도형에 한 모서리의 길이와 층수, 한 면에 보이는 개수를 빈칸에 적어 겉넓이를 구할 계획을 세운다.", "ar": 2.0317, "pct": 92.35, "fields": [{"t": "2.4", "x": 22.86, "y": 68.07, "s": 3.6}, {"t": "3", "x": 29.87, "y": 50.92, "s": 4.2}, {"t": "5", "x": 44.16, "y": 78.36, "s": 4.2}, {"t": "27", "x": 67.66, "y": 56.73, "s": 4.0}, {"t": "3", "x": 73.64, "y": 66.49, "s": 4.2}, {"t": "겉넓이", "x": 54.16, "y": 90.77, "s": 3.2}]}];
+  var PAGES = [{"src": "/assets/v3/munje-grigi-6-fit.png", "w": 986, "h": 470, "alt": "《매쓰두잉》 문제해결서의 문제 그리기 지면. 리본 전체를 띠그림으로 그려 액자, 창문과 문, 남은 리본으로 나눈 뒤 빈칸에 전체의 4/9와 남은 리본 7.68 m를 채워 넣는다.", "ar": 2.0979, "pct": 100.0, "fields": [{"t": "4", "x": 24.14, "y": 82.55, "s": 3.89}, {"t": "9", "x": 24.14, "y": 92.77, "s": 3.89}, {"t": "7.68", "x": 58.01, "y": 62.13, "s": 3.55}, {"t": "7.68", "x": 69.27, "y": 82.55, "s": 3.55}, {"t": "처음 사온", "x": 78.1, "y": 58.51, "s": 2.86}, {"t": "길이", "x": 93.3, "y": 58.51, "s": 3.21}, {"t": "m", "x": 84.59, "y": 70.21, "s": 3.21}]}, {"src": "/assets/v3/munje-grigi-8-fit.png", "w": 728, "h": 414, "alt": "《매쓰두잉》 문제해결서의 문제 그리기 지면. 9와 6으로 만든 투명한 숫자판을 뒤집고 돌리는 순서를 빈칸에 적어 풀이 계획을 세운다.", "ar": 1.7585, "pct": 87.92, "fields": [{"t": "4", "x": 28.3, "y": 48.07, "s": 4.73}, {"t": "180", "x": 26.23, "y": 93.48, "s": 4.05}, {"t": "오른", "x": 49.32, "y": 93.48, "s": 3.82}, {"t": "2", "x": 60.99, "y": 93.48, "s": 4.73}, {"t": "큰", "x": 78.71, "y": 64.25, "s": 4.05}, {"t": "작은", "x": 73.9, "y": 75.12, "s": 3.6}, {"t": "합", "x": 92.3, "y": 75.12, "s": 4.05}]}, {"src": "/assets/v3/munje-grigi-9-fit.png", "w": 727, "h": 330, "alt": "《매쓰두잉》 문제해결서의 문제 그리기 지면. 사각형부터 팔각형까지 네 도형을 삼각형으로 나누어 그 개수를 빈칸에 적고, 십이각형의 각의 크기의 합을 구할 계획을 세운다.", "ar": 2.203, "pct": 100.0, "fields": [{"t": "2", "x": 22.43, "y": 76.36, "s": 3.52}, {"t": "3", "x": 43.88, "y": 76.36, "s": 3.52}, {"t": "4", "x": 65.89, "y": 76.36, "s": 3.52}, {"t": "6", "x": 87.48, "y": 76.36, "s": 3.52}, {"t": "십이각", "x": 59.7, "y": 90.0, "s": 2.75}, {"t": "열두", "x": 71.67, "y": 90.0, "s": 3.19}, {"t": "합", "x": 89.83, "y": 90.0, "s": 3.52}]}, {"src": "/assets/v3/munje-grigi-22-fit.png", "w": 726, "h": 280, "alt": "《매쓰두잉》 문제해결서의 문제 그리기 지면. 집 출발과 공항 도착, 비행기 출발을 한 줄에 놓고 걸리는 시간을 빈칸에 적어 집에서 나설 시각을 거슬러 구한다.", "ar": 2.5929, "pct": 100.0, "fields": [{"t": "1", "x": 15.01, "y": 55.35, "s": 3.64}, {"t": "45", "x": 26.86, "y": 55.35, "s": 3.64}, {"t": "2", "x": 47.8, "y": 55.35, "s": 3.64}, {"t": "30", "x": 59.36, "y": 55.35, "s": 3.64}, {"t": "11", "x": 79.61, "y": 71.79, "s": 3.64}, {"t": "50", "x": 90.08, "y": 71.79, "s": 3.64}, {"t": "출발", "x": 22.87, "y": 87.14, "s": 3.04}, {"t": "시각", "x": 39.8, "y": 87.14, "s": 3.04}, {"t": "시", "x": 55.79, "y": 87.14, "s": 3.24}, {"t": "분", "x": 64.05, "y": 87.14, "s": 3.24}]}, {"src": "/assets/v3/munje-grigi-2-fit.png", "w": 727, "h": 465, "alt": "《매쓰두잉》 문제해결서의 문제 그리기 지면. 정사각형 케이크를 자른 여섯 조각을 크기별로 늘어놓고 개수와 길이를 빈칸에 적어 처음 한 변의 길이를 구할 계획을 세운다.", "ar": 1.5634, "pct": 78.17, "fields": [{"t": "3", "x": 77.71, "y": 61.29, "s": 3.71}, {"t": "25", "x": 66.99, "y": 69.9, "s": 3.71}, {"t": "2", "x": 77.71, "y": 76.34, "s": 3.71}, {"t": "25", "x": 66.99, "y": 83.01, "s": 3.71}, {"t": "한", "x": 37.97, "y": 92.25, "s": 3.71}, {"t": "길이", "x": 49.52, "y": 92.25, "s": 3.27}]}, {"src": "/assets/v3/munje-grigi-10-fit.png", "w": 726, "h": 367, "alt": "《매쓰두잉》 문제해결서의 문제 그리기 지면. 사각기둥 세 개를 위에서 본 모양에 높이와 밑면의 길이를 빈칸에 적고, 잘라낼 삼각기둥을 가려낸다.", "ar": 1.9782, "pct": 98.91, "fields": [{"t": "15", "x": 14.88, "y": 65.39, "s": 4.34}, {"t": "4", "x": 33.88, "y": 63.21, "s": 4.55}, {"t": "9", "x": 57.02, "y": 64.85, "s": 4.55}, {"t": "6", "x": 27.14, "y": 90.19, "s": 4.55}, {"t": "9", "x": 35.95, "y": 90.19, "s": 4.55}, {"t": "13", "x": 46.69, "y": 90.19, "s": 4.34}, {"t": "부피", "x": 76.86, "y": 90.46, "s": 3.52}]}, {"src": "/assets/v3/munje-grigi-16-fit.png", "w": 727, "h": 353, "alt": "《매쓰두잉》 문제해결서의 문제 그리기 지면. 정육면체를 쌓아 만든 입체도형에 한 모서리의 길이와 층수, 한 면에 보이는 개수를 빈칸에 적어 겉넓이를 구할 계획을 세운다.", "ar": 2.0595, "pct": 100.0, "fields": [{"t": "2.4", "x": 23.52, "y": 65.72, "s": 3.81}, {"t": "3", "x": 30.95, "y": 47.31, "s": 4.45}, {"t": "5", "x": 46.08, "y": 76.77, "s": 4.45}, {"t": "27", "x": 70.97, "y": 53.54, "s": 4.24}, {"t": "3", "x": 77.31, "y": 64.02, "s": 4.45}, {"t": "겉넓이", "x": 56.68, "y": 90.09, "s": 3.39}]}]
   var START = 0.6, WRITE = 0.8, GAP = 0.5, HOLD = 3, FADE = 0.45;
 
   function run() {

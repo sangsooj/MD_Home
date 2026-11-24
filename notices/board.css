@@ -182,3 +182,29 @@ main.wrap { padding-bottom: 96px; }
   .article-body { font-size: 16px; }
 }
 img, svg, table { max-width: 100%; }
+
+.nav-narrow { display: none; }
+@media (max-width: 860px) {
+  .nav-wide { display: none; }
+  .nav-narrow { display: block; position: relative; }
+  .nav-narrow > summary {
+    display: flex; align-items: center; gap: 8px; list-style: none; cursor: pointer;
+    min-height: 44px; padding: 9px 18px; background: #FFFFFF; color: var(--ink);
+    border: 2px solid var(--ink); border-radius: 999px; font-size: 15px; font-weight: 700;
+  }
+  .nav-narrow > summary::-webkit-details-marker { display: none; }
+  .nav-narrow > summary::after { content: '\2630'; font-size: 17px; line-height: 1; }
+  .nav-narrow[open] > summary { background: var(--ink); color: #FFFFFF; }
+  .nav-narrow[open] > summary::after { content: '\00D7'; font-size: 20px; }
+  .nav-panel {
+    position: absolute; right: 0; top: calc(100% + 10px); z-index: 30; min-width: 232px;
+    background: #FFFFFF; border: 2px solid var(--ink);
+  }
+  .nav-panel a {
+    display: block; padding: 15px 20px; font-size: 16px; font-weight: 700;
+    color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--ink);
+  }
+  .nav-panel a:last-child { border-bottom: 0; background: var(--ink); color: #FFFFFF; }
+  .nav-panel a:hover, .nav-panel a:focus-visible { background: var(--field); }
+  .nav-panel a[aria-current="page"] { background: var(--field); }
+}
