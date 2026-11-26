@@ -122,22 +122,7 @@ a:focus-visible { outline: 3px solid #2E5FA3; outline-offset: 3px; }
 .g-split { grid-template-columns: minmax(0, 1fr) }
 @media (min-width: 900px) { .g-split { grid-template-columns: var(--split) } }
 
-/* 첫 화면: 좁으면 제목 → 작은 원장 사진 → 본문, 넓으면 사진이 왼쪽 기둥 */
-.hero-grid { display: grid; gap: 26px; grid-template-columns: minmax(0, 1fr) }
-.hero-h1 { order: 1 }
-.hero-fig { order: 2; margin: 0; display: flex; gap: 16px; align-items: flex-end }
-.hero-fig img { width: 128px; flex: none; display: block; height: auto; border: 3px solid #111111; background: #FFFFFF }
-.hero-fig figcaption { margin: 0 }
-.hero-body { order: 3 }
 .cycle4 { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(148px, 1fr)) }
-@media (min-width: 900px) {
-  .hero-grid { grid-template-columns: 288px minmax(0, 1fr); column-gap: 56px; row-gap: 26px; align-items: start }
-  .hero-fig { order: 0; grid-column: 1; grid-row: 1 / span 2; display: block }
-  .hero-fig img { width: 100% }
-  .hero-fig figcaption { margin-top: 14px }
-  .hero-h1 { grid-column: 2; grid-row: 1 }
-  .hero-body { grid-column: 2; grid-row: 2 }
-}
 @media (max-width: 760px) {
   .rule-col { border-left: 0; border-top: 1px solid #111111; padding-left: 0; padding-top: 16px }
   .scroll-x { overflow-x: auto }
@@ -285,25 +270,21 @@ img, svg, table { max-width: 100% }
 
   <main id="main">
 
-  <!-- 히어로: 두 종류의 문제 -->
-  <!-- 첫 화면: 서사 · 네 단계 · 자체 시스템 -->
+  <!-- 첫 화면: 원장 소개 · 네 단계 사이클 -->
   <section style="background: var(--field); border-bottom: 2px solid #111111">
     <div style="max-width: 1180px; margin: 0 auto; padding: clamp(40px, 6.5vw, 72px) clamp(20px, 5vw, 40px) clamp(40px, 6vw, 60px); box-sizing: border-box">
 
-      <!-- 1 · 서사 -->
-      <div class="hero-grid">
-        <h1 class="hero-h1" style="margin: 0; font-size: clamp(31px, 6.6vw, 56px); font-weight: 900; line-height: 1.18; color: #111111; letter-spacing: -0.045em">연구하고, 쓰고,<br>직접 가르칩니다</h1>
-        <figure class="hero-fig">
-          <img src="/assets/v3/director.jpg" width="640" height="800" alt="박현정 원장">
-          <figcaption style="font-size: 14.5px; line-height: 1.75; color: #2B2B2B"><strong style="font-size: 18px; font-weight: 900; color: #111111">박현정</strong> 원장<br>이화여자대학교 대학원 수학교육 박사<br>現 경희대학교 수학교육 강의</figcaption>
-        </figure>
-        <div class="hero-body">
-          <p style="margin: 0 0 26px; font-size: clamp(16.5px, 2.3vw, 19px); line-height: 1.85; color: #2B2B2B; max-width: 34em">수학교육 박사가 오랜 연구 끝에 《매쓰두잉》 문제해결서 여덟 권을 썼습니다. 그리고 그 방법으로 직접 가르치려고 <strong style="font-weight: 900; color: #111111">매쓰두잉센터</strong>를 열었습니다. 교재를 만든 사람이 교실에 있습니다.</p>
-          <blockquote style="margin: 0; border-left: 4px solid #111111; padding: 2px 0 2px 20px; max-width: 32em">
-            <p style="margin: 0 0 10px; font-size: clamp(16px, 2.2vw, 19px); line-height: 1.7; font-weight: 900; color: #111111; letter-spacing: -0.025em">우리가 사고해야 할 수학의 장면은 수식이 아닌 현실에 있습니다. 그리고 이를 가능하게 하는 것은 바로 ‘내가 수학을 하는’ 경험입니다.</p>
-            <footer style="font-size: 14.5px; font-weight: 700; color: #2B2B2B">박현정, 《매쓰두잉》 서문</footer>
-          </blockquote>
+      <!-- 1 · 원장 소개 -->
+      <div class="g-split" style="display: grid; --split: minmax(0, 1.05fr) minmax(0, 0.95fr); gap: clamp(28px, 4.5vw, 52px); align-items: start">
+        <div>
+          <h1 style="margin: 0 0 26px; font-size: clamp(31px, 6.6vw, 56px); font-weight: 900; line-height: 1.18; color: #111111; letter-spacing: -0.045em">매쓰두잉 저자가<br>직접 가르칩니다</h1>
+          <p style="margin: 0 0 28px; font-size: clamp(16.5px, 2.3vw, 19px); line-height: 1.85; color: #2B2B2B; max-width: 30em">오랜 연구 끝에 《매쓰두잉》 문제해결서를 출간하였고, 매쓰두잉 방법론으로 직접 학생들을 만나기 위해 매쓰두잉센터의 문을 열었습니다.</p>
+          <a class="btn-line" href="/director" style="display: inline-block; padding: 15px 26px; background: transparent; color: #111111; font-size: 16px; font-weight: 700; border: 2px solid #111111; border-radius: 999px; text-decoration: none">원장 소개</a>
         </div>
+        <blockquote style="margin: 0; border-left: 4px solid #111111; padding: 2px 0 2px 20px">
+          <p style="margin: 0 0 10px; font-size: clamp(16px, 2.5vw, 22px); line-height: 1.72; font-weight: 900; color: #111111; letter-spacing: -0.025em">우리가 사고해야 할 수학의 장면은 수식이 아닌 현실에 있습니다. 그리고 이를 가능하게 하는 것은 바로 ‘내가 수학을 하는’ 경험입니다.</p>
+          <footer style="font-size: 14.5px; font-weight: 700; color: #2B2B2B">박현정, 《매쓰두잉》 서문</footer>
+        </blockquote>
       </div>
 
       <!-- 2 · 네 단계 -->
@@ -328,13 +309,7 @@ img, svg, table { max-width: 100% }
           </li>
         </ol>
         <p style="margin: 0; font-size: 16.5px; line-height: 1.8; color: #2B2B2B; max-width: 40em">네 단계를 한 바퀴 돌 때마다, 아이가 혼자 감당할 수 있는 문제의 수준이 한 칸씩 올라갑니다. 다음 바퀴는 올라간 자리에서 다시 시작합니다.</p>
-      </div>
-
-      <!-- 3 · 자체 시스템 -->
-      <div style="margin: clamp(36px, 5vw, 52px) 0 0; border-top: 2px solid #111111; padding-top: clamp(28px, 4vw, 40px)">
-        <h2 style="margin: 0 0 18px; font-size: clamp(21px, 3.6vw, 31px); font-weight: 900; line-height: 1.3; color: #111111; letter-spacing: -0.035em">평가지를 직접 만들어, 다음 전략을 세웁니다</h2>
-        <p style="margin: 0 0 28px; font-size: 16.5px; line-height: 1.85; color: #2B2B2B; max-width: 42em">학생마다 어디서 멈추는지가 다릅니다. 매쓰두잉센터는 자체 시스템으로 학생별 진단·평가지를 만들어 운영하고, 그 결과를 읽어 다음 수업의 방향을 정합니다. 시중 문제집을 순서대로 푸는 수업과 갈라지는 지점입니다.</p>
-        <div style="display: flex; flex-wrap: wrap; gap: 12px">
+        <div style="display: flex; flex-wrap: wrap; gap: 12px; margin: 26px 0 0">
           <a class="btn-ink" href="/method" style="display: inline-block; padding: 15px 26px; background: #111111; color: #FFFFFF; font-size: 16px; font-weight: 700; border-radius: 999px; text-decoration: none">방법론 살펴보기</a>
           <a class="btn-line" href="#evidence" style="display: inline-block; padding: 15px 26px; background: transparent; color: #111111; font-size: 16px; font-weight: 700; border: 2px solid #111111; border-radius: 999px; text-decoration: none">진단샘플 내려받기</a>
         </div>
@@ -421,6 +396,76 @@ img, svg, table { max-width: 100% }
     <p style="margin: 36px 0 0; font-size: 16px"><a href="/method" style="font-weight: 700; color: #111111; text-decoration: none; border-bottom: 3px solid var(--field); padding-bottom: 2px">방법론 전체 보기</a></p>
   </section>
 
+  <!-- 진단과 샘플 -->
+  <span id="evidence"></span>
+  <section class="wide-only" style="max-width: 1180px; margin: 0 auto; border-top: 2px solid #111111; padding: clamp(48px, 8vw, 88px) clamp(20px, 5vw, 40px); box-sizing: border-box">
+    <h2 style="margin: 0 0 20px; font-size: clamp(25px, 5vw, 42px); font-weight: 900; line-height: 1.25; color: #111111; letter-spacing: -0.035em; max-width: 16em">문제그리기를 통해 전략을 세우는 방법</h2>
+    <p style="margin: 0 0 48px; font-size: 17px; line-height: 1.8; color: #4A4A4A; max-width: 40em">학생이 실제로 만나는 문제 하나입니다. 문장의 조건을 막대에 옮겨, 무엇을 먼저 구하고 어디서부터 거슬러 갈지 찾아봅니다. 왼쪽 문장의 밑줄 친 부분을 눌러 보세요.</p>
+
+    <div class="pg g2" data-level="0" style="display: grid; gap: 32px">
+
+      <div style="border: 3px solid #111111; padding: 30px 28px">
+        <h3 style="margin: 0 0 20px; font-size: clamp(17.5px, 2.9vw, 22px); font-weight: 900; color: #111111">학생이 처음 만나는 문제</h3>
+        <div style="border: 1px solid #D8D8D8; padding: 20px; margin: 0 0 20px">
+          <p style="margin: 0 0 14px; font-size: 12px; font-weight: 700; color: #7B3F9D">6학년 2학기 수와 연산</p>
+          <p style="margin: 0 0 18px; font-size: 15px; line-height: 2; color: #3A3A3A">학교 전시에 쓸 직사각형 전시판을 꾸몄습니다. <button type="button" class="pg-cue" data-step="1" aria-pressed="false">전체 넓이의 1/4</button><span class="pg-tap" aria-hidden="true">👆</span>에 제목을 붙였습니다. 그 뒤 <button type="button" class="pg-cue" data-step="2" aria-pressed="false">남은 넓이의 2/5</button>에 사진을 붙였습니다. <button type="button" class="pg-cue" data-step="3" aria-pressed="false">아직 비어 있는 곳이 18 m²</button>일 때, 전시판 전체의 넓이는 몇 m²인가요?</p>
+          <div style="display: flex; justify-content: flex-end; align-items: baseline; gap: 10px">
+            <span style="font-size: 12px; color: #6A6A6A">답</span>
+            <span style="display: block; width: 150px; border-bottom: 1px solid #111111"></span>
+          </div>
+        </div>
+        <p style="margin: 0 0 22px; font-size: 14.5px; line-height: 1.75; color: #4A4A4A">제목과 사진이 각각 어느 넓이의 일부인지 먼저 생각해 봅니다. 둘의 기준이 다른 것이 이 문제의 고비입니다.</p>
+        <a class="btn-ink" href="#visit" style="display: inline-block; padding: 13px 24px; background: #111111; color: #FFFFFF; font-size: 15px; font-weight: 700; border-radius: 999px; text-decoration: none">진단샘플 내려받기</a>
+      </div>
+
+      <div style="border: 3px solid #111111; padding: 30px 28px">
+        <h3 style="margin: 0 0 20px; font-size: clamp(17.5px, 2.9vw, 22px); font-weight: 900; color: #111111">그 문제를 푸는 방법</h3>
+        <div style="border: 1px solid #D8D8D8; padding: 20px; margin: 0 0 20px">
+          <p style="margin: 0 0 16px; font-size: 12.5px; font-weight: 900; color: #111111">문제그리기</p>
+
+          <p class="pg-hint" style="margin: 0; font-size: 14.5px; line-height: 1.75; color: #6A6A6A">왼쪽 문장의 밑줄 친 조건을 누르면 막대가 한 단계씩 그려집니다.</p>
+
+          <div class="pg-step" data-stepbox="1" style="padding: 0 0 18px">
+            <h4 style="margin: 0 0 12px; font-size: 15px; font-weight: 900; color: #111111">1. 전체에서 제목을 구분하기</h4>
+            <div style="display: flex; border: 1px solid #7B3F9D; font-size: 13.5px">
+              <span style="flex: 5 1 0; min-width: 0; padding: 12px 4px; text-align: center; background: #EFE6F5; color: #4A4A4A; border-right: 1px solid #7B3F9D">제목 1/4</span>
+              <span style="flex: 15 1 0; min-width: 0; padding: 12px 4px; text-align: center; background: #FAF5FD; color: #4A4A4A">제목을 붙이고 남은 부분</span>
+            </div>
+          </div>
+
+          <div class="pg-step" data-stepbox="2" style="border-top: 1px solid #E4E4E4; padding: 18px 0">
+            <h4 style="margin: 0 0 12px; font-size: 15px; font-weight: 900; color: #111111">2. 남은 부분만 5등분하기</h4>
+            <div style="display: flex; font-size: 13.5px; align-items: stretch">
+              <span style="flex: 5 1 0; min-width: 0; padding: 12px 4px; text-align: center; background: #EFE6F5; color: #8A8A8A; border: 1px solid #D8C6E6; box-sizing: border-box">제목</span>
+              <div style="flex: 15 1 0; min-width: 0; display: flex; border: 3px solid #7B3F9D; box-sizing: border-box">
+              <button type="button" class="pg-cell" aria-pressed="false">?</button>
+              <button type="button" class="pg-cell" aria-pressed="false">?</button>
+              <button type="button" class="pg-cell" aria-pressed="false">?</button>
+              <button type="button" class="pg-cell" aria-pressed="false">?</button>
+              <button type="button" class="pg-cell" aria-pressed="false">?</button>
+              </div>
+            </div>
+            <p class="pg-feedback" aria-live="polite" style="margin: 12px 0 0; font-size: 13.5px; line-height: 1.7; font-weight: 700; color: #7B3F9D">사진을 붙일 두 칸을 골라 보세요.</p>
+          </div>
+
+          <div class="pg-step" data-stepbox="3" style="border-top: 1px solid #E4E4E4; padding: 18px 0 0">
+            <h4 style="margin: 0 0 12px; font-size: 15px; font-weight: 900; color: #111111">3. 알고 있는 넓이에서 거슬러 가기</h4>
+            <div style="display: flex; align-items: center; gap: 8px; font-size: 13px">
+              <span style="flex: 1 1 0; min-width: 0; text-align: center; padding: 12px 4px; border: 1px solid #C9A9DC">빈 곳<br><strong style="color: #111111">18 m²</strong></span>
+              <span style="color: #7B3F9D">→</span>
+              <span style="flex: 1 1 0; min-width: 0; text-align: center; padding: 12px 4px; border: 1px solid #C9A9DC">제목 뒤 남은 곳<br><strong style="color: #111111">□ m²</strong></span>
+              <span style="color: #7B3F9D">→</span>
+              <span style="flex: 1 1 0; min-width: 0; text-align: center; padding: 12px 4px; border: 1px solid #C9A9DC">전시판 전체<br><strong style="color: #111111">□ m²</strong></span>
+            </div>
+          </div>
+        </div>
+        <p style="margin: 0 0 22px; font-size: 14.5px; line-height: 1.75; color: #4A4A4A">그림에서 거슬러 가는 순서가 그대로 풀이 계획이 됩니다. 교재는 이 순서까지만 주고, 답은 주지 않습니다.</p>
+        <a class="btn-line" href="/method" style="display: inline-block; padding: 13px 24px; background: transparent; color: #111111; font-size: 15px; font-weight: 700; border: 2px solid #111111; border-radius: 999px; text-decoration: none">지면 펼쳐보기</a>
+      </div>
+
+    </div>
+  </section>
+
   <!-- 문제해결서 -->
   <section id="book" style="background: #F4F4F4; border-top: 2px solid #111111; border-bottom: 2px solid #111111">
     <div style="max-width: 1180px; margin: 0 auto; padding: clamp(48px, 8vw, 88px) clamp(20px, 5vw, 40px); box-sizing: border-box">
@@ -494,76 +539,6 @@ img, svg, table { max-width: 100% }
           <p style="margin: 20px 0 0; font-size: 15px; line-height: 1.75; color: #4A4A4A">각 단계는 교재가 제공하는 도움의 정도에 따라 나누어집니다. 비고츠키의 근접발달영역을 교재 구조로 옮긴 설계이며, 그 이유는 지은이가 서문에 직접 밝혀 두었습니다. 파트마다 ‘말랑말랑 수학’이 따로 있어 Part 1은 문제해결과 수·연산 감각, Part 2는 의사소통, Part 3은 추론과 정보처리를 다룹니다.</p>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- 진단과 샘플 -->
-  <span id="evidence"></span>
-  <section class="wide-only" style="max-width: 1180px; margin: 0 auto; padding: clamp(48px, 8vw, 88px) clamp(20px, 5vw, 40px); box-sizing: border-box">
-    <h2 style="margin: 0 0 20px; font-size: clamp(25px, 5vw, 42px); font-weight: 900; line-height: 1.25; color: #111111; letter-spacing: -0.035em; max-width: 16em">문제그리기를 통해 전략을 세우는 방법</h2>
-    <p style="margin: 0 0 48px; font-size: 17px; line-height: 1.8; color: #4A4A4A; max-width: 40em">맨 위에서 보신 전시판 문제입니다. 문장의 조건을 막대에 옮겨, 무엇을 먼저 구하고 어디서부터 거슬러 갈지 찾아봅니다. 왼쪽 문장의 밑줄 친 부분을 눌러 보세요.</p>
-
-    <div class="pg g2" data-level="0" style="display: grid; gap: 32px">
-
-      <div style="border: 3px solid #111111; padding: 30px 28px">
-        <h3 style="margin: 0 0 20px; font-size: clamp(17.5px, 2.9vw, 22px); font-weight: 900; color: #111111">학생이 처음 만나는 문제</h3>
-        <div style="border: 1px solid #D8D8D8; padding: 20px; margin: 0 0 20px">
-          <p style="margin: 0 0 14px; font-size: 12px; font-weight: 700; color: #7B3F9D">6학년 2학기 수와 연산</p>
-          <p style="margin: 0 0 18px; font-size: 15px; line-height: 2; color: #3A3A3A">학교 전시에 쓸 직사각형 전시판을 꾸몄습니다. <button type="button" class="pg-cue" data-step="1" aria-pressed="false">전체 넓이의 1/4</button><span class="pg-tap" aria-hidden="true">👆</span>에 제목을 붙였습니다. 그 뒤 <button type="button" class="pg-cue" data-step="2" aria-pressed="false">남은 넓이의 2/5</button>에 사진을 붙였습니다. <button type="button" class="pg-cue" data-step="3" aria-pressed="false">아직 비어 있는 곳이 18 m²</button>일 때, 전시판 전체의 넓이는 몇 m²인가요?</p>
-          <div style="display: flex; justify-content: flex-end; align-items: baseline; gap: 10px">
-            <span style="font-size: 12px; color: #6A6A6A">답</span>
-            <span style="display: block; width: 150px; border-bottom: 1px solid #111111"></span>
-          </div>
-        </div>
-        <p style="margin: 0 0 22px; font-size: 14.5px; line-height: 1.75; color: #4A4A4A">제목과 사진이 각각 어느 넓이의 일부인지 먼저 생각해 봅니다. 둘의 기준이 다른 것이 이 문제의 고비입니다.</p>
-        <a class="btn-ink" href="#visit" style="display: inline-block; padding: 13px 24px; background: #111111; color: #FFFFFF; font-size: 15px; font-weight: 700; border-radius: 999px; text-decoration: none">진단샘플 내려받기</a>
-      </div>
-
-      <div style="border: 3px solid #111111; padding: 30px 28px">
-        <h3 style="margin: 0 0 20px; font-size: clamp(17.5px, 2.9vw, 22px); font-weight: 900; color: #111111">그 문제를 푸는 방법</h3>
-        <div style="border: 1px solid #D8D8D8; padding: 20px; margin: 0 0 20px">
-          <p style="margin: 0 0 16px; font-size: 12.5px; font-weight: 900; color: #111111">문제그리기</p>
-
-          <p class="pg-hint" style="margin: 0; font-size: 14.5px; line-height: 1.75; color: #6A6A6A">왼쪽 문장의 밑줄 친 조건을 누르면 막대가 한 단계씩 그려집니다.</p>
-
-          <div class="pg-step" data-stepbox="1" style="padding: 0 0 18px">
-            <h4 style="margin: 0 0 12px; font-size: 15px; font-weight: 900; color: #111111">1. 전체에서 제목을 구분하기</h4>
-            <div style="display: flex; border: 1px solid #7B3F9D; font-size: 13.5px">
-              <span style="flex: 5 1 0; min-width: 0; padding: 12px 4px; text-align: center; background: #EFE6F5; color: #4A4A4A; border-right: 1px solid #7B3F9D">제목 1/4</span>
-              <span style="flex: 15 1 0; min-width: 0; padding: 12px 4px; text-align: center; background: #FAF5FD; color: #4A4A4A">제목을 붙이고 남은 부분</span>
-            </div>
-          </div>
-
-          <div class="pg-step" data-stepbox="2" style="border-top: 1px solid #E4E4E4; padding: 18px 0">
-            <h4 style="margin: 0 0 12px; font-size: 15px; font-weight: 900; color: #111111">2. 남은 부분만 5등분하기</h4>
-            <div style="display: flex; font-size: 13.5px; align-items: stretch">
-              <span style="flex: 5 1 0; min-width: 0; padding: 12px 4px; text-align: center; background: #EFE6F5; color: #8A8A8A; border: 1px solid #D8C6E6; box-sizing: border-box">제목</span>
-              <div style="flex: 15 1 0; min-width: 0; display: flex; border: 3px solid #7B3F9D; box-sizing: border-box">
-              <button type="button" class="pg-cell" aria-pressed="false">?</button>
-              <button type="button" class="pg-cell" aria-pressed="false">?</button>
-              <button type="button" class="pg-cell" aria-pressed="false">?</button>
-              <button type="button" class="pg-cell" aria-pressed="false">?</button>
-              <button type="button" class="pg-cell" aria-pressed="false">?</button>
-              </div>
-            </div>
-            <p class="pg-feedback" aria-live="polite" style="margin: 12px 0 0; font-size: 13.5px; line-height: 1.7; font-weight: 700; color: #7B3F9D">사진을 붙일 두 칸을 골라 보세요.</p>
-          </div>
-
-          <div class="pg-step" data-stepbox="3" style="border-top: 1px solid #E4E4E4; padding: 18px 0 0">
-            <h4 style="margin: 0 0 12px; font-size: 15px; font-weight: 900; color: #111111">3. 알고 있는 넓이에서 거슬러 가기</h4>
-            <div style="display: flex; align-items: center; gap: 8px; font-size: 13px">
-              <span style="flex: 1 1 0; min-width: 0; text-align: center; padding: 12px 4px; border: 1px solid #C9A9DC">빈 곳<br><strong style="color: #111111">18 m²</strong></span>
-              <span style="color: #7B3F9D">→</span>
-              <span style="flex: 1 1 0; min-width: 0; text-align: center; padding: 12px 4px; border: 1px solid #C9A9DC">제목 뒤 남은 곳<br><strong style="color: #111111">□ m²</strong></span>
-              <span style="color: #7B3F9D">→</span>
-              <span style="flex: 1 1 0; min-width: 0; text-align: center; padding: 12px 4px; border: 1px solid #C9A9DC">전시판 전체<br><strong style="color: #111111">□ m²</strong></span>
-            </div>
-          </div>
-        </div>
-        <p style="margin: 0 0 22px; font-size: 14.5px; line-height: 1.75; color: #4A4A4A">그림에서 거슬러 가는 순서가 그대로 풀이 계획이 됩니다. 교재는 이 순서까지만 주고, 답은 주지 않습니다.</p>
-        <a class="btn-line" href="/method" style="display: inline-block; padding: 13px 24px; background: transparent; color: #111111; font-size: 15px; font-weight: 700; border: 2px solid #111111; border-radius: 999px; text-decoration: none">지면 펼쳐보기</a>
-      </div>
-
     </div>
   </section>
 
