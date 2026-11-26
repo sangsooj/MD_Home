@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>겨울방학 특강 | 매쓰두잉센터</title>
+<meta name="description" content="개강 12월 30일. 내가 수학하기와 펜토미노·쌓기나무 두 과정의 기간과 시간, 대상을 안내합니다.">
+<link rel="canonical" href="https://www.mathdoing.com/winter">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="매쓰두잉센터">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="겨울방학 특강 | 매쓰두잉센터">
+<meta property="og:description" content="개강 12월 30일. 내가 수학하기와 펜토미노·쌓기나무 두 과정의 기간과 시간, 대상을 안내합니다.">
+<meta property="og:url" content="https://www.mathdoing.com/winter">
+<meta property="og:image" content="https://www.mathdoing.com/assets/v3/og-cover.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="매쓰두잉센터 — 답을 구하기 전에, 문제를 그립니다">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="겨울방학 특강 | 매쓰두잉센터">
+<meta name="twitter:description" content="개강 12월 30일. 내가 수학하기와 펜토미노·쌓기나무 두 과정의 기간과 시간, 대상을 안내합니다.">
+<meta name="twitter:image" content="https://www.mathdoing.com/assets/v3/og-cover.png">
+<link rel="icon" href="/assets/mathdoing-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&amp;display=swap">
+<style>
+:root { --field: #FFD92E; }
+body { margin: 0; font-family: 'Noto Sans KR', system-ui, sans-serif; background: #FFFFFF; color: #3A3A3A; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; word-break: keep-all; overflow-wrap: break-word; }
+a { color: #111111; touch-action: manipulation; }
+h1, h2, h3 { text-wrap: balance; }
+p, li, dd { text-wrap: pretty; }
+a:focus-visible { outline: 3px solid #2E5FA3; outline-offset: 3px; }
+.nav-link:hover { background: var(--field); }
+.btn-ink:hover { background: #3A3A3A; }
+.btn-line:hover { background: #111111; color: #FFFFFF; }
+.skip-link { position: absolute; left: -9999px; top: 0; z-index: 10; background: #111111; color: #FFFFFF; padding: 12px 20px; font-size: 14px; font-weight: 700; text-decoration: none; }
+.skip-link:focus { left: 0; }
+.row-rule { border-bottom: 1px solid #111111; }
+details > summary { cursor: pointer; list-style: none; padding: 20px 0; font-size: 17px; font-weight: 700; color: #111111; }
+details > summary::-webkit-details-marker { display: none; }
+details > summary::after { content: '+'; float: right; font-weight: 900; }
+details[open] > summary::after { content: '\2212'; }
+details > summary:hover { background: var(--field); }
+details > summary:focus-visible { outline: 3px solid #2E5FA3; outline-offset: -3px; }
+
+/* ── 좁은 화면 ── */
+.g2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) }
+.g3 { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)) }
+.g4 { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) }
+.g5 { grid-template-columns: repeat(auto-fit, minmax(165px, 1fr)) }
+.g8 { grid-template-columns: repeat(auto-fit, minmax(108px, 1fr)) }
+.g-cal { grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)) }
+.day { display: flex; align-items: center; justify-content: center;
+       width: 100%; max-width: 34px; aspect-ratio: 1; margin: 0 auto;
+       font-size: 13.5px; box-sizing: border-box }
+.g-split { grid-template-columns: minmax(0, 1fr) }
+@media (min-width: 900px) { .g-split { grid-template-columns: var(--split) } }
+@media (max-width: 760px) {
+  .rule-col { border-left: 0; border-top: 1px solid #111111; padding-left: 0; padding-top: 16px }
+  .scroll-x { overflow-x: auto }
+}
+img, svg, table { max-width: 100% }
+@media (max-width: 760px) {
+}
+
+/* ── 좁은 화면 전용 ── */
+.nav-wide { display: flex; flex-wrap: wrap; gap: 4px; align-items: center }
+.nav-narrow { display: none }
+@media (max-width: 860px) {
+  .nav-wide { display: none }
+  .nav-narrow { display: block; position: relative }
+  .nav-narrow > summary {
+    display: flex; align-items: center; gap: 8px; list-style: none; cursor: pointer;
+    min-height: 44px; padding: 9px 18px; background: #FFFFFF; color: #111111;
+    border: 2px solid #111111; border-radius: 999px; font-size: 15px; font-weight: 700;
+  }
+  .nav-narrow > summary::-webkit-details-marker { display: none }
+  .nav-narrow > summary::after { content: '\2630'; font-size: 17px; line-height: 1 }
+  .nav-narrow[open] > summary { background: #111111; color: #FFFFFF }
+  .nav-narrow[open] > summary::after { content: '\00D7'; font-size: 20px }
+  .nav-panel {
+    position: absolute; right: 0; left: auto; top: calc(100% + 10px); z-index: 30;
+    width: max-content; min-width: 232px; max-width: min(86vw, 320px);
+    background: #FFFFFF; border: 2px solid #111111;
+  }
+  .nav-panel a {
+    display: block; padding: 15px 20px; font-size: 16px; font-weight: 700;
+    color: #111111; text-decoration: none; border-bottom: 1px solid #111111;
+  }
+  .nav-panel a:last-child { border-bottom: 0; background: #111111; color: #FFFFFF }
+  .nav-panel a:hover, .nav-panel a:focus-visible { background: var(--field) }
+  .nav-panel a:last-child:hover { background: #3A3A3A }
+  .nav-panel a[aria-current="page"] { background: var(--field) }
+}
+/* 지면은 화면 폭에 맞추고, 학생이 쓴 글씨만 키운다 */
+.hw { font-size: calc(var(--s) * var(--hw, 1)) }
+@media (max-width: 760px) { .hw-stage { --hw: 1.45 } }
+@media (max-width: 480px) { .hw-stage { --hw: 1.7 } }
+/* 표지 네 묶음은 어느 폭에서도 한 줄 */
+.shelf { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(8px, 2.4vw, 36px) }
+</style>
+<script>
+(function () {
+  try {
+    var pick = sessionStorage.getItem('md-field');
+    if (!pick) {
+      var field = ['#FFD92E', '#C9DC3F', '#7ECECE', '#F08BB4'];
+      pick = field[Math.floor(Math.random() * field.length)];
+      sessionStorage.setItem('md-field', pick);
+    }
+    document.documentElement.style.setProperty('--field', pick);
+  } catch (e) {}
+})();
+</script>
+</head>
+<body>
+<div style="width: 100%; box-sizing: border-box; background: #FFFFFF">
+
+<a class="skip-link" href="#main">본문으로 건너뛰기</a>
+
+  <header style="border-bottom: 2px solid #111111; background: #FFFFFF">
+    <div style="max-width: 1180px; margin: 0 auto; padding: 16px clamp(20px, 5vw, 40px); box-sizing: border-box; display: flex; flex-wrap: wrap; gap: 20px; align-items: center; justify-content: space-between">
+      <a href="/" style="display: flex; align-items: center; gap: 10px; text-decoration: none">
+        <img src="/assets/mathdoing-logo.png" width="600" height="442" alt="" style="display: block; width: 40px; height: auto">
+        <span style="font-size: clamp(17.5px, 2.9vw, 21px); font-weight: 900; letter-spacing: -0.04em; color: #111111">매쓰두잉센터</span>
+      </a>
+      <nav class="nav-wide" aria-label="주요 메뉴">
+        <a class="nav-link" href="/method" style="font-size: 15px; font-weight: 700; color: #111111; text-decoration: none; padding: 12px 12px">매쓰두잉 방법론</a>
+        <a class="nav-link" href="/class" style="font-size: 15px; font-weight: 700; color: #111111; text-decoration: none; padding: 12px 12px">수업안내</a>
+        <a class="nav-link" href="/schedule" style="font-size: 15px; font-weight: 700; color: #111111; text-decoration: none; padding: 12px 12px; background: var(--field)">수업일정</a>
+        <a class="nav-link" href="/director" style="font-size: 15px; font-weight: 700; color: #111111; text-decoration: none; padding: 12px 12px">원장소개</a>
+        <a class="nav-link" href="/notices" style="font-size: 15px; font-weight: 700; color: #111111; text-decoration: none; padding: 12px 12px">공지사항</a>
+        <a class="btn-ink" href="#visit" style="font-size: 15px; font-weight: 700; color: #FFFFFF; background: #111111; padding: 12px 20px; border-radius: 999px; text-decoration: none; margin-left: 8px">상담 예약</a>
+      </nav>
+      <details class="nav-narrow">
+        <summary aria-label="메뉴 열기">메뉴</summary>
+        <div class="nav-panel">
+          <a href="/method">매쓰두잉 방법론</a>
+          <a href="/class">수업안내</a>
+          <a href="/schedule">수업일정</a>
+          <a href="/director">원장소개</a>
+          <a href="/notices">공지사항</a>
+          <a href="#visit">상담 예약</a>
+        </div>
+      </details>
+    </div>
+  </header>
+
+  <main id="main">
+
+  <!-- 히어로 -->
+  <section style="background: var(--field); border-bottom: 2px solid #111111">
+    <div style="max-width: 1180px; margin: 0 auto; padding: clamp(40px, 6.54545vw, 72px) clamp(20px, 5vw, 40px) 64px; box-sizing: border-box">
+      <p style="margin: 0 0 18px; display: inline-block; font-size: 15px; font-weight: 900; color: #FFFFFF; background: #111111; padding: 10px 20px; border-radius: 999px">12월 30일 개강 · 모집 중</p>
+      <h1 style="margin: 0 0 20px; font-size: clamp(30px, 6.4vw, 56px); font-weight: 900; line-height: 1.22; color: #111111; letter-spacing: -0.04em; max-width: 14em">겨울방학 특강</h1>
+      <p style="margin: 0 0 10px; font-size: clamp(18px, 2.6vw, 22px); line-height: 1.7; font-weight: 700; color: #111111; max-width: 34em">방학 동안, 내 실력을 키울 기회!</p>
+      <p style="margin: 0; font-size: 16.5px; line-height: 1.8; color: #2B2B2B; max-width: 40em">수학교육 전공 박사 원장이 아이의 수학 학습 이해와 수준을 직접 파악합니다. 등록하시면 진단평가는 무료입니다.</p>
+    </div>
+  </section>
+
+  <!-- 한눈에 -->
+  <section style="background: #F4F4F4; border-bottom: 2px solid #111111">
+    <div class="g2" style="max-width: 1180px; margin: 0 auto; padding: 40px clamp(20px, 5vw, 40px); box-sizing: border-box; display: grid; gap: 28px">
+      <a href="#mathdoing" style="display: block; background: #FFFFFF; border: 2px solid #111111; padding: 24px 26px; text-decoration: none">
+        <p style="margin: 0 0 8px; font-size: 14px; font-weight: 900; color: #6A6A6A; letter-spacing: 0.02em">과정 1</p>
+        <p style="margin: 0 0 8px; font-size: 24px; font-weight: 900; color: #111111; letter-spacing: -0.03em">내가 수학하기</p>
+        <p style="margin: 0; font-size: 15.5px; line-height: 1.7; color: #4A4A4A">초등 2~6학년과 중등 · 월~목 매일 1시간</p>
+      </a>
+      <a href="#pentomino" style="display: block; background: #FFFFFF; border: 2px solid #111111; padding: 24px 26px; text-decoration: none">
+        <p style="margin: 0 0 8px; font-size: 14px; font-weight: 900; color: #6A6A6A; letter-spacing: 0.02em">과정 2</p>
+        <p style="margin: 0 0 8px; font-size: 24px; font-weight: 900; color: #111111; letter-spacing: -0.03em">펜토미노 + 쌓기나무</p>
+        <p style="margin: 0; font-size: 15.5px; line-height: 1.7; color: #4A4A4A">초등 2~3학년 · 매주 토요일 · 총 6회</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- 과정 1 -->
+  <section id="mathdoing" style="max-width: 1180px; margin: 0 auto; padding: clamp(48px, 8vw, 88px) clamp(20px, 5vw, 40px); box-sizing: border-box">
+    <p style="margin: 0 0 10px; font-size: 15px; font-weight: 900; color: #6A6A6A">과정 1</p>
+    <h2 style="margin: 0 0 18px; font-size: clamp(25px, 5vw, 42px); font-weight: 900; line-height: 1.25; color: #111111; letter-spacing: -0.035em">내가 수학하기</h2>
+    <p style="margin: 0 0 40px; font-size: 17px; line-height: 1.8; color: #4A4A4A; max-width: 40em">내가 고른 문제집 한 권을 매일 풀어 방학 동안 완성합니다.</p>
+
+    <div class="g-split" style="display: grid; --split: minmax(0, 1fr) minmax(0, 1.15fr); gap: 44px; align-items: start">
+      <div style="border: 2px solid #111111; background: #FFFFFF; padding: 28px 28px 24px">
+        <p style="margin: 0 0 18px; font-size: 15px; font-weight: 900; color: #111111; border-bottom: 2px solid #111111; padding-bottom: 12px">기간</p>
+        <div style="margin: 0 0 18px">
+          <p style="margin: 0 0 4px; font-size: 15px; font-weight: 700; color: #6A6A6A">겨울방학</p>
+          <p style="margin: 0; font-size: 24px; font-weight: 900; color: #111111; letter-spacing: -0.02em">12.30 ~ 1.26</p>
+        </div>
+        <div>
+          <p style="margin: 0 0 4px; font-size: 15px; font-weight: 700; color: #6A6A6A">봄방학</p>
+          <p style="margin: 0; font-size: 24px; font-weight: 900; color: #111111; letter-spacing: -0.02em">2.5 ~ 2.28</p>
+        </div>
+        <p style="margin: 20px 0 0; font-size: 14.5px; line-height: 1.7; color: #4A4A4A">방학 기간 동안 진행합니다.</p>
+      </div>
+
+      <div>
+        <div style="border-top: 2px solid #111111; padding: 20px 0 18px">
+          <p style="margin: 0 0 14px; font-size: 19px; font-weight: 900; color: #111111">초등 2~6학년</p>
+          <p style="margin: 0 0 14px; font-size: 15.5px; color: #4A4A4A">월~목 매일 1시간</p>
+          <div class="rowline" style="display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: baseline; padding: 10px 0; border-top: 1px solid #D4D4D4">
+            <span style="flex: 0 0 72px; font-size: 16px; font-weight: 900; color: #111111">A반</span>
+            <span style="font-size: 18px; font-weight: 700; color: #111111; letter-spacing: -0.01em">9:30 ~ 10:30</span>
+          </div>
+          <div class="rowline" style="display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: baseline; padding: 10px 0; border-top: 1px solid #D4D4D4">
+            <span style="flex: 0 0 72px; font-size: 16px; font-weight: 900; color: #111111">B반</span>
+            <span style="font-size: 18px; font-weight: 700; color: #111111; letter-spacing: -0.01em">10:40 ~ 11:40</span>
+          </div>
+        </div>
+        <div style="border-top: 2px solid #111111; padding: 20px 0 0">
+          <p style="margin: 0 0 14px; font-size: 19px; font-weight: 900; color: #111111">중등</p>
+          <div class="rowline" style="display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: baseline; padding: 10px 0; border-top: 1px solid #D4D4D4">
+            <span style="flex: 0 0 72px; font-size: 16px; font-weight: 900; color: #111111">매주 월요일</span>
+            <span style="font-size: 18px; font-weight: 700; color: #111111; letter-spacing: -0.01em">17:00 ~ 19:00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 과정 2 -->
+  <section id="pentomino" style="background: #F4F4F4; border-top: 2px solid #111111; border-bottom: 2px solid #111111">
+    <div style="max-width: 1180px; margin: 0 auto; padding: clamp(48px, 8vw, 88px) clamp(20px, 5vw, 40px); box-sizing: border-box">
+      <p style="margin: 0 0 10px; font-size: 15px; font-weight: 900; color: #6A6A6A">과정 2 · 초등 2~3학년 · 기본과정 6회 완성</p>
+      <h2 style="margin: 0 0 18px; font-size: clamp(25px, 5vw, 42px); font-weight: 900; line-height: 1.25; color: #111111; letter-spacing: -0.035em">펜토미노 + 쌓기나무</h2>
+      <p style="margin: 0 0 40px; font-size: 17px; line-height: 1.8; color: #4A4A4A; max-width: 40em">공간 지각력에서 문제해결력까지 이어 갑니다.</p>
+
+      <ol class="g3" style="list-style: none; margin: 0 0 36px; padding: 0; display: grid; gap: 24px">
+        <li style="background: #FFFFFF; border: 2px solid #111111; border-top: 10px solid #FFD92E; padding: 24px 24px 22px">
+          <p style="margin: 0 0 8px; font-size: 14px; font-weight: 900; color: #6A6A6A">①</p>
+          <p style="margin: 0 0 8px; font-size: 21px; font-weight: 900; color: #111111; letter-spacing: -0.03em">펜토미노</p>
+          <p style="margin: 0; font-size: 15.5px; line-height: 1.7; color: #4A4A4A">도형 감각</p>
+        </li>
+        <li style="background: #FFFFFF; border: 2px solid #111111; border-top: 10px solid #7ECECE; padding: 24px 24px 22px">
+          <p style="margin: 0 0 8px; font-size: 14px; font-weight: 900; color: #6A6A6A">②</p>
+          <p style="margin: 0 0 8px; font-size: 21px; font-weight: 900; color: #111111; letter-spacing: -0.03em">쌓기나무</p>
+          <p style="margin: 0; font-size: 15.5px; line-height: 1.7; color: #4A4A4A">공간 지각력</p>
+        </li>
+        <li style="background: #FFFFFF; border: 2px solid #111111; border-top: 10px solid #F08BB4; padding: 24px 24px 22px">
+          <p style="margin: 0 0 8px; font-size: 14px; font-weight: 900; color: #6A6A6A">③</p>
+          <p style="margin: 0 0 8px; font-size: 21px; font-weight: 900; color: #111111; letter-spacing: -0.03em">문제 풀이</p>
+          <p style="margin: 0; font-size: 15.5px; line-height: 1.7; color: #4A4A4A">문제해결력</p>
+        </li>
+      </ol>
+
+      <div class="g-split" style="display: grid; --split: minmax(0, 1.1fr) minmax(0, 1fr); gap: 32px; align-items: start">
+        <div style="background: #FFFFFF; border: 2px solid #111111; padding: 24px 26px">
+          <p style="margin: 0 0 8px; font-size: 16px; font-weight: 900; color: #111111">★ 교육과정 연계</p>
+          <p style="margin: 0; font-size: 15.5px; line-height: 1.75; color: #4A4A4A">활동지와 문제 풀이로 문제해결력까지 이어집니다.</p>
+        </div>
+        <div style="background: #FFFFFF; border: 2px solid #111111; padding: 24px 26px">
+          <p style="margin: 0 0 14px; font-size: 15px; font-weight: 900; color: #111111; border-bottom: 2px solid #111111; padding-bottom: 10px">일정</p>
+          <p style="margin: 0 0 12px; font-size: 15.5px; color: #4A4A4A">매주 토요일</p>
+          <div class="rowline" style="display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: baseline; padding: 8px 0; border-top: 1px solid #D4D4D4">
+            <span style="flex: 0 0 56px; font-size: 15.5px; font-weight: 900; color: #111111">A반</span>
+            <span style="font-size: 17px; font-weight: 700; color: #111111">9:30 ~ 10:50</span>
+          </div>
+          <div class="rowline" style="display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: baseline; padding: 8px 0; border-top: 1px solid #D4D4D4">
+            <span style="flex: 0 0 56px; font-size: 15.5px; font-weight: 900; color: #111111">B반</span>
+            <span style="font-size: 17px; font-weight: 700; color: #111111">11:00 ~ 12:20</span>
+          </div>
+          <p style="margin: 16px 0 0; font-size: 15.5px; line-height: 1.7; color: #111111; font-weight: 700">1.2 ~ 2.13 · 총 6회</p>
+          <p style="margin: 4px 0 0; font-size: 14.5px; color: #4A4A4A">2월 6일 설 연휴는 휴강합니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 왜 -->
+  <section style="max-width: 1180px; margin: 0 auto; padding: clamp(48px, 8vw, 88px) clamp(20px, 5vw, 40px); box-sizing: border-box">
+    <h2 style="margin: 0 0 20px; font-size: clamp(25px, 5vw, 42px); font-weight: 900; line-height: 1.25; color: #111111; letter-spacing: -0.035em; max-width: 18em">아이마다 다른 수학, 공부 방법도 달라야 합니다</h2>
+    <p style="margin: 0 0 40px; font-size: 17px; line-height: 1.8; color: #4A4A4A; max-width: 44em">수준을 파악하고, 맞춤 문제집으로 적용하고, 평가하고, 학습 방향을 수정·보완합니다. 이 네 단계를 한 바퀴 돌 때마다 수준이 한 단계씩 올라갑니다. 초등 2·3학년은 프리매쓰두잉으로 진행합니다.</p>
+    <ol class="g4" style="list-style: none; margin: 0 0 40px; padding: 0; display: grid; gap: 24px">
+      <li style="border-top: 10px solid #FFD92E; padding: 18px 0 0">
+        <p style="margin: 0 0 6px; font-size: 14px; font-weight: 900; color: #6A6A6A">①</p>
+        <p style="margin: 0; font-size: 18px; font-weight: 900; color: #111111; line-height: 1.4; letter-spacing: -0.02em">수학 이해와<br>수준 파악</p>
+      </li>
+      <li style="border-top: 10px solid #C9DC3F; padding: 18px 0 0">
+        <p style="margin: 0 0 6px; font-size: 14px; font-weight: 900; color: #6A6A6A">②</p>
+        <p style="margin: 0; font-size: 18px; font-weight: 900; color: #111111; line-height: 1.4; letter-spacing: -0.02em">맞춤 문제집으로<br>개념 이해·적용</p>
+      </li>
+      <li style="border-top: 10px solid #7ECECE; padding: 18px 0 0">
+        <p style="margin: 0 0 6px; font-size: 14px; font-weight: 900; color: #6A6A6A">③</p>
+        <p style="margin: 0; font-size: 18px; font-weight: 900; color: #111111; line-height: 1.4; letter-spacing: -0.02em">자체 평가지로<br>확인</p>
+      </li>
+      <li style="border-top: 10px solid #F08BB4; padding: 18px 0 0">
+        <p style="margin: 0 0 6px; font-size: 14px; font-weight: 900; color: #6A6A6A">④</p>
+        <p style="margin: 0; font-size: 18px; font-weight: 900; color: #111111; line-height: 1.4; letter-spacing: -0.02em">학습 방향<br>수정·보완</p>
+      </li>
+    </ol>
+    <p style="margin: 0; font-size: 16px; line-height: 1.8; color: #4A4A4A">
+      <a href="/method" style="font-weight: 700; color: #111111">매쓰두잉 방법론 보기</a>
+      <span style="color: #C4C4C4; padding: 0 10px">·</span>
+      <a href="/director" style="font-weight: 700; color: #111111">원장 소개</a>
+    </p>
+  </section>
+
+  </main>
+
+  <footer id="visit" style="background: var(--field); border-top: 2px solid #111111">
+    <div style="max-width: 1180px; margin: 0 auto; padding: clamp(40px, 6.54545vw, 72px) clamp(20px, 5vw, 40px) 40px; box-sizing: border-box; display: flex; flex-wrap: wrap; gap: 56px; align-items: flex-start; justify-content: space-between">
+      <div style="flex: 999 1 380px; min-width: 0">
+        <h2 style="margin: 0 0 16px; font-size: clamp(25px, 5vw, 38px); font-weight: 900; line-height: 1.25; color: #111111; letter-spacing: -0.035em">진단평가부터 시작합니다</h2>
+        <p style="margin: 0 0 28px; font-size: 16px; line-height: 1.75; color: #2B2B2B; max-width: 24em">지금의 수준을 확인하는 것이 첫 단계입니다. 전화로 상담 시간을 예약해 주세요.</p>
+        <a class="btn-ink" href="tel:024005967" style="display: inline-block; padding: 16px 30px; background: #111111; color: #FFFFFF; font-size: 17px; font-weight: 700; border-radius: 999px; text-decoration: none">02-400-5967</a>
+      </div>
+      <div style="flex: 1 1 300px; min-width: 0">
+        <p style="margin: 0 0 10px; font-size: 16px; font-weight: 900; color: #111111; border-top: 2px solid #111111; padding-top: 16px">찾아오시는 길</p>
+        <p style="margin: 0 0 6px; font-size: 15px; line-height: 1.8; color: #2B2B2B">서울 강동구 양재대로 1377<br>삼원빌딩 4층 404-1호</p>
+        <p style="margin: 0; font-size: 15px; line-height: 1.8; color: #2B2B2B">포레온 길 건너 우리은행 빌딩 4층</p>
+        <p style="margin: 18px 0 0; font-size: 15px"><a href="https://blog.naver.com/hyunjp88" target="_blank" rel="noopener noreferrer" style="font-weight: 700; color: #111111; border-bottom: 3px solid #111111; padding-bottom: 2px; text-decoration: none">네이버 블로그 (새 창)</a></p>
+      </div>
+    </div>
+    <div style="border-top: 1px solid #111111">
+      <div style="max-width: 1180px; margin: 0 auto; padding: 20px clamp(20px, 5vw, 40px); box-sizing: border-box; display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between">
+        <p style="margin: 0; font-size: 13px; font-weight: 700; color: #2B2B2B">매쓰두잉센터</p>
+        <p style="margin: 0; font-size: 13px; color: #2B2B2B">수학교육 방법론 연구·개발</p>
+      </div>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
